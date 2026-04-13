@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voz & Personas — Optimatech Design System v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/icon-original.svg">
+<style>
+:root{--gold:#C49244;--citrus:#E5E417;--dark-brand:#333333;--gold-warm:#A97727;--gold-lt:#D4A85A;--gold-dk:#B07B30;--black:#1C1917;--graphite:#3C3830;--gray-6:#5C5650;--gray-4:#9C9690;--gray-2:#D4D0CC;--bg:#F7F6F4;--surface:#FFFFFF;--border:rgba(28,25,23,0.08);--nav-w:72px;--font:'Sora',sans-serif;--font-primary:'Exo 2',sans-serif;--font-secondary:'Sora',sans-serif;--r-sm:6px;--r-md:10px;--r-lg:16px;--r-xl:24px;--sh-sm:0 1px 3px rgba(28,25,23,0.06),0 1px 2px rgba(28,25,23,0.04);--sh-md:0 4px 16px rgba(28,25,23,0.08),0 2px 6px rgba(28,25,23,0.04)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--black);display:flex;min-height:100vh;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.rail{width:var(--nav-w);min-height:100vh;background:var(--black);position:fixed;top:0;left:0;display:flex;flex-direction:column;align-items:center;padding:20px 0 24px;z-index:200}
+.rail-logo{width:36px;height:36px;background:var(--black);border:1.5px solid rgba(196,146,68,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;flex-shrink:0;overflow:hidden;padding:4px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;width:56px;padding:8px 0;border-radius:12px;text-decoration:none;color:rgba(247,246,244,.40);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;transition:all .18s;margin:1px 0}
+.ni:hover{color:rgba(247,246,244,.75);background:rgba(247,246,244,.05)}
+.ni.active{color:var(--gold)}
+.ni-wrap{width:38px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:9px;transition:background .18s}
+.ni.active .ni-wrap{background:rgba(196,146,68,.16)}
+.rail-div{width:30px;height:1px;background:rgba(247,246,244,.08);margin:8px 0}
+.sidebar{width:200px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:var(--nav-w);padding:56px 0 40px;overflow-y:auto;z-index:90;display:flex;flex-direction:column}
+.sb-header{padding:16px 20px 12px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.sb-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-4);display:block;margin-bottom:4px}
+.sb-page{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:700;color:var(--black);line-height:1.3;letter-spacing:-.01em}
+.toc-list{flex:1;padding:4px 0}
+.toc-item{display:block;padding:6px 20px 6px 18px;text-decoration:none;font-size:11px;font-weight:500;color:var(--gray-4);border-left:2px solid transparent;transition:all .15s;line-height:1.4;letter-spacing:.01em}
+.toc-item:hover{color:var(--black);background:rgba(28,25,23,.02)}
+.toc-item.active{color:var(--black);border-left-color:var(--gold);background:rgba(196,146,68,.05);font-weight:600}
+.toc-num{font-size:9px;color:var(--gray-2);font-weight:600;letter-spacing:.06em;display:block;margin-bottom:1px}
+.main{margin-left:calc(var(--nav-w) + 200px);flex:1;display:flex;flex-direction:column}
+.breadcrumb{height:44px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 40px;gap:8px;font-size:12px;font-weight:500;color:var(--gray-4);position:sticky;top:0;z-index:100}
+.breadcrumb a{color:var(--gray-4);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--black)}
+.breadcrumb-sep{color:var(--gray-2);font-size:10px}
+.content{flex:1;padding:64px 40px 80px}
+.wrap{max-width:920px;margin:0 auto}
+#pb{position:fixed;top:0;left:0;right:0;height:2px;background:var(--gold);transform-origin:left;z-index:999;transform:scaleX(0)}
+.page-header{padding-bottom:40px;border-bottom:1px solid var(--border);margin-bottom:64px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--gold);border-radius:1px}
+.page-title{font-family:'Exo 2',sans-serif;font-size:48px;font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px}
+.page-sub{font-size:17px;font-weight:300;color:var(--gray-6);max-width:520px;line-height:1.7}
+.section{margin-bottom:72px}
+.s-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-4);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.s-label::before{content:'';width:16px;height:1px;background:var(--gray-2)}
+.s-title{font-family:'Exo 2',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.s-sub{font-size:15px;font-weight:300;color:var(--gray-6);margin-bottom:32px;line-height:1.65;max-width:580px}
+
+/* VOICE ATTRIBUTES */
+.voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.voice-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:32px;box-shadow:var(--sh-sm);position:relative;overflow:hidden}
+.voice-card::after{content:attr(data-attr);position:absolute;right:-10px;bottom:-20px;font-size:80px;font-weight:800;color:rgba(28,25,23,.03);line-height:1;pointer-events:none}
+.voice-attr{font-size:22px;font-weight:800;color:var(--black);margin-bottom:6px;letter-spacing:-.02em}
+.voice-opp{font-size:12px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px}
+.voice-def{font-size:14px;font-weight:300;color:var(--gray-6);line-height:1.7}
+
+/* DISCOURSE BLOCK */
+.discourse{background:var(--black);border-radius:var(--r-xl);padding:48px 56px;box-shadow:var(--sh-md);position:relative;overflow:hidden}
+.discourse::before{content:'"';position:absolute;top:-20px;left:32px;font-size:200px;font-weight:800;color:rgba(196,146,68,.08);line-height:1;pointer-events:none}
+.discourse-text{font-size:20px;font-weight:300;color:#F5F4F2;line-height:1.75;position:relative;z-index:1}
+.discourse-text strong{font-weight:700;color:var(--gold)}
+.discourse-author{font-size:12px;font-weight:600;color:rgba(247,246,244,.4);text-transform:uppercase;letter-spacing:.1em;margin-top:24px;position:relative;z-index:1}
+
+/* MESSAGING */
+.msg-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-sm)}
+.msg-col{padding:32px}
+.msg-col:first-child{border-right:1px solid var(--border)}
+.msg-col-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.msg-item{font-size:14px;font-weight:300;color:var(--gray-6);line-height:1.6;padding:10px 0;border-bottom:1px solid var(--border)}
+.msg-item:last-child{border-bottom:none}
+.msg-item strong{font-weight:600;color:var(--black)}
+
+/* PERSONAS */
+.personas-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.persona-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px;box-shadow:var(--sh-sm)}
+.persona-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.persona-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;color:var(--black)}
+.persona-name{font-size:16px;font-weight:700;color:var(--black);margin-bottom:2px;letter-spacing:-.01em}
+.persona-role{font-size:12px;font-weight:500;color:var(--gray-4)}
+.persona-sector{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.persona-body{font-size:13px;font-weight:400;color:var(--gray-6);line-height:1.65;margin-bottom:14px}
+.persona-pain{background:rgba(28,25,23,.03);border-radius:var(--r-md);padding:12px 16px;margin-bottom:10px}
+.persona-pain-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:4px}
+.persona-pain-text{font-size:12px;font-weight:400;color:var(--gray-6);line-height:1.5}
+.persona-solution{background:rgba(196,146,68,.06);border:1px solid rgba(196,146,68,.15);border-radius:var(--r-md);padding:12px 16px}
+.persona-solution-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:4px}
+.persona-solution-text{font-size:12px;font-weight:500;color:var(--black);line-height:1.5}
+
+/* ANTI-PATTERNS */
+.anti-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.anti-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm)}
+.anti-header{padding:10px 18px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.anti-header.avoid{background:rgba(210,60,60,.08);color:#A83030;border-left:3px solid #E05050}
+.anti-header.use{background:rgba(60,150,90,.08);color:#2A7A4A;border-left:3px solid #4CAF7D}
+.anti-body{padding:16px 18px;font-size:13px;font-weight:400;color:var(--gray-6);line-height:1.6;border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r-lg) var(--r-lg)}
+.anti-body em{font-style:italic;color:var(--black)}
+
+/* FOOTER */
+.fn{display:flex;justify-content:space-between;align-items:center;padding:32px 0 0;margin-top:72px;border-top:1px solid var(--border)}
+.fn a{display:inline-flex;align-items:center;gap:8px;color:var(--gray-6);text-decoration:none;font-size:13px;font-weight:500;transition:color .15s}
+.fn a:hover{color:var(--gold)}
+.fn-copy{font-size:11px;color:var(--gray-4)}
+</style>
+</head>
+<body>
+<div id="pb"></div>
+
+<nav class="rail">
+  <div class="rail-logo"><img src="assets/favicon-icon.svg" alt="Optimatech" style="width:100%;height:100%;object-fit:contain"></div>
+  <a href="index.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 8.5L10 3l7 5.5V17a1 1 0 01-1 1H4a1 1 0 01-1-1V8.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 18v-6h6v6" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg></div>INÍCIO</a>
+  <a href="marca.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="10" y1="2.5" x2="10" y2="17.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="2.5" y1="10" x2="17.5" y2="10" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="rgba(247,246,244,.45)"/></svg></div>MARCA</a>
+  <a href="cores.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><path d="M10 2.5a7.5 7.5 0 010 15" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" fill="rgba(247,246,244,.45)"/></svg></div>COR</a>
+  <a href="tipografia.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M10 5v12M7 17h6" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg></div>TIPO</a>
+  <div class="rail-div"></div>
+  <a href="componentes.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="2.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg></div>COMP</a>
+  <a href="voz.html" class="ni active"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17 9.5c0 3.59-3.134 6.5-7 6.5a7.5 7.5 0 01-3.062-.638L3 17l1.638-3.938A6.3 6.3 0 013 9.5C3 5.91 6.134 3 10 3s7 2.91 7 6.5z" stroke="rgba(247,246,244,.65)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>VOZ</a>
+  <a href="assets.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6 9l4 4 4-4" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15h14" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg></div>ASSETS</a>
+</nav>
+
+
+<aside class="sidebar" aria-label="Índice da página">
+  <div class="sb-header">
+    <span class="sb-label">Nesta página</span>
+    <span class="sb-page">Voz & Personas</span>
+  </div>
+  <nav class="toc-list" id="toc-list"></nav>
+</aside>
+
+<div class="main">
+  <div class="breadcrumb">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="1" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/></svg>
+    <a href="index.html">Design System v5</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Voz &amp; Personas</span>
+  </div>
+  <div class="content">
+  <div class="wrap">
+
+  <header class="page-header">
+    <div class="eyebrow">Voz & Personas</div>
+    <h1 class="page-title">Tom de Voz e Identidade de Discurso</h1>
+    <p class="page-sub">Como a Optimatech fala, para quem fala e o que nunca deve dizer. A voz da marca é tão precisa quanto os modelos que entregamos.</p>
+  </header>
+
+  <!-- DISCOURSE STATEMENT -->
+  <section class="section">
+    <div class="s-label">01 · Discurso Fundacional</div>
+    <div class="discourse">
+      <p class="discourse-text">
+        A indústria produz dados o tempo todo — mas a maioria desses dados é ignorada porque ninguém sabe o que fazer com eles. A Optimatech existe para mudar isso. <strong>Não somos uma empresa de dados. Somos uma empresa de ciência aplicada.</strong> Nossos modelos entendem o que está acontecendo dentro dos processos porque foram construídos com as mesmas equações que explicam a física e a química do mundo real. O resultado: visibilidade onde antes havia escuridão, decisões em minutos onde antes levavam meses.
+      </p>
+      <div class="discourse-author">Plataforma de Marca · Optimatech · 2025</div>
+    </div>
+  </section>
+
+  <!-- VOICE ATTRIBUTES -->
+  <section class="section">
+    <div class="s-label">02 · Atributos de Voz</div>
+    <h2 class="s-title">A marca tem quatro dimensões de tom</h2>
+    <div class="voice-grid">
+      <div class="voice-card" data-attr="Técnica">
+        <div class="voice-attr">Técnica</div>
+        <div class="voice-opp">mas não hermética</div>
+        <p class="voice-def">Usamos terminologia precisa — Digital Twin, FDD, OEE, MPC — mas sempre explicamos o que esses termos significam na prática do cliente. O engenheiro veterano e o gerente industrial iniciante devem entender a mesma mensagem.</p>
+      </div>
+      <div class="voice-card" data-attr="Direta">
+        <div class="voice-attr">Direta</div>
+        <div class="voice-opp">mas não arrogante</div>
+        <p class="voice-def">Vamos ao ponto. Não cercamos o assunto com ressalvas. Dizemos o que nosso produto faz, com que frequência atualiza e qual resultado real os clientes obtiveram. Confiança sem pedantismo.</p>
+      </div>
+      <div class="voice-card" data-attr="Científica">
+        <div class="voice-attr">Científica</div>
+        <div class="voice-opp">mas com propósito prático</div>
+        <p class="voice-def">Nossa credencial é acadêmica — COPPE/UFRJ, doutores, modelos fenomenológicos — mas o que importa ao cliente é o resultado prático: menos offspec, menos desperdício, mais eficiência. A ciência é o meio, não o fim.</p>
+      </div>
+      <div class="voice-card" data-attr="Parceira">
+        <div class="voice-attr">Parceira</div>
+        <div class="voice-opp">mas com expertise genuína</div>
+        <p class="voice-def">Não vendemos um produto. Fazemos um diagnóstico, entendemos os desafios e construímos uma jornada junto ao cliente. A parceria é real — somos parte do time técnico do cliente por anos, não uma ferramenta que se instala e esquece.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DO / DON'T MESSAGING -->
+  <section class="section">
+    <div class="s-label">03 · Mensagens Aprovadas vs. Proibidas</div>
+    <h2 class="s-title">O que dizer — e o que evitar</h2>
+    <div class="msg-grid">
+      <div class="msg-col">
+        <div class="msg-col-label" style="color:#2A7A4A">✓ Usar estas mensagens</div>
+        <div class="msg-item"><strong>"10× mais variáveis do que seus sensores medem."</strong> Impacto concreto e verificável.</div>
+        <div class="msg-item"><strong>"Atualização a cada 1 minuto"</strong> vs análise laboratorial a cada 8h. Contraste que impressiona.</div>
+        <div class="msg-item"><strong>"Modelos baseados em física e química reais"</strong> — diferencial que nenhum concorrente black-box tem.</div>
+        <div class="msg-item"><strong>"Diagnóstico gratuito"</strong> como entrada da conversa comercial — concreto, sem compromisso.</div>
+        <div class="msg-item"><strong>"Junte-se à transformação digital da indústria"</strong> — convite, não imposição.</div>
+      </div>
+      <div class="msg-col">
+        <div class="msg-col-label" style="color:#A83030">✗ Evitar sempre</div>
+        <div class="msg-item"><em>"Solução end-to-end disruptiva para o futuro da Indústria 4.0"</em> — vazio, sem substância.</div>
+        <div class="msg-item"><em>"Plataforma revolucionária com IA de ponta"</em> — clichê que qualquer concorrente usa.</div>
+        <div class="msg-item"><em>"Transformamos dados em insights"</em> — promessa sem ancoragem em diferencial real.</div>
+        <div class="msg-item"><em>"Fácil de usar e configurar"</em> — impreciso e não é o ponto para nosso cliente industrial.</div>
+        <div class="msg-item"><em>Qualquer promessa de ROI genérica sem dados reais</em> — perde credibilidade com engenheiros.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAS -->
+  <section class="section">
+    <div class="s-label">04 · Buyer Personas</div>
+    <h2 class="s-title">8 personas · 6 setores prioritários</h2>
+    <p class="s-sub">Cada persona representa um tomador de decisão real nos maiores grupos industriais do Brasil. A comunicação é sempre B2B de alto valor.</p>
+
+    <div class="personas-grid">
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar" style="background:rgba(196,146,68,.15)">CE</div>
+          <div>
+            <div class="persona-name">Carlos Eduardo</div>
+            <div class="persona-role">Gerente de Processos Industriais · 48 anos</div>
+            <div class="persona-sector">Siderurgia & Metalurgia</div>
+          </div>
+        </div>
+        <p class="persona-body">Engenheiro metalúrgico sênior, 20+ anos de planta. Domina o processo, mas sente que a tomada de decisão ainda depende de análises laboratoriais lentas e da intuição da equipe.</p>
+        <div class="persona-pain">
+          <div class="persona-pain-label">Dor principal</div>
+          <div class="persona-pain-text">O Alto-Forno produz dados em tempo real, mas a análise de qualidade do gusa demora 8h. Qualquer ajuste é reativo, nunca preventivo.</div>
+        </div>
+        <div class="persona-solution">
+          <div class="persona-solution-label">Como a Optimatech resolve</div>
+          <div class="persona-solution-text">Gêmeo Digital com atualização de 1 min · 60 variáveis calculadas · Do reativo ao preditivo</div>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar" style="background:rgba(74,143,212,.12)">RF</div>
+          <div>
+            <div class="persona-name">Roberto Fonseca</div>
+            <div class="persona-role">Diretor de Tecnologia e Inovação · 52 anos</div>
+            <div class="persona-sector">Mineração</div>
+          </div>
+        </div>
+        <p class="persona-body">Executivo com visão estratégica. Precisa mostrar ao board resultados de transformação digital. Já tentou outros fornecedores mas viu projetos pilotos morrer sem ROI claro.</p>
+        <div class="persona-pain">
+          <div class="persona-pain-label">Dor principal</div>
+          <div class="persona-pain-text">Dificuldade em traduzir investimentos em tecnologia industrial em retorno financeiro mensurável e rápido para a diretoria.</div>
+        </div>
+        <div class="persona-solution">
+          <div class="persona-solution-label">Como a Optimatech resolve</div>
+          <div class="persona-solution-text">Diagnóstico gratuito → PoC com ROI claro → Resultados documentados (Vale, Samarco)</div>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar" style="background:rgba(60,150,90,.1)">AM</div>
+          <div>
+            <div class="persona-name">Ana Martins</div>
+            <div class="persona-role">Engenheira de Confiabilidade · 35 anos</div>
+            <div class="persona-sector">Petroquímica & Química</div>
+          </div>
+        </div>
+        <p class="persona-body">Mestre em Engenharia Química. Responsável por manutenção preditiva e redução de paradas não programadas. Tem interesse técnico genuíno em modelos e dados.</p>
+        <div class="persona-pain">
+          <div class="persona-pain-label">Dor principal</div>
+          <div class="persona-pain-text">Ferramentas de monitoramento atuais são black-box: o sistema diz que há anomalia mas não explica a causa raiz nem como corrigir.</div>
+        </div>
+        <div class="persona-solution">
+          <div class="persona-solution-label">Como a Optimatech resolve</div>
+          <div class="persona-solution-text">FDD com diagnóstico de causa raiz · Modelos explicáveis · Aprende com o tempo</div>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar" style="background:rgba(196,146,68,.1)">LP</div>
+          <div>
+            <div class="persona-name">Lucas Pereira</div>
+            <div class="persona-role">Supervisor de Operações · 40 anos</div>
+            <div class="persona-sector">Óleo, Gás & Energia</div>
+          </div>
+        </div>
+        <p class="persona-body">Trabalha no turno rotativo, lida com o stress de decisões em tempo real. Está sempre pressionado por metas de produção e segurança. Precisa de informação clara e rápida.</p>
+        <div class="persona-pain">
+          <div class="persona-pain-label">Dor principal</div>
+          <div class="persona-pain-text">Dashboards complexos demais para o ritmo do turno. Não tem tempo de analisar 40 telas para decidir um ajuste de setpoint.</div>
+        </div>
+        <div class="persona-solution">
+          <div class="persona-solution-label">Como a Optimatech resolve</div>
+          <div class="persona-solution-text">IA Generativa como assistente 24h · Recomendações claras · Interface enxuta e objetiva</div>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar" style="background:rgba(232,160,48,.12)">MO</div>
+          <div>
+            <div class="persona-name">Mariana Oliveira</div>
+            <div class="persona-role">Gestora de Qualidade · 38 anos</div>
+            <div class="persona-sector">Celulose & Papel</div>
+          </div>
+        </div>
+        <p class="persona-body">Responsável pelo controle de qualidade do produto final. Lida com variações de processo que afetam as propriedades do papel — brightness, gramatura, resistência. Alta exposição a recalls e auditorias.</p>
+        <div class="persona-pain">
+          <div class="persona-pain-label">Dor principal</div>
+          <div class="persona-pain-text">Produtos fora de especificação só são detectados no laboratório, horas depois. O offspec já passou pela linha de produção inteira.</div>
+        </div>
+        <div class="persona-solution">
+          <div class="persona-solution-label">Como a Optimatech resolve</div>
+          <div class="persona-solution-text">Sensor Virtual (VOA) · Inferência de qualidade a cada 1 min · SPC em tempo real</div>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar" style="background:rgba(74,143,212,.1)">JF</div>
+          <div>
+            <div class="persona-name">João Ferreira</div>
+            <div class="persona-role">Head de Automação e Controle · 44 anos</div>
+            <div class="persona-sector">Alimentos & Bebidas</div>
+          </div>
+        </div>
+        <p class="persona-body">Engenheiro de controle de processos. Conhece MPC, SCADA e sistemas de automação. Quer ir além do controle clássico e implementar otimização em tempo real, mas tem dificuldade em justificar o investimento.</p>
+        <div class="persona-pain">
+          <div class="persona-pain-label">Dor principal</div>
+          <div class="persona-pain-text">Os sistemas de controle atuais reagem a desvios mas não antecipam. O RTO que conhece exige infraestrutura pesada e equipe especializada para sustentar.</div>
+        </div>
+        <div class="persona-solution">
+          <div class="persona-solution-label">Como a Optimatech resolve</div>
+          <div class="persona-solution-text">MPC + RTO como SaaS · Sem infraestrutura adicional · Implantação acompanhada</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ANTI-PATTERNS -->
+  <section class="section">
+    <div class="s-label">05 · Anti-Padrões de Comunicação</div>
+    <h2 class="s-title">Erros que destroem credibilidade</h2>
+    <p class="s-sub">Nossa audiência são engenheiros e executivos industriais altamente técnicos. Qualquer comunicação vaga, superestimada ou sem evidências é imediatamente descartada.</p>
+    <div class="anti-grid">
+      <div class="anti-card">
+        <div class="anti-header avoid">✗ Nunca dizer</div>
+        <div class="anti-body">
+          <em>"Nossa IA aprende e se adapta automaticamente a qualquer processo"</em> — promessa impossível de cumprir sem contexto.<br><br>
+          <em>"Implementação em dias"</em> — o cliente sabe que integração industrial leva tempo e esse tipo de promessa gera desconfiança.<br><br>
+          <em>"Substituímos seus sistemas de automação"</em> — a Optimatech integra, não substitui. Essa mensagem assusta o time de TI e Operações.
+        </div>
+      </div>
+      <div class="anti-card">
+        <div class="anti-header use">✓ Prefira sempre</div>
+        <div class="anti-body">
+          <em>"Nosso modelo fenomenológico foi validado em [nome do processo] por [período]"</em> — evidência real e verificável.<br><br>
+          <em>"Integração com os sistemas de automação existentes da planta"</em> — respeita a infraestrutura atual e reduz resistência.<br><br>
+          <em>"O time de doutores que construiu o modelo acompanha a sustentação"</em> — diferencial de parceria que nenhum concorrente tem.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fn">
+    <a href="componentes.html">← Componentes</a>
+    <div class="fn-copy">© 2025 Optimatech · Design System v5.0</div>
+    <a href="assets.html">Assets & Downloads →</a>
+  </div>
+
+  </div>
+  </div><!-- /content -->
+</div><!-- /main -->
+<script>
+const pb=document.getElementById('pb');
+window.addEventListener('scroll',()=>{pb.style.transform=`scaleX(${window.scrollY/(document.body.scrollHeight-window.innerHeight)})`});
+</script>
+
+<script>
+(function(){
+  // Build ToC from .s-label elements
+  var toc = document.getElementById('toc-list');
+  if(!toc) return;
+  var sections = document.querySelectorAll('section.section');
+  if(!sections.length) return;
+  
+  sections.forEach(function(sec, i){
+    var labelEl = sec.querySelector('.s-label');
+    if(!labelEl) return;
+    var labelText = labelEl.textContent.trim();
+    var id = 'toc-sec-' + i;
+    sec.id = id;
+    
+    // Split "01 · Label text" into num and text
+    var parts = labelText.match(/^(\d+\s*[·\.]\s*)(.+)$/);
+    var a = document.createElement('a');
+    a.className = 'toc-item';
+    a.href = '#' + id;
+    if(parts){
+      a.innerHTML = '<span class="toc-num">' + parts[1].trim() + '</span>' + parts[2].trim();
+    } else {
+      a.textContent = labelText;
+    }
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById(id);
+      if(target){
+        // Account for sticky breadcrumb (44px)
+        var top = target.getBoundingClientRect().top + window.scrollY - 60;
+        window.scrollTo({top: top, behavior: 'smooth'});
+      }
+    });
+    toc.appendChild(a);
+  });
+  
+  // IntersectionObserver: highlight active section
+  var items = toc.querySelectorAll('.toc-item');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var link = toc.querySelector('a[href="#' + entry.target.id + '"]');
+      if(!link) return;
+      if(entry.isIntersecting){
+        items.forEach(function(i){ i.classList.remove('active'); });
+        link.classList.add('active');
+        // Scroll the toc item into view within sidebar
+        link.scrollIntoView({block:'nearest'});
+      }
+    });
+  }, {threshold: 0.25, rootMargin: '-50px 0px -55% 0px'});
+  
+  document.querySelectorAll('[id^="toc-sec-"]').forEach(function(s){
+    observer.observe(s);
+  });
+  
+  // Activate first item by default
+  if(items.length) items[0].classList.add('active');
+})();
+</script>
+</body>
+</html>

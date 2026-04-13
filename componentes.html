@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Componentes — Optimatech Design System v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/icon-original.svg">
+<style>
+:root{--gold:#C49244;--citrus:#E5E417;--dark-brand:#333333;--gold-warm:#A97727;--gold-lt:#D4A85A;--gold-dk:#B07B30;--gold-pale:#F0DFB8;--black:#1C1917;--graphite:#3C3830;--gray-6:#5C5650;--gray-4:#9C9690;--gray-2:#D4D0CC;--bg:#F7F6F4;--surface:#FFFFFF;--border:rgba(28,25,23,0.08);--nav-w:72px;--font:'Sora',sans-serif;--font-primary:'Exo 2',sans-serif;--r-sm:6px;--r-md:10px;--r-lg:16px;--r-xl:24px;--sh-sm:0 1px 3px rgba(28,25,23,0.06),0 1px 2px rgba(28,25,23,0.04);--sh-md:0 4px 16px rgba(28,25,23,0.08),0 2px 6px rgba(28,25,23,0.04)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--black);display:flex;min-height:100vh;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+/* NAV RAIL */
+.rail{width:var(--nav-w);min-height:100vh;background:var(--black);position:fixed;top:0;left:0;display:flex;flex-direction:column;align-items:center;padding:20px 0 24px;z-index:200}
+.rail-logo{width:36px;height:36px;background:var(--black);border:1.5px solid rgba(196,146,68,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;flex-shrink:0;overflow:hidden;padding:4px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;width:56px;padding:8px 0;border-radius:12px;text-decoration:none;color:rgba(247,246,244,.40);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;transition:all .18s;margin:1px 0}
+.ni:hover{color:rgba(247,246,244,.75);background:rgba(247,246,244,.05)}
+.ni.active{color:var(--gold)}
+.ni-wrap{width:38px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:9px;transition:background .18s}
+.ni.active .ni-wrap{background:rgba(196,146,68,.16)}
+.rail-div{width:30px;height:1px;background:rgba(247,246,244,.08);margin:8px 0}
+
+
+/* ─── SIDEBAR ─── */
+.sidebar{width:200px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:var(--nav-w);padding:56px 0 40px;overflow-y:auto;z-index:90;display:flex;flex-direction:column}
+.sb-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.sb-label{font-family:'Exo 2',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px}
+.sb-page{font-size:12px;font-weight:600;color:var(--black);display:block}
+.toc-list{flex:1;padding:4px 0}
+.toc-item{display:block;padding:6px 20px 6px 18px;text-decoration:none;font-size:11px;font-weight:500;color:var(--gray-4);border-left:2px solid transparent;transition:all .15s;line-height:1.4;letter-spacing:.01em}
+.toc-item:hover{color:var(--black);background:rgba(28,25,23,.02)}
+.toc-item.active{color:var(--black);border-left-color:var(--gold);background:rgba(196,146,68,.05);font-weight:600}
+.toc-num{color:var(--gold);font-weight:700;margin-right:4px;font-size:10px}
+.sb-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.sb-label{font-family:'Exo 2',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px}
+.sb-version{font-size:11px;color:var(--gray-4);font-weight:300}
+.nav-group{margin-top:8px}
+.nav-group-label{padding:8px 20px 4px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-2);font-family:'Sora',sans-serif}
+.nav-link{display:flex;align-items:center;justify-content:space-between;padding:7px 20px;text-decoration:none;font-family:'Sora',sans-serif;font-size:13px;font-weight:400;color:var(--gray-6);border-left:2px solid transparent;transition:all .15s}
+.nav-link:hover{color:var(--black);background:rgba(28,25,23,.03)}
+.nav-link.active{color:var(--black);background:rgba(196,146,68,.06);border-left-color:var(--gold);font-weight:600}
+.status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dot-done{background:#4CAF7D}
+.dot-wip{background:var(--gold)}
+.dot-todo{background:var(--gray-2)}
+
+/* MAIN LAYOUT + BREADCRUMB */
+.main{margin-left:calc(var(--nav-w) + 200px);flex:1;display:flex;flex-direction:column}
+.breadcrumb{height:44px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 40px;gap:8px;font-size:12px;font-weight:500;color:var(--gray-4);position:sticky;top:0;z-index:100}
+.breadcrumb a{color:var(--gray-4);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--black)}
+.breadcrumb-sep{color:var(--gray-2);font-size:10px}
+.content{flex:1;padding:64px 40px 80px}
+.wrap{max-width:960px;margin:0 auto}
+
+/* PROGRESS BAR */
+#pb{position:fixed;top:0;left:0;right:0;height:2px;background:var(--gold);transform-origin:left;z-index:999;transform:scaleX(0)}
+
+/* PAGE HEADER */
+.page-header{padding-bottom:40px;border-bottom:1px solid var(--border);margin-bottom:64px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--gold);border-radius:1px}
+.page-title{font-family:'Exo 2',sans-serif;font-size:48px;font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px}
+.page-sub{font-size:17px;font-weight:300;color:var(--gray-6);max-width:560px;line-height:1.7}
+
+/* SECTIONS */
+.section{margin-bottom:72px}
+.s-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-4);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.s-label::before{content:'';width:16px;height:1px;background:var(--gray-2)}
+.s-title{font-family:'Exo 2',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.s-sub{font-size:15px;font-weight:300;color:var(--gray-6);margin-bottom:32px;line-height:1.65;max-width:580px}
+.demo-area{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:40px;box-shadow:var(--sh-sm)}
+
+/* ─── SECTION 01 — COLOR COMBINATIONS ─── */
+.combo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-md)}
+.combo-block{padding:36px 28px;display:flex;flex-direction:column;gap:16px;min-height:220px}
+.combo-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.5}
+.combo-title{font-family:'Exo 2',sans-serif;font-size:20px;font-weight:800;line-height:1.15;letter-spacing:-.01em}
+.combo-sub{font-size:12px;font-weight:400;opacity:.65;line-height:1.5;flex:1}
+.combo-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.03em;cursor:default;border:none;width:fit-content}
+.combo-chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.05em;border:1px solid currentColor;opacity:.7;width:fit-content}
+
+/* Color combo backgrounds */
+.cb-dark{background:#1C1917;color:#F5F4F2}
+.cb-graphite{background:#3C3830;color:#F5F4F2}
+.cb-gold{background:#C49244;color:#1C1917}
+.cb-gold-warm{background:#A97727;color:#F5F4F2}
+.cb-citrus{background:#E5E417;color:#1C1917}
+.cb-sand{background:#F0DFB8;color:#1C1917}
+.cb-white{background:#FFFFFF;color:#1C1917;border:1px solid rgba(28,25,23,.06)}
+.cb-cream{background:#F7F6F4;color:#1C1917;border:1px solid rgba(28,25,23,.06)}
+.cb-dark-gold-text{background:#1C1917;color:#C49244}
+
+/* Color combo buttons */
+.cbtn-gold{background:#C49244;color:#1C1917}
+.cbtn-white{background:#FFFFFF;color:#1C1917}
+.cbtn-dark{background:#1C1917;color:#F5F4F2}
+.cbtn-citrus{background:#E5E417;color:#1C1917}
+.cbtn-ghost-gold{background:transparent;color:#C49244;border:1.5px solid rgba(196,146,68,.6)}
+.cbtn-ghost-white{background:transparent;color:#F5F4F2;border:1.5px solid rgba(245,244,242,.35)}
+.cbtn-ghost-dark{background:transparent;color:#1C1917;border:1.5px solid rgba(28,25,23,.3)}
+
+/* Wide combo showcase */
+.combo-wide{padding:48px 40px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;border-radius:var(--r-xl);box-shadow:var(--sh-md)}
+.combo-wide-title{font-family:'Exo 2',sans-serif;font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.combo-wide-sub{font-size:14px;font-weight:300;opacity:.6;max-width:360px;line-height:1.6}
+.combo-wide-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* ─── SECTION 02 — COLOR SWATCHES ─── */
+.swatch-row{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+.swatch{border-radius:var(--r-md);aspect-ratio:1;display:flex;align-items:flex-end;padding:8px;position:relative;cursor:default}
+.swatch-name{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+.swatch-hex{font-size:10px;font-weight:500;font-family:monospace;opacity:.6;margin-top:2px}
+
+/* ─── SECTION 03 — BUTTONS ─── */
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:100px;font-family:var(--font);font-size:13px;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:all .18s;border:none;text-decoration:none}
+.btn-lg{padding:14px 28px;font-size:14px}
+.btn-md{padding:10px 20px}
+.btn-sm{padding:7px 14px;font-size:12px}
+.btn-dark{background:var(--black);color:#F5F4F2}
+.btn-dark:hover{background:var(--graphite)}
+.btn-gold{background:var(--gold);color:var(--black)}
+.btn-gold:hover{background:var(--gold-lt)}
+.btn-citrus{background:var(--citrus);color:var(--black);font-weight:700}
+.btn-citrus:hover{background:#d4d40e}
+.btn-outlined{background:transparent;color:var(--black);border:1.5px solid rgba(28,25,23,.2)}
+.btn-outlined:hover{border-color:var(--black);background:rgba(28,25,23,.03)}
+.btn-outlined-gold{background:transparent;color:var(--gold-warm);border:1.5px solid rgba(196,146,68,.4)}
+.btn-outlined-gold:hover{border-color:var(--gold);background:rgba(196,146,68,.06)}
+.btn-ghost{background:transparent;color:var(--gray-6)}
+.btn-ghost:hover{color:var(--black);background:rgba(28,25,23,.04)}
+.btn-text{background:transparent;color:var(--gold);font-weight:600}
+.btn-text:hover{color:var(--gold-dk)}
+.btn-disabled{opacity:.4;cursor:not-allowed;pointer-events:none}
+
+/* Dark-surface button variants */
+.demo-dark{background:var(--black);border-radius:var(--r-xl);padding:32px 40px}
+.demo-gold-bg{background:var(--gold);border-radius:var(--r-xl);padding:32px 40px}
+.demo-graphite{background:var(--graphite);border-radius:var(--r-xl);padding:32px 40px}
+.demo-citrus{background:var(--citrus);border-radius:var(--r-xl);padding:32px 40px}
+.btn-on-dark-gold{background:var(--gold);color:var(--black);border-radius:100px;font-size:13px;font-weight:700;padding:10px 20px;border:none;cursor:pointer;font-family:var(--font)}
+.btn-on-dark-white{background:#F5F4F2;color:var(--black);border-radius:100px;font-size:13px;font-weight:600;padding:10px 20px;border:none;cursor:pointer;font-family:var(--font)}
+.btn-on-dark-outline{background:transparent;color:#F5F4F2;border:1.5px solid rgba(245,244,242,.3);border-radius:100px;font-size:13px;font-weight:600;padding:10px 20px;cursor:pointer;font-family:var(--font)}
+.btn-on-gold-dark{background:var(--black);color:#F5F4F2;border-radius:100px;font-size:13px;font-weight:700;padding:10px 20px;border:none;cursor:pointer;font-family:var(--font)}
+.btn-on-gold-white{background:#FFFFFF;color:var(--black);border-radius:100px;font-size:13px;font-weight:600;padding:10px 20px;border:none;cursor:pointer;font-family:var(--font)}
+.btn-on-citrus-dark{background:#1C1917;color:#F5F4F2;border-radius:100px;font-size:13px;font-weight:700;padding:10px 20px;border:none;cursor:pointer;font-family:var(--font)}
+
+/* ─── INPUTS ─── */
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.input-wrap{display:flex;flex-direction:column;gap:6px}
+.input-label{font-size:12px;font-weight:600;color:var(--black)}
+.input{width:100%;padding:10px 14px;border-radius:var(--r-md);font-family:var(--font);font-size:14px;font-weight:400;color:var(--black);background:var(--surface);border:1.5px solid rgba(28,25,23,.15);outline:none;transition:border .18s}
+.input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,146,68,.12)}
+.input.error{border-color:#E05050;background:rgba(224,80,80,.03)}
+.input.success{border-color:#4CAF7D}
+.input-hint{font-size:11px;font-weight:500;color:var(--gray-4)}
+.input-hint.err{color:#C04040}
+.input-hint.ok{color:#3A8A5A}
+
+/* ─── TAGS ─── */
+.tags-row{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.03em}
+.tag-gold{background:rgba(196,146,68,.12);color:var(--gold-dk);border:1px solid rgba(196,146,68,.2)}
+.tag-dark{background:rgba(28,25,23,.07);color:var(--graphite);border:1px solid rgba(28,25,23,.1)}
+.tag-green{background:rgba(60,150,90,.1);color:#2A7A4A;border:1px solid rgba(60,150,90,.15)}
+.tag-red{background:rgba(210,60,60,.1);color:#A83030;border:1px solid rgba(210,60,60,.15)}
+.tag-amber{background:rgba(232,160,48,.12);color:#9A6010;border:1px solid rgba(232,160,48,.2)}
+.tag-blue{background:rgba(74,143,212,.12);color:#2A60A8;border:1px solid rgba(74,143,212,.2)}
+.tag-citrus{background:rgba(229,228,23,.15);color:#7A7A00;border:1px solid rgba(229,228,23,.3)}
+
+/* ─── KPI CARDS ─── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 16px;box-shadow:var(--sh-sm)}
+.kpi-dark{background:#1C1917;border-color:rgba(196,146,68,.2)}
+.kpi-gold-bg{background:#C49244;border-color:transparent}
+.kpi-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:8px}
+.kpi-dark .kpi-label{color:rgba(247,246,244,.4)}
+.kpi-gold-bg .kpi-label{color:rgba(28,25,23,.6)}
+.kpi-val{font-size:28px;font-weight:800;letter-spacing:-.02em;color:var(--black);line-height:1}
+.kpi-dark .kpi-val{color:#F5F4F2}
+.kpi-gold-bg .kpi-val{color:#1C1917}
+.kpi-sub{font-size:11px;font-weight:500;color:var(--gray-4);margin-top:4px}
+.kpi-dark .kpi-sub{color:rgba(247,246,244,.4)}
+.kpi-gold-bg .kpi-sub{color:rgba(28,25,23,.55)}
+
+/* ─── CARDS ─── */
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-sm)}
+.card-dark{background:#1C1917;border-color:rgba(196,146,68,.15)}
+.card-graphite{background:#3C3830;border-color:transparent}
+.card-gold-accent{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--gold)}
+
+/* ─── PROGRESS ─── */
+.prog-list{display:flex;flex-direction:column;gap:12px}
+.prog-item{display:flex;flex-direction:column;gap:6px}
+.prog-meta{display:flex;justify-content:space-between;align-items:center}
+.prog-name{font-size:13px;font-weight:600;color:var(--black)}
+.prog-pct{font-size:13px;font-weight:700;color:var(--black)}
+.prog-track{height:8px;background:rgba(28,25,23,.07);border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;border-radius:100px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+
+/* Dark progress */
+.prog-dark .prog-name{color:rgba(247,246,244,.75)}
+.prog-dark .prog-pct{color:rgba(247,246,244,.9)}
+.prog-dark .prog-track{background:rgba(247,246,244,.1)}
+
+/* ─── ALERTS ─── */
+.alert-list{display:flex;flex-direction:column;gap:10px}
+.alert{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:var(--r-lg);border-left-width:3px;border-left-style:solid}
+.alert-icon{width:18px;height:18px;flex-shrink:0;margin-top:1px}
+.alert-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.alert-body{font-size:12px;font-weight:400;line-height:1.5}
+.alert-success{background:rgba(76,175,125,.08);border-color:#4CAF7D}
+.alert-warning{background:rgba(232,160,48,.1);border-color:#E8A030}
+.alert-error{background:rgba(224,80,80,.08);border-color:#E05050}
+.alert-info{background:rgba(74,143,212,.08);border-color:#4A8FD4}
+
+/* ─── TABLE ─── */
+.data-table{width:100%;border-collapse:collapse}
+.data-table th{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-4);padding:10px 16px;border-bottom:2px solid var(--border);text-align:left}
+.data-table td{font-size:13px;font-weight:400;color:var(--black);padding:12px 16px;border-bottom:1px solid var(--border)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:rgba(196,146,68,.04)}
+
+/* ─── MODAL ─── */
+.modal-overlay{background:rgba(28,25,23,.45);border-radius:var(--r-xl);padding:48px;display:flex;align-items:center;justify-content:center}
+.modal-box{background:var(--surface);border-radius:var(--r-xl);padding:32px;max-width:400px;width:100%;box-shadow:0 24px 60px rgba(28,25,23,.2)}
+.modal-title{font-size:20px;font-weight:700;color:var(--black);margin-bottom:10px;letter-spacing:-.01em}
+.modal-body{font-size:14px;font-weight:300;color:var(--gray-6);margin-bottom:24px;line-height:1.6}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end}
+
+/* ─── NAVIGATION / TABS ─── */
+.tab-bar{display:flex;gap:2px;background:rgba(28,25,23,.06);border-radius:10px;padding:4px}
+.tab{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;color:var(--gray-6);transition:all .15s;border:none;background:none;font-family:var(--font)}
+.tab.active{background:var(--surface);color:var(--black);box-shadow:var(--sh-sm)}
+.tab-gold-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:24px}
+.tab-gold-item{padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;color:var(--gray-4);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;font-family:var(--font)}
+.tab-gold-item.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* FOOTER */
+.fn{display:flex;justify-content:space-between;align-items:center;padding:32px 0 0;margin-top:72px;border-top:1px solid var(--border)}
+.fn a{display:inline-flex;align-items:center;gap:8px;color:var(--gray-6);text-decoration:none;font-size:13px;font-weight:500;transition:color .15s}
+.fn a:hover{color:var(--gold)}
+.fn-copy{font-size:11px;color:var(--gray-4)}
+</style>
+</head>
+<body>
+<div id="pb"></div>
+
+<!-- NAV RAIL -->
+<nav class="rail">
+  <div class="rail-logo">
+    <img src="assets/favicon-icon.svg" alt="Optimatech" style="width:100%;height:100%;object-fit:contain">
+  </div>
+  <a href="index.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 8.5L10 3l7 5.5V17a1 1 0 01-1 1H4a1 1 0 01-1-1V8.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 18v-6h6v6" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg></div>INÍCIO
+  </a>
+  <a href="marca.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="10" y1="2.5" x2="10" y2="17.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="2.5" y1="10" x2="17.5" y2="10" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="rgba(247,246,244,.45)"/></svg></div>MARCA
+  </a>
+  <a href="cores.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><path d="M10 2.5a7.5 7.5 0 010 15" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" fill="rgba(247,246,244,.45)"/></svg></div>COR
+  </a>
+  <a href="tipografia.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M10 5v12M7 17h6" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg></div>TIPO
+  </a>
+  <div class="rail-div"></div>
+  <a href="componentes.html" class="ni active">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/><rect x="11.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/><rect x="2.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/><rect x="11.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/></svg></div>COMP
+  </a>
+  <a href="voz.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17 9.5c0 3.59-3.134 6.5-7 6.5a7.5 7.5 0 01-3.062-.638L3 17l1.638-3.938A6.3 6.3 0 013 9.5C3 5.91 6.134 3 10 3s7 2.91 7 6.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>VOZ
+  </a>
+  <a href="assets.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6 9l4 4 4-4" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15h14" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg></div>ASSETS
+  </a>
+</nav>
+
+
+<aside class="sidebar" aria-label="Índice da página">
+  <div class="sb-header">
+    <span class="sb-label">Nesta página</span>
+    <span class="sb-page">Componentes</span>
+  </div>
+  <nav class="toc-list" id="toc-list"></nav>
+</aside>
+
+<div class="main">
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="1" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/></svg>
+    <a href="index.html">Design System v5</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Componentes</span>
+  </div>
+
+  <div class="content">
+  <div class="wrap">
+
+    <header class="page-header">
+      <div class="eyebrow">Componentes UI</div>
+      <h1 class="page-title">Biblioteca de Componentes</h1>
+      <p class="page-sub">Todos os elementos de interface da plataforma Optimatech, com estados, variantes e exemplos aplicados ao contexto industrial. Paleta completa de combinações de cor.</p>
+    </header>
+
+    <!-- 01 · COLOR COMBINATIONS -->
+    <section class="section">
+      <div class="s-label">01 · Combinações de Cor</div>
+      <h2 class="s-title">Aplicações aprovadas da paleta</h2>
+      <p class="s-sub">Cada bloco exibe uma combinação fundo/texto/botão aprovada pelo manual de identidade visual. Use essas combinações para garantir consistência em todos os materiais.</p>
+
+      <!-- ROW 1: Dark variants -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;border-radius:20px;overflow:hidden;box-shadow:var(--sh-md);margin-bottom:3px">
+
+        <div class="combo-block cb-dark">
+          <div class="combo-label" style="color:rgba(247,246,244,.4)">Preto Marca #1C1917</div>
+          <div class="combo-title" style="color:#F5F4F2">Fundo Primário<br>Escuro</div>
+          <div class="combo-sub" style="color:rgba(247,246,244,.55)">Uso preferencial. Botão em dourado sobre fundo preto é a combinação principal da marca.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="combo-btn cbtn-gold">Diagnóstico</button>
+            <button class="combo-btn cbtn-ghost-white" style="background:transparent;color:rgba(245,244,242,.7);border:1.5px solid rgba(245,244,242,.25);border-radius:100px">Saiba mais</button>
+          </div>
+        </div>
+
+        <div class="combo-block cb-graphite">
+          <div class="combo-label" style="color:rgba(247,246,244,.4)">Grafite #3C3830</div>
+          <div class="combo-title" style="color:#F5F4F2">Fundo<br>Grafite</div>
+          <div class="combo-sub" style="color:rgba(247,246,244,.55)">Variante do fundo escuro. Cria profundidade em painéis, sidebars e cards secundários.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="combo-btn cbtn-gold">Ver Módulos</button>
+            <button class="combo-btn" style="background:rgba(247,246,244,.08);color:rgba(247,246,244,.7);border-radius:100px">Cancelar</button>
+          </div>
+        </div>
+
+        <div class="combo-block" style="background:#2A2620;color:#F5F4F2">
+          <div class="combo-label" style="color:rgba(247,246,244,.35)">Preto Profundo #2A2620</div>
+          <div class="combo-title" style="color:#F5F4F2">Fundo<br>Premium</div>
+          <div class="combo-sub" style="color:rgba(247,246,244,.5)">Para modais, overlays e seções de destaque máximo. Cria contraste com dourado puro.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="combo-btn" style="background:var(--gold);color:#1C1917;border-radius:100px">Plano Advanced</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 2: Gold variants -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-bottom:3px">
+
+        <div class="combo-block cb-gold" style="border-radius:0">
+          <div class="combo-label" style="color:rgba(28,25,23,.5)">Dourado #C49244</div>
+          <div class="combo-title" style="color:#1C1917">Fundo<br>Dourado</div>
+          <div class="combo-sub" style="color:rgba(28,25,23,.6)">Para chamadas de ação de alto impacto. Exige texto escuro e botão preto ou branco.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="combo-btn cbtn-dark">Agendar Demo</button>
+            <button class="combo-btn cbtn-white">Saiba mais</button>
+          </div>
+        </div>
+
+        <div class="combo-block cb-gold-warm" style="border-radius:0">
+          <div class="combo-label" style="color:rgba(247,246,244,.5)">Dourado Quente #A97727</div>
+          <div class="combo-title" style="color:#F5F4F2">Dourado<br>Profundo</div>
+          <div class="combo-sub" style="color:rgba(247,246,244,.65)">Variante mais quente do dourado. Para rodapés, banners e elementos de marca premium.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="combo-btn cbtn-white">Explorar</button>
+            <button class="combo-btn" style="background:transparent;color:rgba(247,246,244,.8);border:1.5px solid rgba(247,246,244,.35);border-radius:100px">Ver mais</button>
+          </div>
+        </div>
+
+        <div class="combo-block" style="background:#F0DFB8;color:#1C1917;border-radius:0">
+          <div class="combo-label" style="color:rgba(28,25,23,.45)">Dourado Pálido #F0DFB8</div>
+          <div class="combo-title" style="color:#1C1917">Tom<br>Claro Gold</div>
+          <div class="combo-sub" style="color:rgba(28,25,23,.55)">Para backgrounds suaves e áreas de destaque leve. Mantém a identidade dourada sem peso.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="combo-btn cbtn-dark">Detalhes</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 3: Light + Citrus variants -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;border-radius:0 0 20px 20px;overflow:hidden">
+
+        <div class="combo-block cb-citrus">
+          <div class="combo-label" style="color:rgba(28,25,23,.45)">Cítrico #E5E417</div>
+          <div class="combo-title" style="color:#1C1917">Acento<br>Cítrico</div>
+          <div class="combo-sub" style="color:rgba(28,25,23,.55)">Cor de acento máximo — uso pontual em destaques, CTAs especiais e materiais de campanha.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="combo-btn cbtn-dark">Começar Agora</button>
+            <button class="combo-btn" style="background:transparent;color:rgba(28,25,23,.65);border:1.5px solid rgba(28,25,23,.2);border-radius:100px">Mais info</button>
+          </div>
+        </div>
+
+        <div class="combo-block cb-white">
+          <div class="combo-label" style="color:rgba(28,25,23,.35)">Branco #FFFFFF</div>
+          <div class="combo-title" style="color:#1C1917">Fundo<br>Branco</div>
+          <div class="combo-sub" style="color:rgba(28,25,23,.5)">Interfaces limpas, papelaria, relatórios. Texto escuro com botão dourado ou preto.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="combo-btn cbtn-dark">Exportar</button>
+            <button class="combo-btn" style="background:rgba(196,146,68,.12);color:var(--gold-dk);border-radius:100px">Filtros</button>
+          </div>
+        </div>
+
+        <div class="combo-block cb-cream">
+          <div class="combo-label" style="color:rgba(28,25,23,.35)">Creme #F7F6F4</div>
+          <div class="combo-title" style="color:#1C1917">Fundo<br>Neutro</div>
+          <div class="combo-sub" style="color:rgba(28,25,23,.5)">Background padrão da interface. Transmite leveza e elegância sem ser frio como o branco puro.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="combo-btn cbtn-dark">Dashboard</button>
+            <button class="combo-btn" style="background:transparent;color:rgba(28,25,23,.5);border:1.5px solid rgba(28,25,23,.15);border-radius:100px">Configurar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- WIDE COMBOS -->
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
+
+        <div class="combo-wide" style="background:#1C1917">
+          <div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,146,68,.7);margin-bottom:10px">Hero · Dark Background</div>
+            <div class="combo-wide-title" style="color:#F5F4F2">Junte-se à transformação<br>digital da indústria</div>
+            <div class="combo-wide-sub" style="color:rgba(247,246,244,.5)">Plataforma SaaS industrial com gêmeo digital, FDD e IA generativa em um único ambiente.</div>
+          </div>
+          <div class="combo-wide-actions">
+            <button class="btn btn-gold btn-md">Diagnóstico Gratuito</button>
+            <button class="btn btn-on-dark-outline btn-md" style="color:rgba(247,246,244,.65);border:1.5px solid rgba(247,246,244,.2)">Ver Plataforma</button>
+          </div>
+        </div>
+
+        <div class="combo-wide" style="background:#C49244">
+          <div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(28,25,23,.5);margin-bottom:10px">Banner · Gold Background</div>
+            <div class="combo-wide-title" style="color:#1C1917">16 clientes âncora<br>confirmados</div>
+            <div class="combo-wide-sub" style="color:rgba(28,25,23,.6)">Petrobras, Vale, Braskem, ArcelorMittal e outros líderes industriais já usam a plataforma.</div>
+          </div>
+          <div class="combo-wide-actions">
+            <button class="btn btn-dark btn-md">Ver Casos de Uso</button>
+            <button class="btn btn-on-gold-white btn-md">Fale com Especialista</button>
+          </div>
+        </div>
+
+        <div class="combo-wide" style="background:#E5E417">
+          <div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(28,25,23,.45);margin-bottom:10px">CTA · Citrus Accent</div>
+            <div class="combo-wide-title" style="color:#1C1917">Resultado em 30 dias<br>ou dinheiro de volta</div>
+            <div class="combo-wide-sub" style="color:rgba(28,25,23,.6)">Implantação guiada por engenheiros doutores. SLA garantido. Sem overhead de TI.</div>
+          </div>
+          <div class="combo-wide-actions">
+            <button class="btn btn-on-citrus-dark btn-md">Começar Agora</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 02 · BUTTONS -->
+    <section class="section">
+      <div class="s-label">02 · Botões &amp; Ações</div>
+      <h2 class="s-title">5 variantes × 3 tamanhos × 4 superfícies</h2>
+      <p class="s-sub">A mesma variante de botão comporta-se diferente conforme a superfície. Veja como cada combinação deve ser aplicada.</p>
+
+      <!-- Light surface -->
+      <div class="demo-area" style="margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:16px">Superfície Clara (padrão)</div>
+        <div class="btn-row" style="margin-bottom:20px">
+          <button class="btn btn-dark btn-lg">Diagnóstico Gratuito</button>
+          <button class="btn btn-gold btn-lg">Ver Plataforma</button>
+          <button class="btn btn-citrus btn-lg">Começar Agora</button>
+          <button class="btn btn-outlined btn-lg">Saiba Mais</button>
+        </div>
+        <div class="btn-row" style="margin-bottom:20px">
+          <button class="btn btn-dark btn-md">Salvar Configuração</button>
+          <button class="btn btn-gold btn-md">Exportar Relatório</button>
+          <button class="btn btn-outlined-gold btn-md">Ver Detalhes</button>
+          <button class="btn btn-ghost btn-md">Cancelar</button>
+          <button class="btn btn-text btn-md">Ver análise →</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-dark btn-sm">Ativar</button>
+          <button class="btn btn-gold btn-sm">Download</button>
+          <button class="btn btn-outlined btn-sm">Editar</button>
+          <button class="btn btn-citrus btn-sm">Novo</button>
+          <button class="btn btn-dark btn-sm btn-disabled">Desabilitado</button>
+        </div>
+      </div>
+
+      <!-- Dark surface -->
+      <div class="demo-dark" style="margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,246,244,.35);margin-bottom:16px">Superfície Escura</div>
+        <div class="btn-row" style="margin-bottom:16px">
+          <button class="btn btn-on-dark-gold btn-md">Diagnóstico Gratuito</button>
+          <button class="btn btn-on-dark-white btn-md">Ver Plataforma</button>
+          <button class="btn btn-on-dark-outline btn-md" style="color:rgba(247,246,244,.65);border:1.5px solid rgba(247,246,244,.2)">Saiba Mais</button>
+          <button class="btn" style="background:transparent;color:rgba(247,246,244,.4);border:none;font-size:13px;font-weight:600;font-family:var(--font)">Cancelar</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-citrus btn-sm">Plano Advanced</button>
+          <button class="btn" style="background:rgba(196,146,68,.15);color:var(--gold-lt);border-radius:100px;font-size:12px;font-weight:600;padding:7px 14px;border:1px solid rgba(196,146,68,.25);font-family:var(--font)">Ver Módulos</button>
+          <button class="btn" style="background:rgba(247,246,244,.07);color:rgba(247,246,244,.55);border-radius:100px;font-size:12px;font-weight:600;padding:7px 14px;border:none;font-family:var(--font)">Configurações</button>
+        </div>
+      </div>
+
+      <!-- Gold surface -->
+      <div class="demo-gold-bg" style="margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(28,25,23,.45);margin-bottom:16px">Superfície Dourada</div>
+        <div class="btn-row">
+          <button class="btn btn-on-gold-dark btn-md">Agendar Demo</button>
+          <button class="btn btn-on-gold-white btn-md">Fale Conosco</button>
+          <button class="btn" style="background:transparent;color:rgba(28,25,23,.6);border:1.5px solid rgba(28,25,23,.25);border-radius:100px;font-size:13px;font-weight:600;padding:10px 20px;font-family:var(--font)">Mais Info</button>
+        </div>
+      </div>
+
+      <!-- Citrus surface -->
+      <div class="demo-citrus">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(28,25,23,.45);margin-bottom:16px">Superfície Cítrica</div>
+        <div class="btn-row">
+          <button class="btn btn-on-citrus-dark btn-md">Começar Agora</button>
+          <button class="btn" style="background:rgba(28,25,23,.08);color:rgba(28,25,23,.7);border-radius:100px;font-size:13px;font-weight:600;padding:10px 20px;border:1.5px solid rgba(28,25,23,.15);font-family:var(--font)">Ver Condições</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · INPUTS -->
+    <section class="section">
+      <div class="s-label">03 · Formulários &amp; Inputs</div>
+      <h2 class="s-title">4 estados</h2>
+      <div class="demo-area">
+        <div class="input-grid">
+          <div class="input-wrap">
+            <label class="input-label">Equipamento</label>
+            <input class="input" type="text" placeholder="Ex: Forno de Pelotização #3">
+            <span class="input-hint">Digite o nome do equipamento</span>
+          </div>
+          <div class="input-wrap">
+            <label class="input-label">Sensor ID</label>
+            <input class="input" type="text" value="PT-101-A">
+            <span class="input-hint">ID do sensor no sistema SCADA</span>
+          </div>
+          <div class="input-wrap">
+            <label class="input-label">Temperatura (°C)</label>
+            <input class="input error" type="number" value="1850">
+            <span class="input-hint err">⚠ Valor acima do limite operacional (1800°C)</span>
+          </div>
+          <div class="input-wrap">
+            <label class="input-label">OEE (%)</label>
+            <input class="input success" type="number" value="94.7">
+            <span class="input-hint ok">✓ Dentro da meta estabelecida (≥ 90%)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · TAGS -->
+    <section class="section">
+      <div class="s-label">04 · Tags &amp; Status</div>
+      <h2 class="s-title">Indicadores de estado</h2>
+      <div class="demo-area">
+        <div class="tags-row" style="margin-bottom:16px">
+          <span class="tag tag-gold">Plano Avançado</span>
+          <span class="tag tag-green">● Operando Normal</span>
+          <span class="tag tag-red">● Falha Detectada</span>
+          <span class="tag tag-amber">⚠ Atenção</span>
+          <span class="tag tag-blue">Processando</span>
+          <span class="tag tag-citrus">● Acento Cítrico</span>
+          <span class="tag tag-dark">Gêmeo Digital</span>
+          <span class="tag tag-dark">FDD</span>
+          <span class="tag tag-dark">OEE</span>
+        </div>
+        <div class="tags-row">
+          <span class="tag tag-gold">Siderurgia</span>
+          <span class="tag tag-gold">Mineração</span>
+          <span class="tag tag-gold">Petroquímica</span>
+          <span class="tag tag-blue">MPC Ativo</span>
+          <span class="tag tag-green">SVR Validado</span>
+          <span class="tag tag-red">SLA Crítico</span>
+          <span class="tag tag-amber">Revisão Pendente</span>
+        </div>
+        <!-- Dark surface tags -->
+        <div style="background:var(--black);border-radius:var(--r-lg);padding:20px;margin-top:16px;display:flex;flex-wrap:wrap;gap:8px">
+          <span style="background:rgba(196,146,68,.18);color:var(--gold-lt);border:1px solid rgba(196,146,68,.25);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600">Plano Advanced</span>
+          <span style="background:rgba(76,175,125,.15);color:#6DD8A0;border:1px solid rgba(76,175,125,.2);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600">● Normal</span>
+          <span style="background:rgba(224,80,80,.15);color:#FF8080;border:1px solid rgba(224,80,80,.2);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600">● Falha</span>
+          <span style="background:rgba(229,228,23,.15);color:#E5E417;border:1px solid rgba(229,228,23,.25);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600">Destaque</span>
+          <span style="background:rgba(247,246,244,.08);color:rgba(247,246,244,.6);border:1px solid rgba(247,246,244,.1);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600">Neutro</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · KPI CARDS -->
+    <section class="section">
+      <div class="s-label">05 · Cards de KPI</div>
+      <h2 class="s-title">Métricas em múltiplas superfícies</h2>
+
+      <div class="kpi-grid" style="margin-bottom:12px">
+        <div class="kpi">
+          <div class="kpi-label">OEE Global</div>
+          <div class="kpi-val" style="color:#2A7A4A">94.7%</div>
+          <div class="kpi-sub">↑ +2.3% vs. mês anterior</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Disponibilidade</div>
+          <div class="kpi-val">97.2%</div>
+          <div class="kpi-sub">Meta: ≥ 95%</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Alertas Ativos</div>
+          <div class="kpi-val" style="color:#C04040">3</div>
+          <div class="kpi-sub">1 crítico · 2 alertas</div>
+        </div>
+        <div class="kpi" style="border-top:3px solid var(--gold)">
+          <div class="kpi-label">Variáveis Calc.</div>
+          <div class="kpi-val" style="color:var(--gold-dk)">60</div>
+          <div class="kpi-sub">Atualização: 1 min</div>
+        </div>
+      </div>
+
+      <!-- Dark surface KPIs -->
+      <div class="kpi-grid" style="margin-bottom:12px">
+        <div class="kpi kpi-dark">
+          <div class="kpi-label">OEE Global</div>
+          <div class="kpi-val" style="color:#6DD8A0">94.7%</div>
+          <div class="kpi-sub">↑ +2.3% mês</div>
+        </div>
+        <div class="kpi kpi-dark">
+          <div class="kpi-label">Disponibilidade</div>
+          <div class="kpi-val">97.2%</div>
+          <div class="kpi-sub">Meta ≥ 95%</div>
+        </div>
+        <div class="kpi kpi-dark">
+          <div class="kpi-label">Falhas FDD</div>
+          <div class="kpi-val" style="color:#FF8080">3</div>
+          <div class="kpi-sub">1 crítico</div>
+        </div>
+        <div class="kpi kpi-dark">
+          <div class="kpi-label">Módulos Ativos</div>
+          <div class="kpi-val" style="color:var(--gold-lt)">12</div>
+          <div class="kpi-sub">de 15 disponíveis</div>
+        </div>
+      </div>
+
+      <!-- Gold KPI accent -->
+      <div class="kpi-grid">
+        <div class="kpi kpi-gold-bg">
+          <div class="kpi-label">Variáveis Virtuais</div>
+          <div class="kpi-val">60+</div>
+          <div class="kpi-sub">Calculadas / minuto</div>
+        </div>
+        <div class="kpi" style="background:var(--graphite);border-color:transparent">
+          <div class="kpi-label" style="color:rgba(247,246,244,.4)">Sensores Validados</div>
+          <div class="kpi-val" style="color:#F5F4F2">148</div>
+          <div class="kpi-sub" style="color:rgba(247,246,244,.4)">SVR ativo</div>
+        </div>
+        <div class="kpi" style="background:#E5E417;border-color:transparent">
+          <div class="kpi-label" style="color:rgba(28,25,23,.5)">Uptime Gêmeo</div>
+          <div class="kpi-val" style="color:#1C1917">99.9%</div>
+          <div class="kpi-sub" style="color:rgba(28,25,23,.5)">Último mês</div>
+        </div>
+        <div class="kpi" style="background:linear-gradient(135deg,#C49244,#A97727);border-color:transparent">
+          <div class="kpi-label" style="color:rgba(28,25,23,.5)">Eficiência</div>
+          <div class="kpi-val" style="color:#1C1917">10×</div>
+          <div class="kpi-sub" style="color:rgba(28,25,23,.55)">vs. análise lab.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · NAVIGATION TABS -->
+    <section class="section">
+      <div class="s-label">06 · Navegação &amp; Tabs</div>
+      <h2 class="s-title">Padrões de tab bar</h2>
+      <div class="demo-area" style="display:flex;flex-direction:column;gap:24px">
+        <!-- Segmented -->
+        <div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:10px">Tab Segmentada (fundo claro)</div>
+          <div class="tab-bar" style="width:fit-content">
+            <button class="tab active">Dashboard</button>
+            <button class="tab">Análises</button>
+            <button class="tab">Relatórios</button>
+            <button class="tab">Configurações</button>
+          </div>
+        </div>
+        <!-- Underline gold -->
+        <div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:10px">Tab Dourada (underline)</div>
+          <div class="tab-gold-bar">
+            <button class="tab-gold-item active">Gêmeo Digital</button>
+            <button class="tab-gold-item">FDD</button>
+            <button class="tab-gold-item">OEE</button>
+            <button class="tab-gold-item">Manutenção</button>
+            <button class="tab-gold-item">Relatórios</button>
+          </div>
+          <div style="font-size:13px;color:var(--gray-4)">Conteúdo da aba selecionada aparece aqui...</div>
+        </div>
+        <!-- Dark surface tabs -->
+        <div style="background:var(--black);border-radius:var(--r-lg);padding:20px">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,246,244,.35);margin-bottom:12px">Tab em Superfície Escura</div>
+          <div style="display:flex;gap:2px;background:rgba(247,246,244,.06);border-radius:10px;padding:4px;width:fit-content">
+            <button style="padding:7px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;color:#F5F4F2;background:rgba(196,146,68,.25);border:none;font-family:var(--font)">Visão Geral</button>
+            <button style="padding:7px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;color:rgba(247,246,244,.45);background:none;border:none;font-family:var(--font)">Sensores</button>
+            <button style="padding:7px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;color:rgba(247,246,244,.45);background:none;border:none;font-family:var(--font)">Histórico</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · PROGRESS BARS -->
+    <section class="section">
+      <div class="s-label">07 · Barras de Progresso</div>
+      <h2 class="s-title">Métricas OEE e desempenho</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="demo-area">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:16px">Superfície Clara</div>
+          <div class="prog-list">
+            <div class="prog-item">
+              <div class="prog-meta"><span class="prog-name">Disponibilidade</span><span class="prog-pct" style="color:#2A7A4A">97.2%</span></div>
+              <div class="prog-track"><div class="prog-fill" style="width:97.2%;background:#4CAF7D"></div></div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-meta"><span class="prog-name">Desempenho</span><span class="prog-pct" style="color:#2A7A4A">96.3%</span></div>
+              <div class="prog-track"><div class="prog-fill" style="width:96.3%;background:#4CAF7D"></div></div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-meta"><span class="prog-name">Qualidade</span><span class="prog-pct">91.4%</span></div>
+              <div class="prog-track"><div class="prog-fill" style="width:91.4%;background:var(--gold)"></div></div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-meta"><span class="prog-name">Modelo Preditivo</span><span class="prog-pct" style="color:#2A60A8">74%</span></div>
+              <div class="prog-track"><div class="prog-fill" style="width:74%;background:#4A8FD4"></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--black);border-radius:var(--r-xl);padding:40px">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,246,244,.35);margin-bottom:16px">Superfície Escura</div>
+          <div class="prog-list">
+            <div class="prog-item prog-dark">
+              <div class="prog-meta"><span class="prog-name">OEE Global</span><span class="prog-pct" style="color:#6DD8A0">94.7%</span></div>
+              <div class="prog-track" style="background:rgba(247,246,244,.1)"><div class="prog-fill" style="width:94.7%;background:#4CAF7D"></div></div>
+            </div>
+            <div class="prog-item prog-dark">
+              <div class="prog-meta"><span class="prog-name">Taxa Atualização</span><span class="prog-pct" style="color:var(--gold-lt)">100%</span></div>
+              <div class="prog-track" style="background:rgba(247,246,244,.1)"><div class="prog-fill" style="width:100%;background:var(--gold)"></div></div>
+            </div>
+            <div class="prog-item prog-dark">
+              <div class="prog-meta"><span class="prog-name">Cobertura SVR</span><span class="prog-pct" style="color:#B0D0FF">82%</span></div>
+              <div class="prog-track" style="background:rgba(247,246,244,.1)"><div class="prog-fill" style="width:82%;background:#4A8FD4"></div></div>
+            </div>
+            <div class="prog-item prog-dark">
+              <div class="prog-meta"><span class="prog-name">Falhas Previstas</span><span class="prog-pct" style="color:#FF8080">12%</span></div>
+              <div class="prog-track" style="background:rgba(247,246,244,.1)"><div class="prog-fill" style="width:12%;background:#E05050"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 · ALERTS -->
+    <section class="section">
+      <div class="s-label">08 · Alertas &amp; Notificações</div>
+      <h2 class="s-title">4 níveis de severidade</h2>
+      <div class="demo-area">
+        <div class="alert-list">
+          <div class="alert alert-success">
+            <svg class="alert-icon" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="#4CAF7D" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#4CAF7D" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div><div class="alert-title" style="color:#2A7A4A">Gêmeo Digital sincronizado</div><div class="alert-body">Forno de Pelotização #2 · 60 variáveis calculadas · Última atualização: 14:32:01</div></div>
+          </div>
+          <div class="alert alert-warning">
+            <svg class="alert-icon" viewBox="0 0 18 18" fill="none"><path d="M9 2L16.5 15H1.5L9 2z" stroke="#E8A030" stroke-width="1.5" stroke-linejoin="round"/><line x1="9" y1="7.5" x2="9" y2="10.5" stroke="#E8A030" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="12.5" r="0.75" fill="#E8A030"/></svg>
+            <div><div class="alert-title" style="color:#9A6010">Desvio de processo detectado</div><div class="alert-body">Sensor PT-203 · Temperatura 2.3°C acima do LSC · Monitoramento ativo</div></div>
+          </div>
+          <div class="alert alert-error">
+            <svg class="alert-icon" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="#E05050" stroke-width="1.5"/><line x1="6" y1="6" x2="12" y2="12" stroke="#E05050" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="6" x2="6" y2="12" stroke="#E05050" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div><div class="alert-title" style="color:#A83030">Falha crítica — FDD</div><div class="alert-body">Bomba centrífuga P-401 · Vibração anômala detectada · Intervenção imediata recomendada</div></div>
+          </div>
+          <div class="alert alert-info">
+            <svg class="alert-icon" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="#4A8FD4" stroke-width="1.5"/><line x1="9" y1="6" x2="9" y2="6.5" stroke="#4A8FD4" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="8.5" x2="9" y2="12.5" stroke="#4A8FD4" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div><div class="alert-title" style="color:#2A60A8">Modelo sendo recalibrado</div><div class="alert-body">Predição futura · Novos dados incorporados · Estimativa: 2 min</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 · DATA TABLE -->
+    <section class="section">
+      <div class="s-label">09 · Tabela de Dados</div>
+      <h2 class="s-title">Monitoramento de equipamentos</h2>
+      <div class="demo-area" style="padding:0;overflow:hidden">
+        <table class="data-table">
+          <thead>
+            <tr><th>Equipamento</th><th>Módulo</th><th>Status</th><th>OEE</th><th>Atualização</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Forno de Pelotização #1</strong></td>
+              <td><span class="tag tag-dark" style="font-size:10px">Gêmeo Digital</span></td>
+              <td><span class="tag tag-green" style="font-size:10px">● Normal</span></td>
+              <td style="font-weight:700;color:#2A7A4A">97.1%</td>
+              <td style="color:var(--gray-4);font-size:12px">há 1 min</td>
+            </tr>
+            <tr>
+              <td><strong>Alto-Forno #3</strong></td>
+              <td><span class="tag tag-dark" style="font-size:10px">FDD</span></td>
+              <td><span class="tag tag-amber" style="font-size:10px">⚠ Atenção</span></td>
+              <td style="font-weight:700;color:#9A6010">88.4%</td>
+              <td style="color:var(--gray-4);font-size:12px">há 1 min</td>
+            </tr>
+            <tr>
+              <td><strong>Compressor K-201</strong></td>
+              <td><span class="tag tag-dark" style="font-size:10px">Manutenção Pred.</span></td>
+              <td><span class="tag tag-red" style="font-size:10px">● Falha</span></td>
+              <td style="font-weight:700;color:#A83030">72.3%</td>
+              <td style="color:var(--gray-4);font-size:12px">há 3 min</td>
+            </tr>
+            <tr>
+              <td><strong>Reator R-501</strong></td>
+              <td><span class="tag tag-dark" style="font-size:10px">Sensor Virtual</span></td>
+              <td><span class="tag tag-green" style="font-size:10px">● Normal</span></td>
+              <td style="font-weight:700;color:#2A7A4A">99.2%</td>
+              <td style="color:var(--gray-4);font-size:12px">há 1 min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 10 · MODAL -->
+    <section class="section">
+      <div class="s-label">10 · Modal</div>
+      <h2 class="s-title">Overlay de confirmação</h2>
+      <div class="modal-overlay">
+        <div class="modal-box">
+          <div class="modal-title">Confirmar exportação de relatório</div>
+          <p class="modal-body">O relatório de OEE do Forno #1 referente ao período 01/11–30/11/2025 será gerado em PDF. Deseja continuar?</p>
+          <div class="modal-actions">
+            <button class="btn btn-ghost btn-md">Cancelar</button>
+            <button class="btn btn-gold btn-md">Exportar PDF</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="fn">
+      <a href="tipografia.html">← Tipografia</a>
+      <div class="fn-copy">© 2025 Optimatech · Design System v5.0</div>
+      <a href="voz.html">Voz &amp; Personas →</a>
+    </div>
+
+  </div>
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+const pb=document.getElementById('pb');
+window.addEventListener('scroll',()=>{
+  const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);
+  if(!isNaN(p)) pb.style.transform=`scaleX(${p})`;
+});
+</script>
+
+<script>
+(function(){
+  // Build ToC from .s-label elements
+  var toc = document.getElementById('toc-list');
+  if(!toc) return;
+  var sections = document.querySelectorAll('section.section');
+  if(!sections.length) return;
+  
+  sections.forEach(function(sec, i){
+    var labelEl = sec.querySelector('.s-label');
+    if(!labelEl) return;
+    var labelText = labelEl.textContent.trim();
+    var id = 'toc-sec-' + i;
+    sec.id = id;
+    
+    // Split "01 · Label text" into num and text
+    var parts = labelText.match(/^(\d+\s*[·\.]\s*)(.+)$/);
+    var a = document.createElement('a');
+    a.className = 'toc-item';
+    a.href = '#' + id;
+    if(parts){
+      a.innerHTML = '<span class="toc-num">' + parts[1].trim() + '</span>' + parts[2].trim();
+    } else {
+      a.textContent = labelText;
+    }
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById(id);
+      if(target){
+        // Account for sticky breadcrumb (44px)
+        var top = target.getBoundingClientRect().top + window.scrollY - 60;
+        window.scrollTo({top: top, behavior: 'smooth'});
+      }
+    });
+    toc.appendChild(a);
+  });
+  
+  // IntersectionObserver: highlight active section
+  var items = toc.querySelectorAll('.toc-item');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var link = toc.querySelector('a[href="#' + entry.target.id + '"]');
+      if(!link) return;
+      if(entry.isIntersecting){
+        items.forEach(function(i){ i.classList.remove('active'); });
+        link.classList.add('active');
+        // Scroll the toc item into view within sidebar
+        link.scrollIntoView({block:'nearest'});
+      }
+    });
+  }, {threshold: 0.25, rootMargin: '-50px 0px -55% 0px'});
+  
+  document.querySelectorAll('[id^="toc-sec-"]').forEach(function(s){
+    observer.observe(s);
+  });
+  
+  // Activate first item by default
+  if(items.length) items[0].classList.add('active');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paleta de Cores — Optimatech Design System v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/icon-original.svg">
+<style>
+:root{--gold:#C49244;--citrus:#E5E417;--dark-brand:#333333;--gold-warm:#A97727;--gold-lt:#D4A85A;--gold-dk:#B07B30;--gold-pale:#F0DFB8;--black:#1C1917;--graphite:#3C3830;--gray-6:#5C5650;--gray-4:#9C9690;--gray-2:#D4D0CC;--bg:#F7F6F4;--surface:#FFFFFF;--border:rgba(28,25,23,0.08);--nav-w:72px;--font:'Sora',sans-serif;--font-primary:'Exo 2',sans-serif;--font-secondary:'Sora',sans-serif;--r-sm:6px;--r-md:10px;--r-lg:16px;--r-xl:24px;--sh-sm:0 1px 3px rgba(28,25,23,0.06),0 1px 2px rgba(28,25,23,0.04);--sh-md:0 4px 16px rgba(28,25,23,0.08),0 2px 6px rgba(28,25,23,0.04)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--black);display:flex;min-height:100vh;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.rail{width:var(--nav-w);min-height:100vh;background:var(--black);position:fixed;top:0;left:0;display:flex;flex-direction:column;align-items:center;padding:20px 0 24px;z-index:200}
+.rail-logo{width:36px;height:36px;background:var(--black);border:1.5px solid rgba(196,146,68,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;flex-shrink:0;overflow:hidden;padding:4px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;width:56px;padding:8px 0;border-radius:12px;text-decoration:none;color:rgba(247,246,244,.40);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;transition:all .18s;margin:1px 0}
+.ni:hover{color:rgba(247,246,244,.75);background:rgba(247,246,244,.05)}
+.ni.active{color:var(--gold)}
+.ni-wrap{width:38px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:9px;transition:background .18s}
+.ni.active .ni-wrap{background:rgba(196,146,68,.16)}
+.rail-div{width:30px;height:1px;background:rgba(247,246,244,.08);margin:8px 0}
+.sidebar{width:200px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:var(--nav-w);padding:56px 0 40px;overflow-y:auto;z-index:90;display:flex;flex-direction:column}
+.sb-header{padding:16px 20px 12px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.sb-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-4);display:block;margin-bottom:4px}
+.sb-page{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:700;color:var(--black);line-height:1.3;letter-spacing:-.01em}
+.toc-list{flex:1;padding:4px 0}
+.toc-item{display:block;padding:6px 20px 6px 18px;text-decoration:none;font-size:11px;font-weight:500;color:var(--gray-4);border-left:2px solid transparent;transition:all .15s;line-height:1.4;letter-spacing:.01em}
+.toc-item:hover{color:var(--black);background:rgba(28,25,23,.02)}
+.toc-item.active{color:var(--black);border-left-color:var(--gold);background:rgba(196,146,68,.05);font-weight:600}
+.toc-num{font-size:9px;color:var(--gray-2);font-weight:600;letter-spacing:.06em;display:block;margin-bottom:1px}
+.main{margin-left:calc(var(--nav-w) + 200px);flex:1;display:flex;flex-direction:column}
+.breadcrumb{height:44px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 40px;gap:8px;font-size:12px;font-weight:500;color:var(--gray-4);position:sticky;top:0;z-index:100}
+.breadcrumb a{color:var(--gray-4);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--black)}
+.breadcrumb-sep{color:var(--gray-2);font-size:10px}
+.content{flex:1;padding:64px 40px 80px}
+.wrap{max-width:960px;margin:0 auto}
+#pb{position:fixed;top:0;left:0;right:0;height:2px;background:var(--gold);transform-origin:left;z-index:999;transform:scaleX(0)}
+.page-header{padding-bottom:40px;border-bottom:1px solid var(--border);margin-bottom:64px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--gold);border-radius:1px}
+.page-title{font-family:'Exo 2',sans-serif;font-size:48px;font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px}
+.page-sub{font-size:17px;font-weight:300;color:var(--gray-6);max-width:520px;line-height:1.7}
+.section{margin-bottom:72px}
+.s-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-4);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.s-label::before{content:'';width:16px;height:1px;background:var(--gray-2)}
+.s-title{font-family:'Exo 2',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.s-sub{font-size:15px;font-weight:300;color:var(--gray-6);margin-bottom:32px;line-height:1.65;max-width:580px}
+
+/* PRIMARY SWATCHES */
+.primary-swatches{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.swatch-card{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-md)}
+.swatch-color{height:220px}
+.swatch-info{background:var(--surface);padding:20px 24px;border:1px solid var(--border);border-top:none}
+.swatch-name{font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px}
+.swatch-role{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-4);margin-bottom:12px}
+.swatch-codes{display:flex;flex-direction:column;gap:4px}
+.code-row{display:flex;justify-content:space-between;align-items:center}
+.code-label{font-size:11px;font-weight:600;color:var(--gray-4);letter-spacing:.06em}
+.code-val{font-size:12px;font-weight:600;color:var(--black);cursor:pointer;padding:2px 8px;border-radius:4px;background:rgba(28,25,23,.05);transition:background .15s}
+.code-val:hover{background:rgba(196,146,68,.15);color:var(--gold-dk)}
+
+/* EXPLORATION PALETTE */
+.exp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.exp-card{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm)}
+.exp-swatch{height:100px}
+.exp-info{background:var(--surface);border:1px solid var(--border);border-top:none;padding:12px 14px}
+.exp-name{font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px}
+.exp-hex{font-size:11px;font-weight:500;color:var(--gray-4);cursor:pointer}
+.exp-hex:hover{color:var(--gold)}
+
+/* TONAL SCALE */
+.tonal-row{display:grid;grid-template-columns:repeat(10,1fr);gap:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm);margin-bottom:12px}
+.tone{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 0 10px;cursor:pointer;position:relative;transition:transform .15s}
+.tone:hover{transform:scaleY(1.04);z-index:2}
+.tone-swatch{flex:1;width:100%;min-height:80px}
+.tone-label{font-size:9px;font-weight:600;color:var(--black);opacity:.6;margin-top:8px;letter-spacing:.04em}
+
+/* SEMANTIC */
+.semantic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sem-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-sm)}
+.sem-dot{width:32px;height:32px;border-radius:50%;margin-bottom:12px}
+.sem-name{font-size:14px;font-weight:600;color:var(--black);margin-bottom:4px}
+.sem-hex{font-size:12px;font-weight:500;color:var(--gray-4);margin-bottom:8px}
+.sem-use{font-size:12px;font-weight:300;color:var(--gray-6);line-height:1.5}
+
+/* WCAG TABLE */
+.wcag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.wcag-card{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm)}
+.wcag-preview{height:100px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+.wcag-sample-text{font-size:22px;font-weight:700}
+.wcag-sample-small{font-size:12px;font-weight:400}
+.wcag-data{background:var(--surface);border:1px solid var(--border);border-top:none;padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+.wcag-ratio{font-size:16px;font-weight:700;color:var(--black)}
+.wcag-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;letter-spacing:.05em}
+.wcag-pass{background:rgba(60,150,90,.12);color:#2A7A4A}
+.wcag-fail{background:rgba(210,60,60,.1);color:#A83030}
+
+/* APPLICATION DEMO */
+.app-demos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.app-demo{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-md)}
+.app-demo-inner{padding:40px 32px}
+.app-demo-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.5;margin-bottom:8px}
+.app-demo-title{font-size:20px;font-weight:700;margin-bottom:8px}
+.app-demo-body{font-size:13px;font-weight:300;opacity:.75;line-height:1.6}
+.app-demo-tag{display:inline-block;font-size:10px;font-weight:700;padding:4px 12px;border-radius:100px;margin-top:16px;letter-spacing:.05em}
+
+/* FOOTER */
+.fn{display:flex;justify-content:space-between;align-items:center;padding:32px 0 0;margin-top:72px;border-top:1px solid var(--border)}
+.fn a{display:inline-flex;align-items:center;gap:8px;color:var(--gray-6);text-decoration:none;font-size:13px;font-weight:500;transition:color .15s}
+.fn a:hover{color:var(--gold)}
+.fn-copy{font-size:11px;color:var(--gray-4)}
+</style>
+</head>
+<body>
+<div id="pb"></div>
+
+<nav class="rail">
+  <div class="rail-logo"><img src="assets/favicon-icon.svg" alt="Optimatech" style="width:100%;height:100%;object-fit:contain"></div>
+  <a href="index.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 8.5L10 3l7 5.5V17a1 1 0 01-1 1H4a1 1 0 01-1-1V8.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 18v-6h6v6" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg></div>INÍCIO</a>
+  <a href="marca.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="10" y1="2.5" x2="10" y2="17.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="2.5" y1="10" x2="17.5" y2="10" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="rgba(247,246,244,.45)"/></svg></div>MARCA</a>
+  <a href="cores.html" class="ni active"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/><path d="M10 2.5a7.5 7.5 0 010 15" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" fill="rgba(247,246,244,.65)"/></svg></div>COR</a>
+  <a href="tipografia.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M10 5v12M7 17h6" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg></div>TIPO</a>
+  <div class="rail-div"></div>
+  <a href="componentes.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="2.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg></div>COMP</a>
+  <a href="voz.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17 9.5c0 3.59-3.134 6.5-7 6.5a7.5 7.5 0 01-3.062-.638L3 17l1.638-3.938A6.3 6.3 0 013 9.5C3 5.91 6.134 3 10 3s7 2.91 7 6.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>VOZ</a>
+  <a href="assets.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6 9l4 4 4-4" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15h14" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg></div>ASSETS</a>
+</nav>
+
+
+<aside class="sidebar" aria-label="Índice da página">
+  <div class="sb-header">
+    <span class="sb-label">Nesta página</span>
+    <span class="sb-page">Paleta de Cores</span>
+  </div>
+  <nav class="toc-list" id="toc-list"></nav>
+</aside>
+
+<div class="main">
+  <div class="breadcrumb">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="1" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/></svg>
+    <a href="index.html">Design System v5</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Paleta de Cores</span>
+  </div>
+  <div class="content">
+  <div class="wrap">
+
+  <header class="page-header">
+    <div class="eyebrow">Paleta de Cores</div>
+    <h1 class="page-title">Sistema Cromático</h1>
+    <p class="page-sub">Da paleta primária aprovada às explorações cromáticas do processo criativo — com todos os códigos HEX, RGB e CMYK para uso digital e impresso.</p>
+  </header>
+
+  <!-- PALETA PRIMÁRIA -->
+  <section class="section">
+    <div class="s-label">01 · Paleta Primária Aprovada</div>
+    <h2 class="s-title">Quatro cores fundacionais</h2>
+    <p class="s-sub">Estas são as cores oficiais da Optimatech. Toda comunicação parte dessas quatro — sem exceções.</p>
+    <div class="primary-swatches">
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#C49244"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Gold</div>
+          <div class="swatch-role">Primário · Acento</div>
+          <div class="swatch-codes">
+            <div class="code-row"><span class="code-label">HEX</span><span class="code-val" onclick="copyColor('#C49244',this)">#C49244</span></div>
+            <div class="code-row"><span class="code-label">RGB</span><span class="code-val">196, 146, 68</span></div>
+            <div class="code-row"><span class="code-label">CMYK</span><span class="code-val">0, 25, 65, 23</span></div>
+            <div class="code-row"><span class="code-label">Pantone</span><span class="code-val">PMS 7508 C</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#1C1917"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Black</div>
+          <div class="swatch-role">Fundo · Texto</div>
+          <div class="swatch-codes">
+            <div class="code-row"><span class="code-label">HEX</span><span class="code-val" onclick="copyColor('#1C1917',this)">#1C1917</span></div>
+            <div class="code-row"><span class="code-label">RGB</span><span class="code-val">28, 25, 23</span></div>
+            <div class="code-row"><span class="code-label">CMYK</span><span class="code-val">0, 11, 18, 89</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#3C3830"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Graphite</div>
+          <div class="swatch-role">Superfícies · UI</div>
+          <div class="swatch-codes">
+            <div class="code-row"><span class="code-label">HEX</span><span class="code-val" onclick="copyColor('#3C3830',this)">#3C3830</span></div>
+            <div class="code-row"><span class="code-label">RGB</span><span class="code-val">60, 56, 48</span></div>
+            <div class="code-row"><span class="code-label">CMYK</span><span class="code-val">0, 7, 20, 76</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#F5F4F2;border:1px solid rgba(28,25,23,.08)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warm White</div>
+          <div class="swatch-role">Background · Texto inv.</div>
+          <div class="swatch-codes">
+            <div class="code-row"><span class="code-label">HEX</span><span class="code-val" onclick="copyColor('#F5F4F2',this)">#F5F4F2</span></div>
+            <div class="code-row"><span class="code-label">RGB</span><span class="code-val">245, 244, 242</span></div>
+            <div class="code-row"><span class="code-label">CMYK</span><span class="code-val">0, 0, 1, 4</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PALETA DE EXPLORAÇÃO -->
+  <section class="section">
+    <div class="s-label">02 · Paleta de Exploração Cromática</div>
+    <h2 class="s-title">Cores estudadas no processo criativo</h2>
+    <p class="s-sub">Cores exploradas durante o desenvolvimento da identidade visual, derivadas da família cromática do ouro. Podem ser usadas em materiais especiais, apresentações e conteúdo editorial.</p>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#E5E417"></div>
+        <div class="exp-info"><div class="exp-name">Citrus</div><div class="exp-hex" onclick="copyColor('#E5E417',this)">#E5E417</div></div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#EEE454"></div>
+        <div class="exp-info"><div class="exp-name">Pale Citrus</div><div class="exp-hex" onclick="copyColor('#EEE454',this)">#EEE454</div></div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#F8D568"></div>
+        <div class="exp-info"><div class="exp-name">Pale Gold</div><div class="exp-hex" onclick="copyColor('#F8D568',this)">#F8D568</div></div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#F1C360"></div>
+        <div class="exp-info"><div class="exp-name">Warm Amber</div><div class="exp-hex" onclick="copyColor('#F1C360',this)">#F1C360</div></div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#FBB03B"></div>
+        <div class="exp-info"><div class="exp-name">Amber</div><div class="exp-hex" onclick="copyColor('#FBB03B',this)">#FBB03B</div></div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#C49244"></div>
+        <div class="exp-info"><div class="exp-name">Gold <span style="font-size:9px;color:#C49244">●</span></div><div class="exp-hex">#C49244 — primária</div></div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#A97727"></div>
+        <div class="exp-info"><div class="exp-name">Dark Ochre</div><div class="exp-hex" onclick="copyColor('#A97727',this)">#A97727</div></div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#808181"></div>
+        <div class="exp-info"><div class="exp-name">Mid Gray</div><div class="exp-hex" onclick="copyColor('#808181',this)">#808181</div></div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#F1F0F1;border:1px solid rgba(28,25,23,.06)"></div>
+        <div class="exp-info"><div class="exp-name">Off White</div><div class="exp-hex" onclick="copyColor('#F1F0F1',this)">#F1F0F1</div></div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-swatch" style="background:#333333"></div>
+        <div class="exp-info"><div class="exp-name">Charcoal</div><div class="exp-hex" onclick="copyColor('#333333',this)">#333333</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TONAL SCALE GOLD -->
+  <section class="section">
+    <div class="s-label">03 · Escala Tonal</div>
+    <h2 class="s-title">10 tons · Ouro e Neutros</h2>
+    <p class="s-sub">Escala tonal completa gerada a partir do Gold primário e do Black, para uso em componentes, estados hover, gradientes sutis e hierarquia visual.</p>
+
+    <div style="margin-bottom:8px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:8px">Escala Gold</div>
+      <div class="tonal-row">
+        <div class="tone"><div class="tone-swatch" style="background:#FDF7EE"></div><div class="tone-label" style="color:#666">50</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#F9EACF"></div><div class="tone-label" style="color:#666">100</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#F2D49E"></div><div class="tone-label" style="color:#666">200</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#E8BC72"></div><div class="tone-label" style="color:#666">300</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#D9A653"></div><div class="tone-label" style="color:#666">400</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#C49244"></div><div class="tone-label" style="color:#666">500</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#B07B30"></div><div class="tone-label" style="color:white">600</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#8F6122"></div><div class="tone-label" style="color:white">700</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#6A4718"></div><div class="tone-label" style="color:white">800</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#3D280A"></div><div class="tone-label" style="color:white">900</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:8px">Escala Neutro / Grafite</div>
+      <div class="tonal-row">
+        <div class="tone"><div class="tone-swatch" style="background:#F7F6F4"></div><div class="tone-label" style="color:#666">50</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#EEECE8"></div><div class="tone-label" style="color:#666">100</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#D9D5CE"></div><div class="tone-label" style="color:#666">200</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#B8B2A8"></div><div class="tone-label" style="color:#666">300</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#928B82"></div><div class="tone-label" style="color:#666">400</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#6E6760"></div><div class="tone-label" style="color:white">500</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#504B45"></div><div class="tone-label" style="color:white">600</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#3C3830"></div><div class="tone-label" style="color:white">700</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#28251F"></div><div class="tone-label" style="color:white">800</div></div>
+        <div class="tone"><div class="tone-swatch" style="background:#1C1917"></div><div class="tone-label" style="color:white">900</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEMANTIC COLORS -->
+  <section class="section">
+    <div class="s-label">04 · Cores Semânticas</div>
+    <h2 class="s-title">Status e feedback de sistema</h2>
+    <p class="s-sub">Cores de estado para uso nos componentes de interface da plataforma: alertas, métricas OEE, status de equipamentos.</p>
+    <div class="semantic-grid">
+      <div class="sem-card">
+        <div class="sem-dot" style="background:#4CAF7D"></div>
+        <div class="sem-name">Success / Normal</div>
+        <div class="sem-hex">#4CAF7D</div>
+        <div class="sem-use">Equipamento OK, OEE acima da meta, sensor validado</div>
+      </div>
+      <div class="sem-card">
+        <div class="sem-dot" style="background:#E8A030"></div>
+        <div class="sem-name">Warning / Alerta</div>
+        <div class="sem-hex">#E8A030</div>
+        <div class="sem-use">Desvio leve, manutenção preventiva, atenção recomendada</div>
+      </div>
+      <div class="sem-card">
+        <div class="sem-dot" style="background:#E05050"></div>
+        <div class="sem-name">Error / Crítico</div>
+        <div class="sem-hex">#E05050</div>
+        <div class="sem-use">Falha detectada, sensor fora da faixa, intervenção urgente</div>
+      </div>
+      <div class="sem-card">
+        <div class="sem-dot" style="background:#4A8FD4"></div>
+        <div class="sem-name">Info / Processo</div>
+        <div class="sem-hex">#4A8FD4</div>
+        <div class="sem-use">Informação neutra, dados em processamento, atualizando</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WCAG CONTRAST -->
+  <section class="section">
+    <div class="s-label">05 · Contraste WCAG 2.1</div>
+    <h2 class="s-title">Acessibilidade e legibilidade</h2>
+    <p class="s-sub">Verificação de conformidade com WCAG AA (4.5:1 texto normal, 3:1 texto grande) para as combinações de cor mais usadas.</p>
+    <div class="wcag-grid">
+      <div class="wcag-card">
+        <div class="wcag-preview" style="background:#1C1917">
+          <span class="wcag-sample-text" style="color:#C49244">Optimatech</span>
+          <span class="wcag-sample-small" style="color:#C49244">Gold sobre Black</span>
+        </div>
+        <div class="wcag-data"><span class="wcag-ratio">5.8 : 1</span><span class="wcag-badge wcag-pass">AAA</span></div>
+      </div>
+      <div class="wcag-card">
+        <div class="wcag-preview" style="background:#1C1917">
+          <span class="wcag-sample-text" style="color:#F5F4F2">Optimatech</span>
+          <span class="wcag-sample-small" style="color:#F5F4F2">Branco sobre Black</span>
+        </div>
+        <div class="wcag-data"><span class="wcag-ratio">16.7 : 1</span><span class="wcag-badge wcag-pass">AAA</span></div>
+      </div>
+      <div class="wcag-card">
+        <div class="wcag-preview" style="background:#F5F4F2">
+          <span class="wcag-sample-text" style="color:#1C1917">Optimatech</span>
+          <span class="wcag-sample-small" style="color:#1C1917">Black sobre Branco</span>
+        </div>
+        <div class="wcag-data"><span class="wcag-ratio">16.7 : 1</span><span class="wcag-badge wcag-pass">AAA</span></div>
+      </div>
+      <div class="wcag-card">
+        <div class="wcag-preview" style="background:#C49244">
+          <span class="wcag-sample-text" style="color:#1C1917">Optimatech</span>
+          <span class="wcag-sample-small" style="color:#1C1917">Black sobre Gold</span>
+        </div>
+        <div class="wcag-data"><span class="wcag-ratio">5.8 : 1</span><span class="wcag-badge wcag-pass">AAA</span></div>
+      </div>
+      <div class="wcag-card">
+        <div class="wcag-preview" style="background:#3C3830">
+          <span class="wcag-sample-text" style="color:#F5F4F2">Optimatech</span>
+          <span class="wcag-sample-small" style="color:#F5F4F2">Branco sobre Grafite</span>
+        </div>
+        <div class="wcag-data"><span class="wcag-ratio">9.1 : 1</span><span class="wcag-badge wcag-pass">AAA</span></div>
+      </div>
+      <div class="wcag-card">
+        <div class="wcag-preview" style="background:#F5F4F2">
+          <span class="wcag-sample-text" style="color:#C49244">Optimatech</span>
+          <span class="wcag-sample-small" style="color:#C49244">Gold sobre Branco</span>
+        </div>
+        <div class="wcag-data"><span class="wcag-ratio">2.9 : 1</span><span class="wcag-badge wcag-fail">Texto grande</span></div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--gray-4);margin-top:16px;font-weight:400">⚠ Gold sobre Branco não passa AA para texto normal — use apenas em textos grandes (18px+) ou elementos decorativos.</p>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section class="section">
+    <div class="s-label">06 · Aplicações Cromáticas</div>
+    <h2 class="s-title">Como as cores funcionam na prática</h2>
+    <div class="app-demos">
+      <div class="app-demo">
+        <div class="app-demo-inner" style="background:#1C1917;color:#F5F4F2">
+          <div class="app-demo-label">Dark Hero — uso principal</div>
+          <div class="app-demo-title" style="color:#F5F4F2">Gêmeo Digital<br>10× mais dados.</div>
+          <p class="app-demo-body">Atualização a cada 1 minuto. Modelos baseados em física e química reais.</p>
+          <span class="app-demo-tag" style="background:rgba(196,146,68,.15);color:#C49244">Ver módulo</span>
+        </div>
+      </div>
+      <div class="app-demo">
+        <div class="app-demo-inner" style="background:#C49244;color:#1C1917">
+          <div class="app-demo-label" style="opacity:.6">Gold CTA — chamada para ação</div>
+          <div class="app-demo-title">Diagnóstico gratuito</div>
+          <p class="app-demo-body" style="opacity:.75">Avalie os desafios da sua planta com nossa equipe técnica.</p>
+          <span class="app-demo-tag" style="background:rgba(28,25,23,.12);color:#1C1917">Solicitar agora</span>
+        </div>
+      </div>
+      <div class="app-demo">
+        <div class="app-demo-inner" style="background:#F7F6F4;border:1px solid rgba(28,25,23,.08)">
+          <div class="app-demo-label">Light Card — cards e UI</div>
+          <div class="app-demo-title">OEE em tempo real</div>
+          <p class="app-demo-body" style="color:#5C5650">Disponibilidade, Desempenho e Qualidade consolidados em uma única view.</p>
+          <span class="app-demo-tag" style="background:rgba(196,146,68,.1);color:#B07B30;border:1px solid rgba(196,146,68,.2)">Plano Avançado</span>
+        </div>
+      </div>
+      <div class="app-demo">
+        <div class="app-demo-inner" style="background:#3C3830;color:#F5F4F2">
+          <div class="app-demo-label">Graphite — superfícies secundárias</div>
+          <div class="app-demo-title" style="color:#F5F4F2">FDD · Detecção de Falhas</div>
+          <p class="app-demo-body">Alertas com diagnóstico de causa raiz. Aprendizado contínuo.</p>
+          <span class="app-demo-tag" style="background:rgba(196,146,68,.18);color:#D4A85A">Módulo ativo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fn">
+    <a href="marca.html">← Marca & Logo</a>
+    <div class="fn-copy">© 2025 Optimatech · Design System v5.0</div>
+    <a href="tipografia.html">Tipografia →</a>
+  </div>
+
+  </div>
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+const pb=document.getElementById('pb');
+window.addEventListener('scroll',()=>{pb.style.transform=`scaleX(${window.scrollY/(document.body.scrollHeight-window.innerHeight)})`});
+function copyColor(hex,el){
+  navigator.clipboard.writeText(hex).then(()=>{
+    const orig=el.textContent;el.textContent='Copiado!';el.style.background='rgba(196,146,68,.25)';
+    setTimeout(()=>{el.textContent=orig;el.style.background=''},1600);
+  });
+}
+</script>
+
+<script>
+(function(){
+  // Build ToC from .s-label elements
+  var toc = document.getElementById('toc-list');
+  if(!toc) return;
+  var sections = document.querySelectorAll('section.section');
+  if(!sections.length) return;
+  
+  sections.forEach(function(sec, i){
+    var labelEl = sec.querySelector('.s-label');
+    if(!labelEl) return;
+    var labelText = labelEl.textContent.trim();
+    var id = 'toc-sec-' + i;
+    sec.id = id;
+    
+    // Split "01 · Label text" into num and text
+    var parts = labelText.match(/^(\d+\s*[·\.]\s*)(.+)$/);
+    var a = document.createElement('a');
+    a.className = 'toc-item';
+    a.href = '#' + id;
+    if(parts){
+      a.innerHTML = '<span class="toc-num">' + parts[1].trim() + '</span>' + parts[2].trim();
+    } else {
+      a.textContent = labelText;
+    }
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById(id);
+      if(target){
+        // Account for sticky breadcrumb (44px)
+        var top = target.getBoundingClientRect().top + window.scrollY - 60;
+        window.scrollTo({top: top, behavior: 'smooth'});
+      }
+    });
+    toc.appendChild(a);
+  });
+  
+  // IntersectionObserver: highlight active section
+  var items = toc.querySelectorAll('.toc-item');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var link = toc.querySelector('a[href="#' + entry.target.id + '"]');
+      if(!link) return;
+      if(entry.isIntersecting){
+        items.forEach(function(i){ i.classList.remove('active'); });
+        link.classList.add('active');
+        // Scroll the toc item into view within sidebar
+        link.scrollIntoView({block:'nearest'});
+      }
+    });
+  }, {threshold: 0.25, rootMargin: '-50px 0px -55% 0px'});
+  
+  document.querySelectorAll('[id^="toc-sec-"]').forEach(function(s){
+    observer.observe(s);
+  });
+  
+  // Activate first item by default
+  if(items.length) items[0].classList.add('active');
+})();
+</script>
+</body>
+</html>

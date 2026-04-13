@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tipografia — Optimatech Design System v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/icon-original.svg">
+<style>
+:root{--gold:#C49244;--citrus:#E5E417;--dark-brand:#333333;--gold-warm:#A97727;--gold-lt:#D4A85A;--gold-dk:#B07B30;--black:#1C1917;--graphite:#3C3830;--gray-6:#5C5650;--gray-4:#9C9690;--gray-2:#D4D0CC;--bg:#F7F6F4;--surface:#FFFFFF;--border:rgba(28,25,23,0.08);--nav-w:72px;--font-primary:'Exo 2',sans-serif;--font-secondary:'Sora',sans-serif;--font:var(--font-secondary);--r-sm:6px;--r-md:10px;--r-lg:16px;--r-xl:24px;--sh-sm:0 1px 3px rgba(28,25,23,0.06),0 1px 2px rgba(28,25,23,0.04);--sh-md:0 4px 16px rgba(28,25,23,0.08),0 2px 6px rgba(28,25,23,0.04)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--black);display:flex;min-height:100vh;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.rail{width:var(--nav-w);min-height:100vh;background:var(--black);position:fixed;top:0;left:0;display:flex;flex-direction:column;align-items:center;padding:20px 0 24px;z-index:200}
+.rail-logo{width:36px;height:36px;background:var(--black);border:1.5px solid rgba(196,146,68,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;flex-shrink:0;overflow:hidden;padding:4px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;width:56px;padding:8px 0;border-radius:12px;text-decoration:none;color:rgba(247,246,244,.40);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;transition:all .18s;margin:1px 0}
+.ni:hover{color:rgba(247,246,244,.75);background:rgba(247,246,244,.05)}
+.ni.active{color:var(--gold)}
+.ni-wrap{width:38px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:9px;transition:background .18s}
+.ni.active .ni-wrap{background:rgba(196,146,68,.16)}
+.rail-div{width:30px;height:1px;background:rgba(247,246,244,.08);margin:8px 0}
+.sidebar{width:200px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:var(--nav-w);padding:56px 0 40px;overflow-y:auto;z-index:90;display:flex;flex-direction:column}
+.sb-header{padding:16px 20px 12px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.sb-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-4);display:block;margin-bottom:4px}
+.sb-page{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:700;color:var(--black);line-height:1.3;letter-spacing:-.01em}
+.toc-list{flex:1;padding:4px 0}
+.toc-item{display:block;padding:6px 20px 6px 18px;text-decoration:none;font-size:11px;font-weight:500;color:var(--gray-4);border-left:2px solid transparent;transition:all .15s;line-height:1.4;letter-spacing:.01em}
+.toc-item:hover{color:var(--black);background:rgba(28,25,23,.02)}
+.toc-item.active{color:var(--black);border-left-color:var(--gold);background:rgba(196,146,68,.05);font-weight:600}
+.toc-num{font-size:9px;color:var(--gray-2);font-weight:600;letter-spacing:.06em;display:block;margin-bottom:1px}
+.main{margin-left:calc(var(--nav-w) + 200px);flex:1;display:flex;flex-direction:column}
+.breadcrumb{height:44px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 40px;gap:8px;font-size:12px;font-weight:500;color:var(--gray-4);position:sticky;top:0;z-index:100}
+.breadcrumb a{color:var(--gray-4);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--black)}
+.breadcrumb-sep{color:var(--gray-2);font-size:10px}
+.content{flex:1;padding:64px 40px 80px}
+.wrap{max-width:920px;margin:0 auto}
+#pb{position:fixed;top:0;left:0;right:0;height:2px;background:var(--gold);transform-origin:left;z-index:999;transform:scaleX(0)}
+.page-header{padding-bottom:40px;border-bottom:1px solid var(--border);margin-bottom:64px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--gold);border-radius:1px}
+.page-title{font-family:var(--font-primary);font-size:48px;font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px}
+.page-sub{font-size:17px;font-weight:300;color:var(--gray-6);max-width:540px;line-height:1.7}
+.section{margin-bottom:72px}
+.s-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-4);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.s-label::before{content:'';width:16px;height:1px;background:var(--gray-2)}
+.s-title{font-family:'Exo 2',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.s-sub{font-size:15px;font-weight:300;color:var(--gray-6);margin-bottom:32px;line-height:1.65;max-width:580px}
+
+/* BADGE */
+.font-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.font-badge.primary{background:var(--gold);color:var(--black)}
+.font-badge.secondary{background:rgba(28,25,23,.08);color:var(--gray-6)}
+
+/* FONT HERO — PRIMARY (dark) */
+.font-hero-primary{background:var(--black);border-radius:var(--r-xl);padding:60px;box-shadow:var(--sh-md);margin-bottom:32px;overflow:hidden;position:relative}
+.font-hero-primary::before{content:'EXO';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:220px;font-weight:900;color:rgba(196,146,68,.05);line-height:1;pointer-events:none;white-space:nowrap;font-family:'Exo 2',sans-serif}
+.font-display-primary{font-family:'Exo 2',sans-serif;font-size:72px;font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:20px;color:#F5F4F2}
+.font-display-primary span{color:var(--gold)}
+.font-meta-primary{display:flex;gap:32px;flex-wrap:wrap}
+.font-meta-item{display:flex;flex-direction:column}
+.font-meta-item strong{font-size:13px;font-weight:600}
+.font-meta-item span{font-size:12px;font-weight:400;margin-top:2px}
+.font-meta-primary .font-meta-item strong{color:#F5F4F2}
+.font-meta-primary .font-meta-item span{color:rgba(245,244,242,.45)}
+
+/* FONT HERO — SECONDARY (light) */
+.font-hero-secondary{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:60px;box-shadow:var(--sh-md);margin-bottom:32px;overflow:hidden;position:relative}
+.font-hero-secondary::before{content:'SORA';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-size:200px;font-weight:800;color:rgba(28,25,23,.03);line-height:1;pointer-events:none;white-space:nowrap;font-family:'Sora',sans-serif}
+.font-display-secondary{font-family:'Sora',sans-serif;font-size:72px;font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:20px;color:var(--black)}
+.font-display-secondary span{color:var(--gold)}
+.font-meta-secondary .font-meta-item strong{color:var(--black)}
+.font-meta-secondary .font-meta-item span{color:var(--gray-4)}
+
+/* WEIGHT SPECIMENS */
+.weight-table{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-sm)}
+.weight-row{display:grid;grid-template-columns:80px 1fr 80px;gap:0;align-items:center;padding:20px 32px;border-bottom:1px solid var(--border)}
+.weight-row:last-child{border-bottom:none}
+.weight-num{font-size:12px;font-weight:600;color:var(--gray-4);letter-spacing:.04em}
+.weight-sample{color:var(--black)}
+.weight-label{font-size:11px;font-weight:500;color:var(--gray-4);text-align:right;letter-spacing:.05em}
+
+/* PAIRING DEMO */
+.pairing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+.pair-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:32px;box-shadow:var(--sh-sm)}
+.pair-card.dark{background:var(--black)}
+.pair-title{font-family:'Exo 2',sans-serif;font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.pair-card.dark .pair-title{color:#F5F4F2}
+.pair-card.dark .pair-title span{color:var(--gold)}
+.pair-body{font-family:'Sora',sans-serif;font-size:14px;font-weight:300;line-height:1.7;color:var(--gray-6)}
+.pair-card.dark .pair-body{color:rgba(245,244,242,.55)}
+.pair-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;padding:4px 10px;border-radius:100px;display:inline-flex}
+.pair-card:not(.dark) .pair-label{background:rgba(196,146,68,.12);color:var(--gold-dk)}
+.pair-card.dark .pair-label{background:rgba(196,146,68,.15);color:var(--gold-lt)}
+.pair-divider{height:1px;background:var(--border);margin:16px 0}
+.pair-card.dark .pair-divider{background:rgba(247,246,244,.06)}
+.pair-detail{font-family:'Sora',sans-serif;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-4)}
+.pair-card.dark .pair-detail{color:rgba(245,244,242,.3)}
+
+/* PAIRING APPLICATION */
+.pair-app{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:36px;box-shadow:var(--sh-sm)}
+.pa-row{display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--border)}
+.pa-row:last-child{border-bottom:none}
+.pa-role{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-4);width:100px;flex-shrink:0}
+.pa-font{font-size:11px;font-weight:500;color:var(--gold-dk);background:rgba(196,146,68,.1);padding:2px 8px;border-radius:100px;flex-shrink:0}
+.pa-sample{flex:1;color:var(--black)}
+
+/* TYPE SCALE */
+.typescale{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-sm)}
+.ts-row{display:grid;grid-template-columns:100px 80px 80px 80px 1fr;gap:0;align-items:baseline;padding:16px 28px;border-bottom:1px solid var(--border)}
+.ts-row:last-child{border-bottom:none}
+.ts-row.header{padding:12px 28px;background:rgba(28,25,23,.02)}
+.ts-meta{font-size:11px;font-weight:600;color:var(--gray-4);letter-spacing:.04em;align-self:center}
+.ts-meta.head{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-4)}
+
+/* SPACING */
+.spacing-grid{display:flex;flex-direction:column;gap:8px}
+.sp-row{display:flex;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 20px}
+.sp-token{font-size:12px;font-weight:700;color:var(--black);width:40px;flex-shrink:0;font-family:monospace}
+.sp-value{font-size:12px;font-weight:500;color:var(--gray-4);width:40px;flex-shrink:0}
+.sp-bar-wrap{flex:1;height:20px;display:flex;align-items:center}
+.sp-bar{height:8px;background:var(--gold);border-radius:2px;opacity:.7}
+.sp-use{font-size:12px;font-weight:400;color:var(--gray-6);margin-left:auto;text-align:right;min-width:200px}
+
+/* GRID DEMO */
+.grid-demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:32px;box-shadow:var(--sh-sm)}
+.grid-cols{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-bottom:16px}
+.grid-col{background:rgba(196,146,68,.12);border:1px solid rgba(196,146,68,.2);border-radius:4px;height:40px}
+.grid-example{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+.g-span-3{grid-column:span 3;background:rgba(196,146,68,.08);border:1px solid rgba(196,146,68,.15);border-radius:6px;height:56px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gold-dk)}
+.g-span-4{grid-column:span 4;background:rgba(28,25,23,.04);border:1px solid var(--border);border-radius:6px;height:56px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gray-6)}
+.g-span-6{grid-column:span 6;background:rgba(28,25,23,.04);border:1px solid var(--border);border-radius:6px;height:56px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gray-6)}
+.g-span-8{grid-column:span 8;background:rgba(28,25,23,.06);border:1px solid var(--border);border-radius:6px;height:56px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gray-6)}
+
+/* RADIUS */
+.radius-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.rad-card{background:var(--surface);border:1px solid var(--border);padding:24px 16px;text-align:center;box-shadow:var(--sh-sm);display:flex;flex-direction:column;align-items:center;gap:12px}
+.rad-box{width:48px;height:48px;background:var(--gold);opacity:.8}
+.rad-name{font-size:12px;font-weight:600;color:var(--black)}
+.rad-val{font-size:11px;font-weight:500;color:var(--gray-4)}
+
+/* ELEVATION */
+.elev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.elev-card{background:var(--surface);border-radius:var(--r-lg);padding:24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.elev-name{font-size:13px;font-weight:600;color:var(--black)}
+.elev-val{font-size:11px;font-weight:400;color:var(--gray-4)}
+.elev-use{font-size:11px;font-weight:400;color:var(--gray-6);line-height:1.5}
+
+/* FOOTER */
+.fn{display:flex;justify-content:space-between;align-items:center;padding:32px 0 0;margin-top:72px;border-top:1px solid var(--border)}
+.fn a{display:inline-flex;align-items:center;gap:8px;color:var(--gray-6);text-decoration:none;font-size:13px;font-weight:500;transition:color .15s}
+.fn a:hover{color:var(--gold)}
+.fn-copy{font-size:11px;color:var(--gray-4)}
+</style>
+</head>
+<body>
+<div id="pb"></div>
+
+<nav class="rail">
+  <div class="rail-logo"><img src="assets/favicon-icon.svg" alt="Optimatech" style="width:100%;height:100%;object-fit:contain"></div>
+  <a href="index.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 8.5L10 3l7 5.5V17a1 1 0 01-1 1H4a1 1 0 01-1-1V8.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 18v-6h6v6" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg></div>INÍCIO</a>
+  <a href="marca.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="10" y1="2.5" x2="10" y2="17.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="2.5" y1="10" x2="17.5" y2="10" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="rgba(247,246,244,.45)"/></svg></div>MARCA</a>
+  <a href="cores.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><path d="M10 2.5a7.5 7.5 0 010 15" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" fill="rgba(247,246,244,.45)"/></svg></div>COR</a>
+  <a href="tipografia.html" class="ni active"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M10 5v12M7 17h6" stroke="rgba(247,246,244,.65)" stroke-width="1.5" stroke-linecap="round"/></svg></div>TIPO</a>
+  <div class="rail-div"></div>
+  <a href="componentes.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="2.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg></div>COMP</a>
+  <a href="voz.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17 9.5c0 3.59-3.134 6.5-7 6.5a7.5 7.5 0 01-3.062-.638L3 17l1.638-3.938A6.3 6.3 0 013 9.5C3 5.91 6.134 3 10 3s7 2.91 7 6.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>VOZ</a>
+  <a href="assets.html" class="ni"><div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6 9l4 4 4-4" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15h14" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg></div>ASSETS</a>
+</nav>
+
+
+<aside class="sidebar" aria-label="Índice da página">
+  <div class="sb-header">
+    <span class="sb-label">Nesta página</span>
+    <span class="sb-page">Tipografia</span>
+  </div>
+  <nav class="toc-list" id="toc-list"></nav>
+</aside>
+
+<div class="main">
+  <div class="breadcrumb">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="1" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/></svg>
+    <a href="index.html">Design System v5</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Tipografia</span>
+  </div>
+  <div class="content">
+  <div class="wrap">
+
+  <header class="page-header">
+    <div class="eyebrow">Tipografia & Layout</div>
+    <h1 class="page-title">Exo 2 + Sora</h1>
+    <p class="page-sub">Dois sistemas, um propósito. Exo 2 ancora títulos e wordmark com força técnica; Sora sustenta corpo e UI com precisão geométrica. Juntas definem o ritmo visual da marca.</p>
+  </header>
+
+  <!-- ───────── SEÇÃO 01 · EXO 2 (PRIMÁRIA) ───────── -->
+  <section class="section">
+    <div class="s-label">01 · Fonte Primária</div>
+    <h2 class="s-title">Exo 2 — Identidade e Display</h2>
+    <p class="s-sub">Fonte principal da marca. Usada em títulos, wordmark, display, headlines e elementos de alta hierarquia. Exo 2 traz geometria rigorosa com DNA tecnológico — ideal para representar a precisão científica da Optimatech.</p>
+    <div class="font-badge primary">● Fonte Primária</div>
+    <div class="font-hero-primary">
+      <div class="font-display-primary">Aa Bb Cc 01<br><span style="font-weight:500">OPTIMA</span><span style="font-weight:700">TECH</span></div>
+      <div class="font-meta-primary font-meta-secondary" style="display:flex;gap:32px;flex-wrap:wrap">
+        <div class="font-meta-item"><strong style="color:#F5F4F2">Exo 2</strong><span style="color:rgba(245,244,242,.45)">Família tipográfica</span></div>
+        <div class="font-meta-item"><strong style="color:#F5F4F2">Google Fonts</strong><span style="color:rgba(245,244,242,.45)">Distribuição livre</span></div>
+        <div class="font-meta-item"><strong style="color:#F5F4F2">9 pesos</strong><span style="color:rgba(245,244,242,.45)">Thin → Black</span></div>
+        <div class="font-meta-item"><strong style="color:#F5F4F2">Latin Extended</strong><span style="color:rgba(245,244,242,.45)">Suporte PT-BR completo</span></div>
+        <div class="font-meta-item"><strong style="color:#F5F4F2">Sans-Serif</strong><span style="color:rgba(245,244,242,.45)">Geométrica tecnológica</span></div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--gray-4);font-weight:400;margin-bottom:32px">Specimen PT-BR: ÀáÂãçÉêÍíÓôÕõÚú · Números: 0 1 2 3 4 5 6 7 8 9 — Ideal para dashboards e títulos técnicos</p>
+
+    <div class="weight-table">
+      <div class="weight-row" style="background:rgba(28,25,23,.02)">
+        <div class="weight-num">Peso</div>
+        <div class="weight-sample" style="font-size:13px;font-weight:600;color:var(--gray-4)">Specimen — Exo 2</div>
+        <div class="weight-label">Uso</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">300</div>
+        <div class="weight-sample" style="font-family:'Exo 2',sans-serif;font-size:22px;font-weight:300">Precisão fenomenológica</div>
+        <div class="weight-label">Subtítulo leve</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">400</div>
+        <div class="weight-sample" style="font-family:'Exo 2',sans-serif;font-size:22px;font-weight:400">Precisão fenomenológica</div>
+        <div class="weight-label">Corpo / Texto</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">500</div>
+        <div class="weight-sample" style="font-family:'Exo 2',sans-serif;font-size:22px;font-weight:500">Precisão fenomenológica</div>
+        <div class="weight-label">UI · Labels</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">600</div>
+        <div class="weight-sample" style="font-family:'Exo 2',sans-serif;font-size:22px;font-weight:600">Precisão fenomenológica</div>
+        <div class="weight-label">Cards · Seções</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">700</div>
+        <div class="weight-sample" style="font-family:'Exo 2',sans-serif;font-size:22px;font-weight:700">Precisão fenomenológica</div>
+        <div class="weight-label">Títulos H1–H2</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">800</div>
+        <div class="weight-sample" style="font-family:'Exo 2',sans-serif;font-size:22px;font-weight:800">OPTIMATECH Industrial</div>
+        <div class="weight-label">Display / Hero</div>
+      </div>
+      <div class="weight-row" style="background:rgba(196,146,68,.04)">
+        <div class="weight-num" style="color:var(--gold-dk)">500+700</div>
+        <div class="weight-sample" style="font-family:'Exo 2',sans-serif;font-size:22px;letter-spacing:.04em"><span style="font-weight:500;color:var(--gold)">OPTIMA</span><span style="font-weight:700">TECH</span></div>
+        <div class="weight-label" style="color:var(--gold-dk)">Logotipia ★</div>
+      </div>
+    </div>
+
+    <!-- Exo 2 Wordmark Aplicações -->
+    <div style="margin-top:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:36px;box-shadow:var(--sh-sm)">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:24px">Exo 2 em Aplicação — Wordmark Optimatech</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div style="background:var(--black);border-radius:var(--r-lg);padding:28px 32px;display:flex;align-items:center">
+          <div style="font-family:'Exo 2',sans-serif;font-size:28px;letter-spacing:.04em;color:#F5F4F2"><span style="font-weight:500;color:var(--gold)">OPTIMA</span><span style="font-weight:700">TECH</span></div>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px;display:flex;align-items:center">
+          <div style="font-family:'Exo 2',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--black)"><span style="font-weight:500;color:var(--gold)">OPTIMA</span><span style="font-weight:700">TECH</span></div>
+        </div>
+        <div style="background:var(--gold);border-radius:var(--r-lg);padding:28px 32px;display:flex;align-items:center">
+          <div style="font-family:'Exo 2',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--black)"><span style="font-weight:500">OPTIMA</span><span style="font-weight:700">TECH</span></div>
+        </div>
+        <div style="background:var(--graphite);border-radius:var(--r-lg);padding:28px 32px;display:flex;align-items:center">
+          <div style="font-family:'Exo 2',sans-serif;font-size:28px;letter-spacing:.04em;color:rgba(245,244,242,.9)"><span style="font-weight:500;color:var(--gold)">OPTIMA</span><span style="font-weight:700">TECH</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── SEÇÃO 02 · SORA (SECUNDÁRIA) ───────── -->
+  <section class="section">
+    <div class="s-label">02 · Fonte Secundária</div>
+    <h2 class="s-title">Sora — Interface e Corpo de Texto</h2>
+    <p class="s-sub">Fonte complementar do sistema. Usada para corpo de texto, interface, legendas, descritivos e qualquer elemento que requer leitura contínua. Sora combina geometria técnica com warmth humanista — legível em qualquer escala.</p>
+    <div class="font-badge secondary">○ Fonte Secundária</div>
+    <div class="font-hero-secondary">
+      <div class="font-display-secondary">Aa Bb Cc 01<br><span>Industrial SaaS</span></div>
+      <div class="font-meta-secondary" style="display:flex;gap:32px;flex-wrap:wrap">
+        <div class="font-meta-item"><strong style="color:var(--black)">Sora</strong><span style="color:var(--gray-4)">Família tipográfica</span></div>
+        <div class="font-meta-item"><strong style="color:var(--black)">Google Fonts</strong><span style="color:var(--gray-4)">Distribuição livre</span></div>
+        <div class="font-meta-item"><strong style="color:var(--black)">7 pesos</strong><span style="color:var(--gray-4)">ExtraLight → ExtraBold</span></div>
+        <div class="font-meta-item"><strong style="color:var(--black)">Latin Extended</strong><span style="color:var(--gray-4)">Suporte a acentos PT-BR</span></div>
+        <div class="font-meta-item"><strong style="color:var(--black)">Sans-Serif</strong><span style="color:var(--gray-4)">Geométrica humanista</span></div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--gray-4);font-weight:400;margin-bottom:32px">Specimen PT-BR: ÀáÂãçÉêÍíÓôÕõÚú · Funciona em digital e impressão</p>
+
+    <div class="weight-table">
+      <div class="weight-row" style="background:rgba(28,25,23,.02)">
+        <div class="weight-num">Peso</div>
+        <div class="weight-sample" style="font-size:13px;font-weight:600;color:var(--gray-4)">Specimen — Sora</div>
+        <div class="weight-label">Uso</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">300</div>
+        <div class="weight-sample" style="font-family:'Sora',sans-serif;font-size:22px;font-weight:300">A linguagem da indústria</div>
+        <div class="weight-label">Body / Corpo</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">400</div>
+        <div class="weight-sample" style="font-family:'Sora',sans-serif;font-size:22px;font-weight:400">A linguagem da indústria</div>
+        <div class="weight-label">Body / Listas</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">500</div>
+        <div class="weight-sample" style="font-family:'Sora',sans-serif;font-size:22px;font-weight:500">A linguagem da indústria</div>
+        <div class="weight-label">Labels / UI</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">600</div>
+        <div class="weight-sample" style="font-family:'Sora',sans-serif;font-size:22px;font-weight:600">A linguagem da indústria</div>
+        <div class="weight-label">Subtítulos / Cards</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">700</div>
+        <div class="weight-sample" style="font-family:'Sora',sans-serif;font-size:22px;font-weight:700">A linguagem da indústria</div>
+        <div class="weight-label">Títulos / Seções</div>
+      </div>
+      <div class="weight-row">
+        <div class="weight-num">800</div>
+        <div class="weight-sample" style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800">A linguagem da indústria</div>
+        <div class="weight-label">Display / Hero</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── SEÇÃO 03 · COMBINAÇÃO ───────── -->
+  <section class="section">
+    <div class="s-label">03 · Combinação Tipográfica</div>
+    <h2 class="s-title">Exo 2 Titula · Sora Comunica</h2>
+    <p class="s-sub">Cada fonte tem um território definido. A combinação cria tensão visual positiva entre força e leveza, entre dado e narrativa.</p>
+    <div class="pairing-grid">
+      <div class="pair-card dark">
+        <div class="pair-label">Dashboard · Dark</div>
+        <div class="pair-title" style="font-family:'Exo 2',sans-serif;font-size:30px;font-weight:800;color:#F5F4F2">OEE <span>94.7%</span></div>
+        <div class="pair-divider" style="background:rgba(247,246,244,.06)"></div>
+        <div class="pair-body" style="font-family:'Sora',sans-serif;font-size:13px;font-weight:300;color:rgba(245,244,242,.55)">Alto-Forno 3 · Atualização há 52s · Disponibilidade acima da meta</div>
+        <div class="pair-detail" style="font-family:'Sora',sans-serif;margin-top:12px;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:rgba(245,244,242,.25)">Exo 2 · Headline  ·  Sora · Body</div>
+      </div>
+      <div class="pair-card">
+        <div class="pair-label">Landing Page · Light</div>
+        <div class="pair-title" style="font-family:'Exo 2',sans-serif;font-size:26px;font-weight:800;color:var(--black)">Gêmeo <span style="color:var(--gold)">Digital</span></div>
+        <div class="pair-divider"></div>
+        <div class="pair-body" style="font-family:'Sora',sans-serif;font-size:13px;font-weight:300;color:var(--gray-6)">Calcula 10× mais informações que os sensores disponíveis. Atualização a cada 1 minuto.</div>
+        <div class="pair-detail" style="font-family:'Sora',sans-serif;margin-top:12px;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-4)">Exo 2 · Headline  ·  Sora · Body</div>
+      </div>
+    </div>
+
+    <!-- Application Map -->
+    <div class="pair-app">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:8px">Mapa de Aplicação</div>
+      <div class="pa-row">
+        <div class="pa-role">Wordmark</div>
+        <div class="pa-font">Exo 2 · 500 + 700</div>
+        <div class="pa-sample" style="font-family:'Exo 2',sans-serif;font-size:20px;letter-spacing:.03em"><span style="font-weight:500;color:var(--gold)">OPTIMA</span><span style="font-weight:700">TECH</span></div>
+      </div>
+      <div class="pa-row">
+        <div class="pa-role">Display</div>
+        <div class="pa-font">Exo 2 · 800</div>
+        <div class="pa-sample" style="font-family:'Exo 2',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.02em">Transformação Digital</div>
+      </div>
+      <div class="pa-row">
+        <div class="pa-role">H1 / H2</div>
+        <div class="pa-font">Exo 2 · 700</div>
+        <div class="pa-sample" style="font-family:'Exo 2',sans-serif;font-weight:700;font-size:18px">Gêmeo Digital · Detecção de Falhas</div>
+      </div>
+      <div class="pa-row">
+        <div class="pa-role">KPI / Métrica</div>
+        <div class="pa-font">Exo 2 · 600–800</div>
+        <div class="pa-sample" style="font-family:'Exo 2',sans-serif;font-weight:700;font-size:18px;color:var(--gold)">94.7% · ±0.3% · 1min</div>
+      </div>
+      <div class="pa-row">
+        <div class="pa-role">H3 / Label</div>
+        <div class="pa-font">Sora · 600</div>
+        <div class="pa-sample" style="font-family:'Sora',sans-serif;font-weight:600;font-size:16px">Módulo Ativo · Plano Advanced</div>
+      </div>
+      <div class="pa-row">
+        <div class="pa-role">Corpo / UI</div>
+        <div class="pa-font">Sora · 300–400</div>
+        <div class="pa-sample" style="font-family:'Sora',sans-serif;font-weight:300;font-size:15px;color:var(--gray-6)">Plataforma SaaS modular com modelagem fenomenológica</div>
+      </div>
+      <div class="pa-row">
+        <div class="pa-role">Caption / Tag</div>
+        <div class="pa-font">Sora · 500–600</div>
+        <div class="pa-sample" style="font-family:'Sora',sans-serif;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4)">SIDERURGIA · PETROQUÍMICA · MINERAÇÃO</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── SEÇÃO 04 · ESCALA DE TIPOS ───────── -->
+  <section class="section">
+    <div class="s-label">04 · Escala de Tipos</div>
+    <h2 class="s-title">8 níveis de hierarquia</h2>
+    <p class="s-sub">Sistema de tamanhos baseado em progressão harmônica. Cada nível tem tamanho, peso e fonte definidos.</p>
+    <div class="typescale">
+      <div class="ts-row header">
+        <div class="ts-meta head">Nome</div>
+        <div class="ts-meta head">Tam.</div>
+        <div class="ts-meta head">Peso</div>
+        <div class="ts-meta head">Fonte</div>
+        <div class="ts-meta head">Specimen</div>
+      </div>
+      <div class="ts-row">
+        <div class="ts-meta">Display</div>
+        <div class="ts-meta">72px</div>
+        <div class="ts-meta">800</div>
+        <div class="ts-meta" style="color:var(--gold-dk)">Exo 2</div>
+        <div style="font-family:'Exo 2',sans-serif;font-size:40px;font-weight:800;line-height:1.05;letter-spacing:-.03em"><span style="color:var(--gold)">OT</span></div>
+      </div>
+      <div class="ts-row">
+        <div class="ts-meta">H1</div>
+        <div class="ts-meta">48px</div>
+        <div class="ts-meta">800</div>
+        <div class="ts-meta" style="color:var(--gold-dk)">Exo 2</div>
+        <div style="font-family:'Exo 2',sans-serif;font-size:28px;font-weight:800;letter-spacing:-.03em">Indústria Inteligente</div>
+      </div>
+      <div class="ts-row">
+        <div class="ts-meta">H2</div>
+        <div class="ts-meta">36px</div>
+        <div class="ts-meta">700</div>
+        <div class="ts-meta" style="color:var(--gold-dk)">Exo 2</div>
+        <div style="font-family:'Exo 2',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.02em">Gêmeo Digital</div>
+      </div>
+      <div class="ts-row">
+        <div class="ts-meta">H3</div>
+        <div class="ts-meta">24px</div>
+        <div class="ts-meta">700</div>
+        <div class="ts-meta" style="color:var(--gray-4)">Sora</div>
+        <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:700;letter-spacing:-.01em">Detecção de Falhas</div>
+      </div>
+      <div class="ts-row">
+        <div class="ts-meta">H4</div>
+        <div class="ts-meta">18px</div>
+        <div class="ts-meta">600</div>
+        <div class="ts-meta" style="color:var(--gray-4)">Sora</div>
+        <div style="font-family:'Sora',sans-serif;font-size:16px;font-weight:600">OEE · Disponibilidade 94.7%</div>
+      </div>
+      <div class="ts-row">
+        <div class="ts-meta">Body Lg</div>
+        <div class="ts-meta">17px</div>
+        <div class="ts-meta">300</div>
+        <div class="ts-meta" style="color:var(--gray-4)">Sora</div>
+        <div style="font-family:'Sora',sans-serif;font-size:15px;font-weight:300;color:var(--gray-6)">Plataforma SaaS modular para indústria</div>
+      </div>
+      <div class="ts-row">
+        <div class="ts-meta">Body</div>
+        <div class="ts-meta">15px</div>
+        <div class="ts-meta">400</div>
+        <div class="ts-meta" style="color:var(--gray-4)">Sora</div>
+        <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:400;color:var(--gray-6)">Atualização a cada 1 minuto, sensores virtuais</div>
+      </div>
+      <div class="ts-row">
+        <div class="ts-meta">Caption</div>
+        <div class="ts-meta">12px</div>
+        <div class="ts-meta">500</div>
+        <div class="ts-meta" style="color:var(--gray-4)">Sora</div>
+        <div style="font-family:'Sora',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-4)">PLANO AVANÇADO · MÓDULO ATIVO</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── SEÇÃO 05 · ESPAÇAMENTO ───────── -->
+  <section class="section">
+    <div class="s-label">05 · Sistema de Espaçamento</div>
+    <h2 class="s-title">Base-8 · Progressão de 4px</h2>
+    <p class="s-sub">Todos os espaçamentos são múltiplos de 4px. O sistema garante ritmo vertical consistente em toda a interface.</p>
+    <div class="spacing-grid">
+      <div class="sp-row"><div class="sp-token">--s1</div><div class="sp-value">4px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:4px"></div></div><div class="sp-use">Gap mínimo · Ícones inline</div></div>
+      <div class="sp-row"><div class="sp-token">--s2</div><div class="sp-value">8px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:8px"></div></div><div class="sp-use">Espaço entre badge e texto</div></div>
+      <div class="sp-row"><div class="sp-token">--s3</div><div class="sp-value">12px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:12px"></div></div><div class="sp-use">Padding interno de chip</div></div>
+      <div class="sp-row"><div class="sp-token">--s4</div><div class="sp-value">16px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:16px"></div></div><div class="sp-use">Padding de card pequeno</div></div>
+      <div class="sp-row"><div class="sp-token">--s6</div><div class="sp-value">24px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:24px"></div></div><div class="sp-use">Gap entre colunas / Gutter</div></div>
+      <div class="sp-row"><div class="sp-token">--s8</div><div class="sp-value">32px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:32px"></div></div><div class="sp-use">Padding de card médio</div></div>
+      <div class="sp-row"><div class="sp-token">--s10</div><div class="sp-value">40px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:40px"></div></div><div class="sp-use">Padding de card grande</div></div>
+      <div class="sp-row"><div class="sp-token">--s12</div><div class="sp-value">48px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:48px"></div></div><div class="sp-use">Separação entre seções</div></div>
+      <div class="sp-row"><div class="sp-token">--s16</div><div class="sp-value">64px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:64px"></div></div><div class="sp-use">Padding de página</div></div>
+      <div class="sp-row"><div class="sp-token">--s20</div><div class="sp-value">80px</div><div class="sp-bar-wrap"><div class="sp-bar" style="width:80px"></div></div><div class="sp-use">Margem de seção maior</div></div>
+    </div>
+  </section>
+
+  <!-- ───────── SEÇÃO 06 · GRADE ───────── -->
+  <section class="section">
+    <div class="s-label">06 · Grade Responsiva</div>
+    <h2 class="s-title">12 colunas · Gutter 24px</h2>
+    <p class="s-sub">Sistema de 12 colunas com gutter de 24px. Max-width de 1280px com padding lateral de 40px em desktop.</p>
+    <div class="grid-demo">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:12px">12 colunas iguais</div>
+      <div class="grid-cols">
+        <div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div>
+        <div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div>
+        <div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div>
+      </div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin:20px 0 12px">Exemplos de layout</div>
+      <div class="grid-example" style="margin-bottom:12px">
+        <div class="g-span-3">3 col</div><div class="g-span-3">3 col</div><div class="g-span-3">3 col</div><div class="g-span-3">3 col</div>
+      </div>
+      <div class="grid-example" style="margin-bottom:12px">
+        <div class="g-span-4">4 col</div><div class="g-span-4">4 col</div><div class="g-span-4">4 col</div>
+      </div>
+      <div class="grid-example">
+        <div class="g-span-8">8 col · Conteúdo principal</div><div class="g-span-4">4 col · Sidebar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── SEÇÃO 07 · RAIOS DE BORDA ───────── -->
+  <section class="section">
+    <div class="s-label">07 · Raios de Borda</div>
+    <h2 class="s-title">6 tamanhos de arredondamento</h2>
+    <div class="radius-grid">
+      <div class="rad-card" style="border-radius:var(--r-sm)">
+        <div class="rad-box" style="border-radius:4px"></div>
+        <div class="rad-name">--r-sm</div><div class="rad-val">4px</div>
+      </div>
+      <div class="rad-card" style="border-radius:var(--r-md)">
+        <div class="rad-box" style="border-radius:8px"></div>
+        <div class="rad-name">--r-md</div><div class="rad-val">8px</div>
+      </div>
+      <div class="rad-card" style="border-radius:var(--r-lg)">
+        <div class="rad-box" style="border-radius:12px"></div>
+        <div class="rad-name">--r-lg</div><div class="rad-val">12px</div>
+      </div>
+      <div class="rad-card" style="border-radius:var(--r-xl)">
+        <div class="rad-box" style="border-radius:20px"></div>
+        <div class="rad-name">--r-xl</div><div class="rad-val">20px</div>
+      </div>
+      <div class="rad-card" style="border-radius:24px">
+        <div class="rad-box" style="border-radius:28px"></div>
+        <div class="rad-name">--r-2xl</div><div class="rad-val">24px</div>
+      </div>
+      <div class="rad-card" style="border-radius:100px">
+        <div class="rad-box" style="border-radius:100px"></div>
+        <div class="rad-name">--r-pill</div><div class="rad-val">100px</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── SEÇÃO 08 · ELEVAÇÃO ───────── -->
+  <section class="section">
+    <div class="s-label">08 · Elevação</div>
+    <h2 class="s-title">4 níveis de sombra</h2>
+    <div class="elev-grid">
+      <div class="elev-card" style="box-shadow:none;border:1px solid var(--border)">
+        <div class="elev-name">0 · Flat</div>
+        <div class="elev-val">sem sombra</div>
+        <div class="elev-use">Elementos de background, áreas de texto</div>
+      </div>
+      <div class="elev-card" style="box-shadow:0 1px 3px rgba(28,25,23,.06),0 1px 2px rgba(28,25,23,.04)">
+        <div class="elev-name">1 · Resting</div>
+        <div class="elev-val">shadow-sm</div>
+        <div class="elev-use">Cards, inputs, chips, componentes base</div>
+      </div>
+      <div class="elev-card" style="box-shadow:0 4px 16px rgba(28,25,23,.08),0 2px 6px rgba(28,25,23,.04)">
+        <div class="elev-name">2 · Raised</div>
+        <div class="elev-val">shadow-md</div>
+        <div class="elev-use">Cards em destaque, popovers, dropdowns</div>
+      </div>
+      <div class="elev-card" style="box-shadow:0 16px 40px rgba(28,25,23,.12),0 4px 12px rgba(28,25,23,.06)">
+        <div class="elev-name">3 · Overlay</div>
+        <div class="elev-val">shadow-lg</div>
+        <div class="elev-use">Modais, drawer, elementos flutuantes</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fn">
+    <a href="cores.html">← Paleta de Cores</a>
+    <div class="fn-copy">© 2025 Optimatech · Design System v5.0</div>
+    <a href="componentes.html">Componentes →</a>
+  </div>
+
+  </div>
+  </div><!-- /content -->
+</div><!-- /main -->
+<script>
+const pb=document.getElementById('pb');
+window.addEventListener('scroll',()=>{pb.style.transform=`scaleX(${window.scrollY/(document.body.scrollHeight-window.innerHeight)})`});
+</script>
+
+<script>
+(function(){
+  // Build ToC from .s-label elements
+  var toc = document.getElementById('toc-list');
+  if(!toc) return;
+  var sections = document.querySelectorAll('section.section');
+  if(!sections.length) return;
+  
+  sections.forEach(function(sec, i){
+    var labelEl = sec.querySelector('.s-label');
+    if(!labelEl) return;
+    var labelText = labelEl.textContent.trim();
+    var id = 'toc-sec-' + i;
+    sec.id = id;
+    
+    // Split "01 · Label text" into num and text
+    var parts = labelText.match(/^(\d+\s*[·\.]\s*)(.+)$/);
+    var a = document.createElement('a');
+    a.className = 'toc-item';
+    a.href = '#' + id;
+    if(parts){
+      a.innerHTML = '<span class="toc-num">' + parts[1].trim() + '</span>' + parts[2].trim();
+    } else {
+      a.textContent = labelText;
+    }
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById(id);
+      if(target){
+        // Account for sticky breadcrumb (44px)
+        var top = target.getBoundingClientRect().top + window.scrollY - 60;
+        window.scrollTo({top: top, behavior: 'smooth'});
+      }
+    });
+    toc.appendChild(a);
+  });
+  
+  // IntersectionObserver: highlight active section
+  var items = toc.querySelectorAll('.toc-item');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var link = toc.querySelector('a[href="#' + entry.target.id + '"]');
+      if(!link) return;
+      if(entry.isIntersecting){
+        items.forEach(function(i){ i.classList.remove('active'); });
+        link.classList.add('active');
+        // Scroll the toc item into view within sidebar
+        link.scrollIntoView({block:'nearest'});
+      }
+    });
+  }, {threshold: 0.25, rootMargin: '-50px 0px -55% 0px'});
+  
+  document.querySelectorAll('[id^="toc-sec-"]').forEach(function(s){
+    observer.observe(s);
+  });
+  
+  // Activate first item by default
+  if(items.length) items[0].classList.add('active');
+})();
+</script>
+</body>
+</html>

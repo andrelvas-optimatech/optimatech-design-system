@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marca & Logo — Optimatech Design System v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/icon-original.svg">
+<style>
+:root{--gold:#C49244;--citrus:#E5E417;--dark-brand:#333333;--gold-warm:#A97727;--gold-lt:#D4A85A;--gold-dk:#B07B30;--gold-pale:#F0DFB8;--black:#1C1917;--graphite:#3C3830;--gray-6:#5C5650;--gray-4:#9C9690;--gray-2:#D4D0CC;--bg:#F7F6F4;--surface:#FFFFFF;--border:rgba(28,25,23,0.08);--nav-w:72px;--font:'Sora',sans-serif;--font-primary:'Exo 2',sans-serif;--font-secondary:'Sora',sans-serif;--r-sm:6px;--r-md:10px;--r-lg:16px;--r-xl:24px;--sh-sm:0 1px 3px rgba(28,25,23,0.06),0 1px 2px rgba(28,25,23,0.04);--sh-md:0 4px 16px rgba(28,25,23,0.08),0 2px 6px rgba(28,25,23,0.04)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--black);display:flex;min-height:100vh;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+/* NAV RAIL */
+.rail{width:var(--nav-w);min-height:100vh;background:var(--black);position:fixed;top:0;left:0;display:flex;flex-direction:column;align-items:center;padding:20px 0 24px;z-index:200}
+.rail-logo{width:36px;height:36px;background:var(--black);border:1.5px solid rgba(196,146,68,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;flex-shrink:0;overflow:hidden;padding:4px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;width:56px;padding:8px 0;border-radius:12px;text-decoration:none;color:rgba(247,246,244,.40);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;transition:all .18s;margin:1px 0}
+.ni:hover{color:rgba(247,246,244,.75);background:rgba(247,246,244,.05)}
+.ni.active{color:var(--gold)}
+.ni-wrap{width:38px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:9px;transition:background .18s}
+.ni.active .ni-wrap{background:rgba(196,146,68,.16)}
+.rail-div{width:30px;height:1px;background:rgba(247,246,244,.08);margin:8px 0}
+
+
+/* ─── SIDEBAR ─── */
+.sidebar{width:200px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:var(--nav-w);padding:56px 0 40px;overflow-y:auto;z-index:90;display:flex;flex-direction:column}
+.sb-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.sb-label{font-family:'Exo 2',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px}
+.sb-page{font-size:12px;font-weight:600;color:var(--black);display:block}
+.toc-list{flex:1;padding:4px 0}
+.toc-item{display:block;padding:6px 20px 6px 18px;text-decoration:none;font-size:11px;font-weight:500;color:var(--gray-4);border-left:2px solid transparent;transition:all .15s;line-height:1.4;letter-spacing:.01em}
+.toc-item:hover{color:var(--black);background:rgba(28,25,23,.02)}
+.toc-item.active{color:var(--black);border-left-color:var(--gold);background:rgba(196,146,68,.05);font-weight:600}
+.toc-num{color:var(--gold);font-weight:700;margin-right:4px;font-size:10px}
+.sb-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.sb-label{font-family:'Exo 2',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px}
+.sb-version{font-size:11px;color:var(--gray-4);font-weight:300}
+.nav-group{margin-top:8px}
+.nav-group-label{padding:8px 20px 4px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-2);font-family:'Sora',sans-serif}
+.nav-link{display:flex;align-items:center;justify-content:space-between;padding:7px 20px;text-decoration:none;font-family:'Sora',sans-serif;font-size:13px;font-weight:400;color:var(--gray-6);border-left:2px solid transparent;transition:all .15s}
+.nav-link:hover{color:var(--black);background:rgba(28,25,23,.03)}
+.nav-link.active{color:var(--black);background:rgba(196,146,68,.06);border-left-color:var(--gold);font-weight:600}
+.status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dot-done{background:#4CAF7D}
+.dot-wip{background:var(--gold)}
+.dot-todo{background:var(--gray-2)}
+
+/* MAIN LAYOUT + BREADCRUMB */
+.main{margin-left:calc(var(--nav-w) + 200px);flex:1;display:flex;flex-direction:column}
+.breadcrumb{height:44px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 40px;gap:8px;font-size:12px;font-weight:500;color:var(--gray-4);position:sticky;top:0;z-index:100}
+.breadcrumb a{color:var(--gray-4);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--black)}
+.breadcrumb-sep{color:var(--gray-2);font-size:10px}
+.content{flex:1;padding:64px 40px 80px}
+.wrap{max-width:920px;margin:0 auto}
+
+/* PROGRESS BAR */
+#pb{position:fixed;top:0;left:0;right:0;height:2px;background:var(--gold);transform-origin:left;z-index:999;transform:scaleX(0);transition:transform .1s}
+
+/* PAGE HEADER */
+.page-header{padding-bottom:40px;border-bottom:1px solid var(--border);margin-bottom:64px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--gold);border-radius:1px}
+.page-title{font-family:'Exo 2',sans-serif;font-size:48px;font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px}
+.page-sub{font-size:17px;font-weight:300;color:var(--gray-6);max-width:520px;line-height:1.7}
+
+/* SECTIONS */
+.section{margin-bottom:72px}
+.s-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-4);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.s-label::before{content:'';width:16px;height:1px;background:var(--gray-2)}
+.s-title{font-family:'Exo 2',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.s-sub{font-size:15px;font-weight:300;color:var(--gray-6);margin-bottom:32px;line-height:1.65;max-width:560px}
+
+/* LOGO HERO */
+.logo-hero{background:var(--black);border-radius:var(--r-xl);padding:80px 60px;text-align:center;margin-bottom:32px;box-shadow:var(--sh-md)}
+.logo-hero-sub{font-size:12px;font-weight:500;color:rgba(247,246,244,.35);letter-spacing:.1em;text-transform:uppercase;margin-top:24px}
+
+/* LOGO VARIANTS GRID */
+.logo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.logo-card{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm)}
+.logo-card-preview{height:140px;display:flex;align-items:center;justify-content:center;padding:0}
+.logo-card-info{background:var(--surface);border:1px solid var(--border);border-top:none;padding:16px 20px}
+.logo-card-name{font-size:13px;font-weight:600;color:var(--black);margin-bottom:3px}
+.logo-card-use{font-size:12px;font-weight:400;color:var(--gray-4)}
+
+/* SYMBOL GRID */
+.symbol-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.sym-card{border-radius:var(--r-md);padding:24px 16px;text-align:center;box-shadow:var(--sh-sm)}
+.sym-label{font-size:10px;font-weight:500;color:var(--gray-4);margin-top:10px;line-height:1.4}
+.sym-card.dark-bg .sym-label{color:rgba(247,246,244,.45)}
+
+/* WORDMARK SPECIMEN */
+.wordmark-block{background:var(--black);border-radius:var(--r-xl);padding:60px;display:flex;flex-direction:column;align-items:center;gap:32px;margin-bottom:16px}
+.wordmark-row{display:flex;flex-direction:column;align-items:center;gap:10px}
+.wordmark-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,246,244,.3)}
+.wm-text{font-family:'Exo 2',sans-serif;font-size:32px;line-height:1;letter-spacing:0}
+.wm-optima{font-weight:500;color:#F5F4F2}
+.wm-tech{font-weight:700;color:var(--gold)}
+.wm-divider{width:1px;height:32px;background:rgba(247,246,244,.1);margin:0 24px}
+
+/* CONSTRUCTION SPEC */
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.spec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 24px}
+.spec-card-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:8px}
+.spec-card-value{font-size:14px;font-weight:500;color:var(--black);line-height:1.5}
+.spec-card-note{font-size:12px;color:var(--gray-4);margin-top:4px}
+
+/* DO / DON'T */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rule-card{background:var(--surface);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm)}
+.rule-header{padding:12px 20px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.rule-header.do{background:rgba(60,150,90,.08);color:#2A7A4A;border-left:3px solid #4CAF7D}
+.rule-header.dont{background:rgba(210,60,60,.08);color:#A83030;border-left:3px solid #E05050}
+.rule-body{padding:20px;font-size:13px;font-weight:400;color:var(--gray-6);line-height:1.7;border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r-lg) var(--r-lg)}
+.rule-body p{margin-bottom:10px}
+.rule-body p:last-child{margin-bottom:0}
+
+/* CLEAR SPACE */
+.clearspace-demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:80px;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-sm);position:relative;margin-bottom:16px}
+.clearspace-inner{position:relative;display:inline-block}
+.clearspace-box{position:absolute;inset:-28px;border:1.5px dashed rgba(196,146,68,.5);border-radius:4px;pointer-events:none}
+.cs-label-top,.cs-label-bottom,.cs-label-left,.cs-label-right{position:absolute;font-size:10px;font-weight:600;color:var(--gold);white-space:nowrap}
+.cs-label-top{top:-22px;left:50%;transform:translateX(-50%)}
+.cs-label-bottom{bottom:-22px;left:50%;transform:translateX(-50%)}
+.cs-label-left{left:-56px;top:50%;transform:translateY(-50%)}
+.cs-label-right{right:-56px;top:50%;transform:translateY(-50%)}
+
+/* USAGE CHIP */
+.usage-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.04em}
+.chip-primary{background:rgba(196,146,68,.12);color:var(--gold-warm)}
+.chip-ok{background:rgba(60,150,90,.1);color:#2A7A4A}
+.chip-caution{background:rgba(240,160,40,.1);color:#9A6010}
+
+/* FOOTER NAV */
+.fn{display:flex;justify-content:space-between;align-items:center;padding:32px 0 0;margin-top:72px;border-top:1px solid var(--border)}
+.fn a{display:inline-flex;align-items:center;gap:8px;color:var(--gray-6);text-decoration:none;font-size:13px;font-weight:500;transition:color .15s}
+.fn a:hover{color:var(--gold)}
+.fn-copy{font-size:11px;color:var(--gray-4)}
+</style>
+</head>
+<body>
+<div id="pb"></div>
+
+<!-- NAV RAIL -->
+<nav class="rail">
+  <div class="rail-logo">
+    <img src="assets/favicon-icon.svg" alt="Optimatech" style="width:100%;height:100%;object-fit:contain">
+  </div>
+  <a href="index.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 8.5L10 3l7 5.5V17a1 1 0 01-1 1H4a1 1 0 01-1-1V8.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 18v-6h6v6" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg></div>INÍCIO
+  </a>
+  <a href="marca.html" class="ni active">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/><line x1="10" y1="2.5" x2="10" y2="17.5" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/><line x1="2.5" y1="10" x2="17.5" y2="10" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="rgba(247,246,244,.65)"/></svg></div>MARCA
+  </a>
+  <a href="cores.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><path d="M10 2.5a7.5 7.5 0 010 15" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" fill="rgba(247,246,244,.45)"/></svg></div>COR
+  </a>
+  <a href="tipografia.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M10 5v12M7 17h6" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg></div>TIPO
+  </a>
+  <div class="rail-div"></div>
+  <a href="componentes.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="2.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg></div>COMP
+  </a>
+  <a href="voz.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17 9.5c0 3.59-3.134 6.5-7 6.5a7.5 7.5 0 01-3.062-.638L3 17l1.638-3.938A6.3 6.3 0 013 9.5C3 5.91 6.134 3 10 3s7 2.91 7 6.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>VOZ
+  </a>
+  <a href="assets.html" class="ni">
+    <div class="ni-wrap"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6 9l4 4 4-4" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15h14" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg></div>ASSETS
+  </a>
+</nav>
+
+
+<aside class="sidebar" aria-label="Índice da página">
+  <div class="sb-header">
+    <span class="sb-label">Nesta página</span>
+    <span class="sb-page">Marca & Logo</span>
+  </div>
+  <nav class="toc-list" id="toc-list"></nav>
+</aside>
+
+<div class="main">
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="1" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/></svg>
+    <a href="index.html">Design System v5</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Marca &amp; Logo</span>
+  </div>
+
+  <div class="content">
+  <div class="wrap">
+
+    <header class="page-header">
+      <div class="eyebrow">Marca &amp; Logo</div>
+      <h1 class="page-title">Sistema de Marca</h1>
+      <p class="page-sub">O símbolo molecular e o logotipo Optimatech formam um sistema coeso. Esta seção define usos corretos, variações aprovadas e regras de aplicação.</p>
+    </header>
+
+    <!-- 01 · LOGO PRINCIPAL -->
+    <section class="section">
+      <div class="s-label">01 · Logo Principal</div>
+      <h2 class="s-title">Versão horizontal — preferencial</h2>
+      <p class="s-sub">A versão horizontal combina o símbolo molecular (esquerda) com o logotipo bipartido OPTIMA + TECH em fundo escuro. É a versão primária para todos os materiais de comunicação.</p>
+
+      <div class="logo-hero">
+        <img src="assets/logo-dark.svg" alt="OPTIMATECH Logo" style="height:88px;max-width:100%;object-fit:contain">
+        <div class="logo-hero-sub">Versão principal · fundo escuro · símbolo molecular + wordmark</div>
+      </div>
+
+      <!-- WORDMARK ANATOMY -->
+      <div class="wordmark-block">
+        <div class="wordmark-label">Anatomia do Wordmark</div>
+        <div style="display:flex;align-items:center;gap:0">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+            <span class="wm-text"><span class="wm-optima">OPTIMA</span><span class="wm-tech">TECH</span></span>
+            <div style="display:flex;gap:0;width:100%">
+              <div style="flex:6;text-align:center;border-top:1.5px solid rgba(245,244,242,.2);padding-top:8px;font-size:10px;color:rgba(245,244,242,.4);letter-spacing:.08em;font-weight:500">OPTIMA — Exo 2 · 500</div>
+              <div style="flex:4;text-align:center;border-top:1.5px solid rgba(196,146,68,.5);padding-top:8px;font-size:10px;color:rgba(196,146,68,.7);letter-spacing:.08em;font-weight:500">TECH — Exo 2 · 700</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:32px;margin-top:8px">
+          <div style="text-align:center">
+            <div style="font-size:10px;color:rgba(247,246,244,.3);letter-spacing:.1em;font-weight:500;margin-bottom:6px">PESO OPTIMA</div>
+            <div style="font-family:'Exo 2',sans-serif;font-weight:500;font-size:22px;color:#F5F4F2">500</div>
+          </div>
+          <div style="width:1px;background:rgba(247,246,244,.08)"></div>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:rgba(247,246,244,.3);letter-spacing:.1em;font-weight:500;margin-bottom:6px">PESO TECH</div>
+            <div style="font-family:'Exo 2',sans-serif;font-weight:700;font-size:22px;color:var(--gold)">700</div>
+          </div>
+          <div style="width:1px;background:rgba(247,246,244,.08)"></div>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:rgba(247,246,244,.3);letter-spacing:.1em;font-weight:500;margin-bottom:6px">FAMÍLIA</div>
+            <div style="font-family:'Exo 2',sans-serif;font-weight:600;font-size:16px;color:#F5F4F2">Exo 2</div>
+          </div>
+          <div style="width:1px;background:rgba(247,246,244,.08)"></div>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:rgba(247,246,244,.3);letter-spacing:.1em;font-weight:500;margin-bottom:6px">SEPARAÇÃO</div>
+            <div style="font-family:'Exo 2',sans-serif;font-weight:600;font-size:16px;color:#F5F4F2">Nenhuma</div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--gray-4)">OPTIMA e TECH formam <strong>uma única palavra</strong> — nunca separados por espaço. Apenas os pesos diferem: 500 (OPTIMA) e 700 (TECH).</p>
+    </section>
+
+    <!-- 02 · VARIANTES -->
+    <section class="section">
+      <div class="s-label">02 · Variantes Aprovadas</div>
+      <h2 class="s-title">Versões de aplicação</h2>
+      <p class="s-sub">Seis versões do logotipo cobrem todos os cenários de aplicação: fundos escuros, claros, impressão monocromática e aplicações especiais em dourado e cítrico.</p>
+
+      <div class="logo-grid">
+
+        <div class="logo-card">
+          <div class="logo-card-preview" style="background:#1C1917">
+            <img src="assets/logo-dark.svg" alt="Logo Escuro" style="width:100%;height:100%;object-fit:contain;padding:28px 20px">
+          </div>
+          <div class="logo-card-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div class="logo-card-name">Horizontal Escuro</div>
+                <div class="logo-card-use">Fundo preto ou grafite — versão primária</div>
+              </div>
+              <span class="usage-chip chip-primary">Principal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-card-preview" style="background:#F5F4F2;border:1px solid rgba(28,25,23,.08)">
+            <img src="assets/logo-light.svg" alt="Logo Claro" style="width:100%;height:100%;object-fit:contain;padding:28px 20px">
+          </div>
+          <div class="logo-card-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div class="logo-card-name">Horizontal Claro</div>
+                <div class="logo-card-use">Fundos brancos ou cinza neutro</div>
+              </div>
+              <span class="usage-chip chip-ok">Aprovado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-card-preview" style="background:#C49244">
+            <img src="assets/logo-gold.svg" alt="Logo Gold" style="width:100%;height:100%;object-fit:contain;padding:28px 20px">
+          </div>
+          <div class="logo-card-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div class="logo-card-name">Horizontal Gold</div>
+                <div class="logo-card-use">Impressão premium, fundo dourado</div>
+              </div>
+              <span class="usage-chip chip-caution">Especial</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-card-preview" style="background:#3C3830">
+            <img src="assets/logo-graphite.svg" alt="Logo Grafite" style="width:100%;height:100%;object-fit:contain;padding:28px 20px">
+          </div>
+          <div class="logo-card-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div class="logo-card-name">Horizontal Grafite</div>
+                <div class="logo-card-use">Fundos grafite ou cinza escuro</div>
+              </div>
+              <span class="usage-chip chip-ok">Aprovado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-card-preview" style="background:#FFFFFF;border:1px solid rgba(28,25,23,.08)">
+            <img src="assets/logo-white.svg" alt="Logo Branco" style="width:100%;height:100%;object-fit:contain;padding:28px 20px">
+          </div>
+          <div class="logo-card-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div class="logo-card-name">Horizontal Branco</div>
+                <div class="logo-card-use">Papelaria, documentos, materiais impressos</div>
+              </div>
+              <span class="usage-chip chip-ok">Aprovado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-card-preview" style="background:#E5E417">
+            <img src="assets/logo-citrus.svg" alt="Logo Cítrico" style="width:100%;height:100%;object-fit:contain;padding:28px 20px">
+          </div>
+          <div class="logo-card-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div class="logo-card-name">Horizontal Cítrico</div>
+                <div class="logo-card-use">Uso de destaque — materiais especiais</div>
+              </div>
+              <span class="usage-chip chip-caution">Especial</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p style="font-size:13px;color:var(--gray-4);margin-top:20px">Para download dos arquivos originais (SVG, PNG, PDF) em todas as variantes, acesse a pasta de logos no Drive via a página <a href="assets.html" style="color:var(--gold);text-decoration:none">Assets & Downloads</a>.</p>
+    </section>
+
+    <!-- 03 · SÍMBOLO MOLECULAR -->
+    <section class="section">
+      <div class="s-label">03 · Símbolo Molecular</div>
+      <h2 class="s-title">Uso isolado do símbolo</h2>
+      <p class="s-sub">O símbolo pode ser usado de forma isolada quando o nome da marca já está estabelecido no contexto — ícone de app, favicon, bordados, sinalização, elementos decorativos.</p>
+
+      <div class="symbol-grid">
+        <div class="sym-card" style="background:#1C1917">
+          <img src="assets/simbolo-dark.svg" alt="Gold/Preto" style="width:64px;height:64px;object-fit:contain">
+          <div class="sym-label" style="color:rgba(247,246,244,.45)">Gold<br>/ Preto</div>
+        </div>
+        <div class="sym-card" style="background:#3C3830">
+          <img src="assets/simbolo-graphite.svg" alt="Gold/Grafite" style="width:64px;height:64px;object-fit:contain">
+          <div class="sym-label" style="color:rgba(247,246,244,.45)">Gold<br>/ Grafite</div>
+        </div>
+        <div class="sym-card" style="background:#F5F4F2;border:1px solid rgba(28,25,23,.08)">
+          <img src="assets/simbolo-light.svg" alt="Escuro/Claro" style="width:64px;height:64px;object-fit:contain">
+          <div class="sym-label">Escuro<br>/ Claro</div>
+        </div>
+        <div class="sym-card" style="background:#FFFFFF;border:1px solid rgba(28,25,23,.08)">
+          <img src="assets/simbolo-white.svg" alt="Escuro/Branco" style="width:64px;height:64px;object-fit:contain">
+          <div class="sym-label">Escuro<br>/ Branco</div>
+        </div>
+        <div class="sym-card" style="background:#C49244">
+          <img src="assets/simbolo-gold.svg" alt="Escuro/Gold" style="width:64px;height:64px;object-fit:contain">
+          <div class="sym-label" style="color:rgba(28,25,23,.6)">Escuro<br>/ Dourado</div>
+        </div>
+        <div class="sym-card" style="background:#E5E417">
+          <img src="assets/simbolo-citrus.svg" alt="Escuro/Cítrico" style="width:64px;height:64px;object-fit:contain">
+          <div class="sym-label" style="color:rgba(28,25,23,.6)">Escuro<br>/ Cítrico</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · ÁREA DE PROTEÇÃO -->
+    <section class="section">
+      <div class="s-label">04 · Área de Proteção</div>
+      <h2 class="s-title">Espaço mínimo ao redor do logo</h2>
+      <p class="s-sub">A área de proteção corresponde à altura da letra "O" do wordmark aplicada em todos os lados. Nenhum elemento visual deve invadir essa zona.</p>
+
+      <div class="clearspace-demo">
+        <div class="clearspace-inner">
+          <div class="clearspace-box"></div>
+          <div class="cs-label-top">1× altura "O"</div>
+          <div class="cs-label-bottom">1× altura "O"</div>
+          <div class="cs-label-left">1×</div>
+          <div class="cs-label-right">1×</div>
+          <img src="assets/logo-light.svg" alt="OPTIMATECH" style="height:52px;max-width:260px;object-fit:contain;position:relative;z-index:2">
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px">
+        <div class="spec-card">
+          <div class="spec-card-label">Tamanho mínimo digital</div>
+          <div class="spec-card-value">120 px de largura</div>
+          <div class="spec-card-note">Telas, displays, web</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-card-label">Tamanho mínimo impresso</div>
+          <div class="spec-card-value">30 mm de largura</div>
+          <div class="spec-card-note">Papelaria, materiais físicos</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-card-label">Símbolo isolado mínimo</div>
+          <div class="spec-card-value">24 px / 8 mm</div>
+          <div class="spec-card-note">Favicon, ícone de app</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · CONSTRUÇÃO -->
+    <section class="section">
+      <div class="s-label">05 · Especificações Técnicas</div>
+      <h2 class="s-title">Construção do logotipo</h2>
+      <p class="s-sub">Referências técnicas para correta reprodução digital e impressa do sistema de marca.</p>
+
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="spec-card-label">Tipografia do Wordmark</div>
+          <div class="spec-card-value">Exo 2</div>
+          <div class="spec-card-note">Google Fonts — family=Exo+2</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-card-label">Peso OPTIMA / TECH</div>
+          <div class="spec-card-value">500 / 700</div>
+          <div class="spec-card-note">Sempre na mesma família, sem espaço entre eles</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-card-label">Cor principal — Dourado</div>
+          <div class="spec-card-value">#C49244</div>
+          <div class="spec-card-note">Pantone · CMYK 0/29/61/16</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-card-label">Cor principal — Preto marca</div>
+          <div class="spec-card-value">#1C1917</div>
+          <div class="spec-card-note">Preto quente, não puro (#000)</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-card-label">Formato preferencial</div>
+          <div class="spec-card-value">SVG vetorial</div>
+          <div class="spec-card-note">PNG 2× para contextos que não suportam SVG</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-card-label">Símbolo — tipo</div>
+          <div class="spec-card-value">Retículo molecular</div>
+          <div class="spec-card-note">Formas geométricas arredondadas interconectadas</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · REGRAS -->
+    <section class="section">
+      <div class="s-label">06 · Regras de Uso</div>
+      <h2 class="s-title">O que fazer — e o que evitar</h2>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-header do">✓ Correto</div>
+          <div class="rule-body">
+            <p>Usar o logo sobre fundos sólidos aprovados: preto (#1C1917), grafite (#3C3830), branco e cinza neutro.</p>
+            <p>Respeitar proporções originais — não esticar, não comprimir, não rotacionar.</p>
+            <p>Manter a área de proteção em todos os materiais digitais e físicos.</p>
+            <p>Usar as variantes aprovadas conforme o fundo de aplicação (escuro sobre claro, claro sobre escuro).</p>
+            <p>Sempre usar os arquivos originais fornecidos (SVG para digital, PNG 2× como fallback).</p>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-header dont">✗ Incorreto</div>
+          <div class="rule-body">
+            <p>Não alterar as cores individualmente nem aplicar gradientes ou efeitos sobre o logo.</p>
+            <p>Não separar o wordmark em "OPTIMA" e "TECH" — é uma palavra única com pesos distintos.</p>
+            <p>Não posicionar o logo sobre fotos ou fundos com muito ruído visual sem ajuste de contraste.</p>
+            <p>Não usar o logo antigo (astrolábio steampunk dourado) — está descontinuado e não representa a marca atual.</p>
+            <p>Não recriar ou redesenhar o símbolo molecular — usar apenas os arquivos oficiais.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="fn">
+      <a href="index.html">← Início</a>
+      <div class="fn-copy">© 2025 Optimatech · Design System v5.0</div>
+      <a href="cores.html">Paleta de Cores →</a>
+    </div>
+
+  </div>
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+const pb=document.getElementById('pb');
+window.addEventListener('scroll',()=>{
+  const el=document.querySelector('.content');
+  const scrollTop=el.scrollTop;
+  const scrollH=el.scrollHeight-el.clientHeight;
+  pb.style.transform=`scaleX(${scrollTop/scrollH})`;
+});
+// Also track window scroll as fallback
+window.addEventListener('scroll',()=>{
+  const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);
+  if(!isNaN(p)) pb.style.transform=`scaleX(${p})`;
+});
+</script>
+
+<script>
+(function(){
+  // Build ToC from .s-label elements
+  var toc = document.getElementById('toc-list');
+  if(!toc) return;
+  var sections = document.querySelectorAll('section.section');
+  if(!sections.length) return;
+  
+  sections.forEach(function(sec, i){
+    var labelEl = sec.querySelector('.s-label');
+    if(!labelEl) return;
+    var labelText = labelEl.textContent.trim();
+    var id = 'toc-sec-' + i;
+    sec.id = id;
+    
+    // Split "01 · Label text" into num and text
+    var parts = labelText.match(/^(\d+\s*[·\.]\s*)(.+)$/);
+    var a = document.createElement('a');
+    a.className = 'toc-item';
+    a.href = '#' + id;
+    if(parts){
+      a.innerHTML = '<span class="toc-num">' + parts[1].trim() + '</span>' + parts[2].trim();
+    } else {
+      a.textContent = labelText;
+    }
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById(id);
+      if(target){
+        // Account for sticky breadcrumb (44px)
+        var top = target.getBoundingClientRect().top + window.scrollY - 60;
+        window.scrollTo({top: top, behavior: 'smooth'});
+      }
+    });
+    toc.appendChild(a);
+  });
+  
+  // IntersectionObserver: highlight active section
+  var items = toc.querySelectorAll('.toc-item');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var link = toc.querySelector('a[href="#' + entry.target.id + '"]');
+      if(!link) return;
+      if(entry.isIntersecting){
+        items.forEach(function(i){ i.classList.remove('active'); });
+        link.classList.add('active');
+        // Scroll the toc item into view within sidebar
+        link.scrollIntoView({block:'nearest'});
+      }
+    });
+  }, {threshold: 0.25, rootMargin: '-50px 0px -55% 0px'});
+  
+  document.querySelectorAll('[id^="toc-sec-"]').forEach(function(s){
+    observer.observe(s);
+  });
+  
+  // Activate first item by default
+  if(items.length) items[0].classList.add('active');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Início — Optimatech Design System v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/icon-original.svg">
+<style>
+:root {
+  --gold:#C49244;--citrus:#E5E417;--dark-brand:#333333;--gold-warm:#A97727; --gold-lt:#D4A85A; --gold-dk:#B07B30; --gold-pale:#F0DFB8;
+  --black:#1C1917; --graphite:#3C3830; --gray-6:#5C5650; --gray-4:#9C9690;
+  --gray-2:#D4D0CC; --bg:#F7F6F4; --surface:#FFFFFF; --border:rgba(28,25,23,0.08);
+  --nav-w:72px; --font:'Sora',sans-serif;--font-primary:'Exo 2',sans-serif;--font-secondary:'Sora',sans-serif;
+  --r-sm:6px; --r-md:10px; --r-lg:16px; --r-xl:24px;
+  --sh-sm:0 1px 3px rgba(28,25,23,0.06),0 1px 2px rgba(28,25,23,0.04);
+  --sh-md:0 4px 16px rgba(28,25,23,0.08),0 2px 6px rgba(28,25,23,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--black);display:flex;min-height:100vh;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+/* NAV RAIL */
+.rail{width:var(--nav-w);min-height:100vh;background:var(--black);position:fixed;top:0;left:0;display:flex;flex-direction:column;align-items:center;padding:20px 0 24px;z-index:200}
+.rail-logo{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--black);margin-bottom:24px;letter-spacing:-.01em;flex-shrink:0}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;width:56px;padding:8px 0;border-radius:12px;text-decoration:none;color:rgba(247,246,244,.40);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;transition:all .18s;margin:1px 0}
+.ni:hover{color:rgba(247,246,244,.75);background:rgba(247,246,244,.05)}
+.ni.active{color:var(--gold)}
+.ni-wrap{width:38px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:9px;transition:background .18s}
+.ni.active .ni-wrap{background:rgba(196,146,68,.16)}
+.ni svg{transition:opacity .18s}
+.ni:hover svg{opacity:1}
+.rail-div{width:30px;height:1px;background:rgba(247,246,244,.08);margin:8px 0}
+
+
+/* ─── SIDEBAR ─── */
+.sidebar{width:200px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:var(--nav-w);padding:56px 0 40px;overflow-y:auto;z-index:90;display:flex;flex-direction:column}
+.sb-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.sb-label{font-family:'Exo 2',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px}
+.sb-page{font-size:12px;font-weight:600;color:var(--black);display:block}
+.toc-list{flex:1;padding:4px 0}
+.toc-item{display:block;padding:6px 20px 6px 18px;text-decoration:none;font-size:11px;font-weight:500;color:var(--gray-4);border-left:2px solid transparent;transition:all .15s;line-height:1.4;letter-spacing:.01em}
+.toc-item:hover{color:var(--black);background:rgba(28,25,23,.02)}
+.toc-item.active{color:var(--black);border-left-color:var(--gold);background:rgba(196,146,68,.05);font-weight:600}
+.toc-num{color:var(--gold);font-weight:700;margin-right:4px;font-size:10px}
+.sb-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.sb-label{font-family:'Exo 2',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px}
+.sb-version{font-size:11px;color:var(--gray-4);font-weight:300}
+.nav-group{margin-top:8px}
+.nav-group-label{padding:8px 20px 4px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-2);font-family:'Sora',sans-serif}
+.nav-link{display:flex;align-items:center;justify-content:space-between;padding:7px 20px;text-decoration:none;font-family:'Sora',sans-serif;font-size:13px;font-weight:400;color:var(--gray-6);border-left:2px solid transparent;transition:all .15s}
+.nav-link:hover{color:var(--black);background:rgba(28,25,23,.03)}
+.nav-link.active{color:var(--black);background:rgba(196,146,68,.06);border-left-color:var(--gold);font-weight:600}
+.status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dot-done{background:#4CAF7D}
+.dot-wip{background:var(--gold)}
+.dot-todo{background:var(--gray-2)}
+
+/* LAYOUT */
+.main{margin-left:calc(var(--nav-w) + 200px);flex:1;display:flex;flex-direction:column}
+.breadcrumb{height:44px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 40px;gap:8px;font-size:12px;font-weight:500;color:var(--gray-4);position:sticky;top:0;z-index:100}
+.breadcrumb a{color:var(--gray-4);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--black)}
+.breadcrumb-sep{color:var(--gray-2);font-size:10px}
+.content{flex:1;padding:64px 40px 80px}
+.wrap{max-width:920px;margin:0 auto}
+
+/* PROGRESS */
+#pb{position:fixed;top:0;left:0;right:0;height:2px;background:var(--gold);transform-origin:left;z-index:999;transform:scaleX(0);transition:transform .1s}
+
+/* HERO */
+.hero{padding:80px 0 72px;border-bottom:1px solid var(--border);margin-bottom:80px}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:20px;height:2px;background:var(--gold);border-radius:1px;display:inline-block}
+.hero-title{font-family:'Exo 2',sans-serif;font-size:56px;font-weight:800;line-height:1.08;letter-spacing:-.03em;color:var(--black);margin-bottom:28px;max-width:680px}
+.hero-title span{color:var(--gold)}
+.hero-body{font-size:17px;font-weight:300;color:var(--gray-6);max-width:560px;line-height:1.7;margin-bottom:40px}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap}
+.hero-stat{display:flex;flex-direction:column}
+.hero-stat strong{font-size:22px;font-weight:700;color:var(--black);letter-spacing:-.02em}
+.hero-stat span{font-size:12px;font-weight:500;color:var(--gray-4);letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+
+/* SECTIONS */
+.section{margin-bottom:80px}
+.s-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-4);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.s-label::before{content:'';width:16px;height:1px;background:var(--gray-2)}
+.s-title{font-family:'Exo 2',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.02em;color:var(--black);margin-bottom:12px}
+.s-sub{font-size:16px;font-weight:300;color:var(--gray-6);margin-bottom:40px;line-height:1.65;max-width:580px}
+
+/* PRINCIPLES GRID */
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.prin-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:32px;box-shadow:var(--sh-sm);position:relative;overflow:hidden}
+.prin-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);opacity:.4}
+.prin-card.active::before{opacity:1}
+.prin-num{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--gray-4);margin-bottom:16px;text-transform:uppercase}
+.prin-title{font-size:20px;font-weight:700;color:var(--black);margin-bottom:10px;letter-spacing:-.01em}
+.prin-body{font-size:14px;font-weight:300;color:var(--gray-6);line-height:1.65}
+
+/* GOLDEN CIRCLE */
+.gc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-md)}
+.gc-item{padding:40px 32px;border-right:1px solid var(--border)}
+.gc-item:last-child{border-right:none}
+.gc-level{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.gc-q{font-size:28px;font-weight:800;color:var(--black);margin-bottom:16px;letter-spacing:-.02em}
+.gc-text{font-size:14px;font-weight:300;color:var(--gray-6);line-height:1.7}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.team-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 20px;text-align:center;box-shadow:var(--sh-sm)}
+.team-avatar{width:52px;height:52px;background:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-weight:700;font-size:16px;color:var(--gold);letter-spacing:-.02em}
+.team-name{font-size:14px;font-weight:600;color:var(--black);margin-bottom:4px;letter-spacing:-.01em}
+.team-role{font-size:12px;font-weight:400;color:var(--gray-4);margin-bottom:8px}
+.team-degree{font-size:11px;font-weight:600;color:var(--gold);background:rgba(196,146,68,.1);padding:3px 10px;border-radius:100px;display:inline-block}
+
+/* AWARDS */
+.awards{display:flex;gap:16px;flex-wrap:wrap}
+.award{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 24px;box-shadow:var(--sh-sm);display:flex;align-items:flex-start;gap:16px;flex:1;min-width:240px}
+.award-icon{width:40px;height:40px;background:rgba(196,146,68,.1);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.award-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:3px}
+.award-sub{font-size:12px;font-weight:400;color:var(--gray-4)}
+
+/* BRAND PILLARS */
+.pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.pillar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 16px;text-align:center;box-shadow:var(--sh-sm)}
+.pillar-word{font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;letter-spacing:-.01em}
+.pillar-def{font-size:11px;font-weight:300;color:var(--gray-4);line-height:1.5}
+
+/* FOOTER NAV */
+.fn{display:flex;justify-content:space-between;align-items:center;padding:32px 0 0;margin-top:80px;border-top:1px solid var(--border)}
+.fn a{display:inline-flex;align-items:center;gap:8px;color:var(--gray-6);text-decoration:none;font-size:13px;font-weight:500;transition:color .15s}
+.fn a:hover{color:var(--gold)}
+.fn-copy{font-size:11px;color:var(--gray-4)}
+
+/* NAV SVG STROKE OVERRIDE */
+.ni.active svg path, .ni.active svg circle, .ni.active svg line, .ni.active svg polyline{stroke:var(--gold)}
+</style>
+</head>
+<body>
+
+<div id="pb"></div>
+
+<!-- NAV RAIL -->
+<nav class="rail">
+  <div class="rail-logo"><img src="assets/favicon-icon.svg" alt="Optimatech" style="width:100%;height:100%;object-fit:contain"></div>
+
+  <a href="index.html" class="ni active" title="Início">
+    <div class="ni-wrap">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 8.5L10 3l7 5.5V17a1 1 0 01-1 1H4a1 1 0 01-1-1V8.5z" stroke="rgba(247,246,244,.65)" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 18v-6h6v6" stroke="rgba(247,246,244,.65)" stroke-width="1.5"/></svg>
+    </div>
+    INÍCIO
+  </a>
+
+  <a href="marca.html" class="ni" title="Marca & Logo">
+    <div class="ni-wrap">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="10" y1="2.5" x2="10" y2="17.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><line x1="2.5" y1="10" x2="17.5" y2="10" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="rgba(247,246,244,.45)"/></svg>
+    </div>
+    MARCA
+  </a>
+
+  <a href="cores.html" class="ni" title="Paleta de Cores">
+    <div class="ni-wrap">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><path d="M10 2.5a7.5 7.5 0 010 15" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" fill="rgba(247,246,244,.45)"/></svg>
+    </div>
+    COR
+  </a>
+
+  <a href="tipografia.html" class="ni" title="Tipografia">
+    <div class="ni-wrap">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M10 5v12M7 17h6" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+    TIPO
+  </a>
+
+  <div class="rail-div"></div>
+
+  <a href="componentes.html" class="ni" title="Componentes">
+    <div class="ni-wrap">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="2.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="2.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/><rect x="11.5" y="11.5" width="6" height="6" rx="1.5" stroke="rgba(247,246,244,.45)" stroke-width="1.5"/></svg>
+    </div>
+    COMP
+  </a>
+
+  <a href="voz.html" class="ni" title="Voz & Personas">
+    <div class="ni-wrap">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17 9.5c0 3.59-3.134 6.5-7 6.5a7.5 7.5 0 01-3.062-.638L3 17l1.638-3.938A6.3 6.3 0 013 9.5C3 5.91 6.134 3 10 3s7 2.91 7 6.5z" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    </div>
+    VOZ
+  </a>
+
+  <a href="assets.html" class="ni" title="Assets & Downloads">
+    <div class="ni-wrap">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6 9l4 4 4-4" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15h14" stroke="rgba(247,246,244,.45)" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+    ASSETS
+  </a>
+</nav>
+
+
+<aside class="sidebar" aria-label="Índice da página">
+  <div class="sb-header">
+    <span class="sb-label">Nesta página</span>
+    <span class="sb-page">Visão Geral</span>
+  </div>
+  <nav class="toc-list" id="toc-list"></nav>
+</aside>
+
+<div class="main">
+  <div class="breadcrumb">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="1" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/></svg>
+    <span style="color:var(--black);font-weight:600">Design System v5</span>
+    <span class="breadcrumb-sep">·</span>
+    <span>Visão Geral</span>
+  </div>
+  <div class="content">
+  <div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Optimatech · Design System · v5.0</div>
+    <h1 class="hero-title">A linguagem visual da<br><span>indústria inteligente.</span></h1>
+    <p class="hero-body">Este é o repositório central das decisões de design da Optimatech. Cada token, componente e diretriz aqui documentado traduz o rigor científico da empresa em linguagem visual consistente — da plataforma ao material de vendas.</p>
+    <div class="hero-meta">
+      <div class="hero-stat"><strong>16</strong><span>Clientes âncora</span></div>
+      <div class="hero-stat"><strong>15+</strong><span>Módulos técnicos</span></div>
+      <div class="hero-stat"><strong>5×</strong><span>Top 100 Open Startups</span></div>
+      <div class="hero-stat"><strong>2×</strong><span>Prêmio Inventor Petrobras</span></div>
+    </div>
+  </section>
+
+  <!-- PRINCÍPIOS -->
+  <section class="section">
+    <div class="s-label">01 · Fundamentos</div>
+    <h2 class="s-title">Princípios de Design</h2>
+    <p class="s-sub">Quatro princípios orientam todas as decisões visuais e de UX da Optimatech. Derivam diretamente da cultura científica da empresa.</p>
+    <div class="principles">
+      <div class="prin-card active">
+        <div class="prin-num">01 · Precisão</div>
+        <div class="prin-title">Todo elemento tem uma razão de existir.</div>
+        <p class="prin-body">O sistema visual transmite a exatidão que existe no produto. Nada é decorativo por acidente — cada escolha tipográfica, espacial e cromática deriva de uma decisão intencional. Assim como nossos modelos matemáticos, o design não tem ruído.</p>
+      </div>
+      <div class="prin-card">
+        <div class="prin-num">02 · Clareza</div>
+        <div class="prin-title">Dados complexos, apresentação limpa.</div>
+        <p class="prin-body">A interface serve o dado, não o contrário. Hierarquia visual clara, uso generoso de espaço e tipografia de alto contraste garantem que operadores industriais encontrem o que precisam em segundos — mesmo sob pressão de produção.</p>
+      </div>
+      <div class="prin-card">
+        <div class="prin-num">03 · Confiança</div>
+        <div class="prin-title">O visual transmite estabilidade e domínio.</div>
+        <p class="prin-body">Paleta contida, ritmo visual consistente e ausência de elementos efêmeros ou na moda comunicam durabilidade. Industrias de grande porte precisam confiar no parceiro de longo prazo — e o design deve reforçar isso antes de qualquer palavra.</p>
+      </div>
+      <div class="prin-card">
+        <div class="prin-num">04 · Parceria</div>
+        <div class="prin-title">O design acolhe o engenheiro, não o intimida.</div>
+        <p class="prin-body">Usabilidade começa pelo visual. Um sistema que parece acessível e bem projetado reduz a curva de adoção. A linguagem é técnica mas nunca hermética — o operador de chão de fábrica e o diretor de TI devem se sentir igualmente em casa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLDEN CIRCLE -->
+  <section class="section">
+    <div class="s-label">02 · Identidade</div>
+    <h2 class="s-title">Golden Circle</h2>
+    <p class="s-sub">O posicionamento da Optimatech foi construído sobre o framework de Simon Sinek, revelando uma proposta de valor que começa no propósito.</p>
+    <div class="gc-grid">
+      <div class="gc-item">
+        <div class="gc-level">Por quê</div>
+        <div class="gc-q">WHY</div>
+        <p class="gc-text">Acreditamos que a indústria pode ser mais eficiente, segura e sustentável. Fábricas complexas não precisam ser operadas no escuro — toda decisão industrial pode ser embasada em dados precisos e modelos confiáveis.</p>
+      </div>
+      <div class="gc-item">
+        <div class="gc-level">Como</div>
+        <div class="gc-q">HOW</div>
+        <p class="gc-text">Combinamos modelagem matemática profunda — baseada nos fenômenos físico-químicos reais dos processos — com tecnologia de software moderna (SaaS, IA, cloud). O resultado é uma camada de inteligência que atua entre automação e decisão.</p>
+      </div>
+      <div class="gc-item">
+        <div class="gc-level">O que</div>
+        <div class="gc-q">WHAT</div>
+        <p class="gc-text">Software industrial modular com 15+ módulos técnicos: Gêmeo Digital, FDD, SPC, OEE, IA Generativa, Manutenção Preditiva e mais. Três planos (Basic, Intermediate, Advanced) atendendo à maturidade tecnológica de cada cliente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND PILLARS -->
+  <section class="section">
+    <div class="s-label">03 · Atributos de Marca</div>
+    <h2 class="s-title">O que a marca comunica</h2>
+    <p class="s-sub">Cinco atributos fundamentais informam cada decisão de design e comunicação da Optimatech.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-word">Precisão</div>
+        <div class="pillar-def">Exatidão em cada detalhe técnico e visual</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-word">Inteligência</div>
+        <div class="pillar-def">Ciência aplicada com propósito industrial</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-word">Confiança</div>
+        <div class="pillar-def">Parceiro de longo prazo, não fornecedor</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-word">Parceria</div>
+        <div class="pillar-def">Jornada de evolução junto ao cliente</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-word">Inovação</div>
+        <div class="pillar-def">Fronteira da ciência aplicada à indústria</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section">
+    <div class="s-label">04 · Fundadores</div>
+    <h2 class="s-title">Time fundador</h2>
+    <p class="s-sub">Engenheiros químicos doutores do ecossistema COPPE/UFRJ. O DNA científico não é branding — é a espinha dorsal técnica da empresa.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">TF</div>
+        <div class="team-name">Thiago Feital</div>
+        <div class="team-role">CEO</div>
+        <span class="team-degree">DSc · 15+ anos</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">MC</div>
+        <div class="team-name">Maurício Câmara</div>
+        <div class="team-role">CTO</div>
+        <span class="team-degree">DSc · 10+ anos</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">RS</div>
+        <div class="team-name">Rafael Soares</div>
+        <div class="team-role">Sócio</div>
+        <span class="team-degree">MSc</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">JP</div>
+        <div class="team-name">José Carlos Pinto</div>
+        <div class="team-role">Advisor</div>
+        <span class="team-degree">DSc · Prof. COPPE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="section">
+    <div class="s-label">05 · Reconhecimentos</div>
+    <h2 class="s-title">Prêmios e distinções</h2>
+    <div class="awards">
+      <div class="award">
+        <div class="award-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.09 4.26L17 7.27l-3.5 3.41.83 4.82L10 13.17l-4.33 2.33.83-4.82L3 7.27l4.91-.71L10 2z" stroke="#C49244" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="award-title">TOP 100 Open Startups</div>
+          <div class="award-sub">2023, 2024 e 2025 — 3 anos consecutivos</div>
+        </div>
+      </div>
+      <div class="award">
+        <div class="award-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#C49244" stroke-width="1.4"/><path d="M10 7v3l2 2" stroke="#C49244" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="award-title">Prêmio Inventor Petrobras</div>
+          <div class="award-sub">2024 e 2025 — dois anos consecutivos</div>
+        </div>
+      </div>
+      <div class="award">
+        <div class="award-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="8" width="14" height="9" rx="2" stroke="#C49244" stroke-width="1.4"/><path d="M7 8V6a3 3 0 016 0v2" stroke="#C49244" stroke-width="1.4"/></svg>
+        </div>
+        <div>
+          <div class="award-title">FAPERJ · SEBRAE Startups</div>
+          <div class="award-sub">Financiamento e aceleração tecnológica</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER NAV -->
+  <div class="fn">
+    <span></span>
+    <div class="fn-copy">© 2025 Optimatech · Design System v5.0</div>
+    <a href="marca.html">Marca & Logo →</a>
+  </div>
+
+  </div>
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+const pb = document.getElementById('pb');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  pb.style.transform = `scaleX(${pct})`;
+});
+</script>
+
+<script>
+(function(){
+  // Build ToC from .s-label elements
+  var toc = document.getElementById('toc-list');
+  if(!toc) return;
+  var sections = document.querySelectorAll('section.section');
+  if(!sections.length) return;
+  
+  sections.forEach(function(sec, i){
+    var labelEl = sec.querySelector('.s-label');
+    if(!labelEl) return;
+    var labelText = labelEl.textContent.trim();
+    var id = 'toc-sec-' + i;
+    sec.id = id;
+    
+    // Split "01 · Label text" into num and text
+    var parts = labelText.match(/^(\d+\s*[·\.]\s*)(.+)$/);
+    var a = document.createElement('a');
+    a.className = 'toc-item';
+    a.href = '#' + id;
+    if(parts){
+      a.innerHTML = '<span class="toc-num">' + parts[1].trim() + '</span>' + parts[2].trim();
+    } else {
+      a.textContent = labelText;
+    }
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById(id);
+      if(target){
+        // Account for sticky breadcrumb (44px)
+        var top = target.getBoundingClientRect().top + window.scrollY - 60;
+        window.scrollTo({top: top, behavior: 'smooth'});
+      }
+    });
+    toc.appendChild(a);
+  });
+  
+  // IntersectionObserver: highlight active section
+  var items = toc.querySelectorAll('.toc-item');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var link = toc.querySelector('a[href="#' + entry.target.id + '"]');
+      if(!link) return;
+      if(entry.isIntersecting){
+        items.forEach(function(i){ i.classList.remove('active'); });
+        link.classList.add('active');
+        // Scroll the toc item into view within sidebar
+        link.scrollIntoView({block:'nearest'});
+      }
+    });
+  }, {threshold: 0.25, rootMargin: '-50px 0px -55% 0px'});
+  
+  document.querySelectorAll('[id^="toc-sec-"]').forEach(function(s){
+    observer.observe(s);
+  });
+  
+  // Activate first item by default
+  if(items.length) items[0].classList.add('active');
+})();
+</script>
+</body>
+</html>
