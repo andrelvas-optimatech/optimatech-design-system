@@ -21,3 +21,6 @@ Hospedado em: https://optimatech-design-system.netlify.app
 ## Uso
 
 Abra qualquer arquivo `.html` diretamente no browser — sem dependências externas.
+
+---
+*Último deploy: teste de integração GitHub → Netlify — Abril 2026*
