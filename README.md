@@ -26,3 +26,5 @@ Abra qualquer arquivo `.html` diretamente no browser — sem dependências exter
 *Último deploy: teste de integração GitHub → Netlify — Abril 2026*
 
 *Pipeline GitHub → Netlify: ativo e testado — 14/04/2026*
+
+*Auto-deploy webhook ativo — 14/04/2026 09:44*
