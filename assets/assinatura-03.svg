@@ -1,148 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
   <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-      }
-
-      .cls-2 {
-        letter-spacing: 0em;
-      }
-
-      .cls-3 {
-        fill: #e6e617;
-      }
-
-      .cls-3, .cls-4, .cls-5 {
-        opacity: .7;
-      }
-
-      .cls-6 {
-        font-size: 21px;
-      }
-
-      .cls-6, .cls-5, .cls-7, .cls-8, .cls-9, .cls-10 {
-        fill: #333;
-      }
-
-      .cls-6, .cls-11, .cls-12, .cls-13, .cls-10 {
-        font-family: Sora-Regular, Sora;
-        font-variation-settings: 'wght' 400;
-      }
-
-      .cls-4 {
-        fill: #b3b336;
-      }
-
-      .cls-14 {
-        font-family: Sora-Thin, Sora;
-        font-variation-settings: 'wght' 100;
-        font-weight: 200;
-      }
-
-      .cls-15 {
-        font-family: ExoRoman-Medium, Exo;
-        font-variation-settings: 'wght' 500;
-        font-weight: 500;
-      }
-
-      .cls-16 {
-        letter-spacing: 0em;
-      }
-
-      .cls-17 {
-        letter-spacing: 0em;
-      }
-
-      .cls-7 {
-        font-size: 19.73px;
-      }
-
-      .cls-18 {
-        letter-spacing: 0em;
-      }
-
-      .cls-18, .cls-19 {
-        font-family: ExoRoman-Bold, Exo;
-        font-variation-settings: 'wght' 700;
-        font-weight: 700;
-      }
-
-      .cls-8 {
-        font-size: 34px;
-      }
-
-      .cls-20 {
-        letter-spacing: -.06em;
-      }
-
-      .cls-11 {
-        letter-spacing: 0em;
-      }
-
-      .cls-21 {
-        letter-spacing: -.01em;
-      }
-
-      .cls-22 {
-        letter-spacing: -.01em;
-      }
-
-      .cls-23 {
-        letter-spacing: -.01em;
-      }
-
-      .cls-24 {
-        letter-spacing: 0em;
-      }
-
-      .cls-25 {
-        letter-spacing: 0em;
-      }
-
-      .cls-26 {
-        letter-spacing: 0em;
-      }
-
-      .cls-12 {
-        letter-spacing: 0em;
-      }
-
-      .cls-27 {
-        letter-spacing: 0em;
-      }
-
-      .cls-28 {
-        letter-spacing: 0em;
-      }
-
-      .cls-29 {
-        letter-spacing: 0em;
-      }
-
-      .cls-30 {
-        letter-spacing: 0em;
-      }
-
-      .cls-31 {
-        letter-spacing: 0em;
-      }
-
-      .cls-32 {
-        clip-path: url(#clippath);
-      }
-
-      .cls-10 {
-        font-size: 13px;
-      }
-    </style>
+    
     <clipPath id="clippath">
-      <rect class="cls-1" y="-1140" width="1920" height="1080"/>
+      <rect class="cls-1" y="-1140" width="1920" height="1080"></rect>
     </clipPath>
   </defs>
   <g class="cls-32">
-    <image width="6000" height="4500" transform="translate(0 -1322.03) scale(.32)" xlink:href="../../../Documents/__JOB/_OPTIMATECH/_Id visual/Mockups/T- Shirt on the floor mockup.jpg"/>
+    <image width="6000" height="4500" transform="translate(0 -1322.03) scale(.32)" xlink:href="../../../Documents/__JOB/_OPTIMATECH/_Id visual/Mockups/T- Shirt on the floor mockup.jpg"></image>
   </g>
   <g>
     <text class="cls-8" transform="translate(526.7 514.84)"><tspan class="cls-14" x="0" y="0">Thiago</tspan><tspan class="cls-13" x="114.1" y="0"> </tspan><tspan class="cls-11" x="121.85" y="0">F</tspan><tspan class="cls-13" x="140.55" y="0">ei</tspan><tspan class="cls-12" x="171.83" y="0">t</tspan><tspan class="cls-13" x="186.25" y="0">al</tspan></text>
@@ -154,17 +19,17 @@
     <text class="cls-10" transform="translate(902.81 497.79)"><tspan x="0" y="0" xml:space="preserve">+55 (21) 9  9744 9663</tspan></text>
   </g>
   <g>
-    <path class="cls-4" d="M496.23,510.46c-4.49-28.09-26.67-50.27-54.76-54.76-3.42-.55-6.93-.84-10.51-.84h-56.37c-36.51,0-66.11,29.6-66.11,66.11v56.37c0,36.51,29.6,66.11,66.11,66.11h56.37c36.51,0,66.11-29.6,66.11-66.11v-56.37c0-3.58-.29-7.09-.84-10.51Z"/>
-    <path class="cls-3" d="M318.95,386.22h-39.03c-25.28,0-45.77,20.49-45.77,45.77v39.03c0,24.12,18.66,43.87,42.33,45.63,1.14.08,2.28.14,3.44.14h39.03c25.28,0,45.77-20.49,45.77-45.77v-39.03c0-25.28-20.49-45.77-45.77-45.77Z"/>
+    <path class="cls-4" d="M496.23,510.46c-4.49-28.09-26.67-50.27-54.76-54.76-3.42-.55-6.93-.84-10.51-.84h-56.37c-36.51,0-66.11,29.6-66.11,66.11v56.37c0,36.51,29.6,66.11,66.11,66.11h56.37c36.51,0,66.11-29.6,66.11-66.11v-56.37c0-3.58-.29-7.09-.84-10.51Z"></path>
+    <path class="cls-3" d="M318.95,386.22h-39.03c-25.28,0-45.77,20.49-45.77,45.77v39.03c0,24.12,18.66,43.87,42.33,45.63,1.14.08,2.28.14,3.44.14h39.03c25.28,0,45.77-20.49,45.77-45.77v-39.03c0-25.28-20.49-45.77-45.77-45.77Z"></path>
   </g>
   <g>
     <text class="cls-7" transform="translate(1455.65 530.91)"><tspan class="cls-15" x="0" y="0">OPTIMA</tspan><tspan class="cls-18" x="71.95" y="0">T</tspan><tspan class="cls-19" x="83.33" y="0">ECH</tspan></text>
-    <path class="cls-5" d="M1408.49,518.72h-.78c-2.77-.21-4.96-2.52-4.96-5.35v-.8h0c-.19,5.31-5,9.61-10.36,9.61l.45.06c3.29.53,5.89,3.13,6.42,6.42l.07.56c0-4.95,4.43-9.75,9.17-10.5Z"/>
-    <path class="cls-9" d="M1399.25,528.66c-.53-3.29-3.13-5.89-6.42-6.42-.4-.06-.81-.1-1.23-.1h-6.61c-4.28,0-7.75,3.47-7.75,7.75v6.61c0,4.28,3.47,7.75,7.75,7.75h6.61c4.28,0,7.75-3.47,7.75-7.75v-6.61c0-.42-.03-.83-.1-1.23Z"/>
-    <path class="cls-5" d="M1412.96,518.73c4.16,0,8.17,3.37,8.5,7.45v-.17c.23-1.94,1.87-3.45,3.87-3.45h.85c-4.49,0-8.14-4.37-8.14-8.86"/>
-    <path class="cls-9" d="M1428.64,522.57h-3.3c-2,0-3.64,1.51-3.85,3.45-.02.14-.02.28-.02.43v3.3c0,2.14,1.73,3.88,3.88,3.88h3.3c2.14,0,3.88-1.73,3.88-3.88v-3.3c0-2.14-1.73-3.88-3.88-3.88Z"/>
-    <path class="cls-9" d="M1412.69,503.43h-4.58c-2.96,0-5.37,2.4-5.37,5.37v4.58c0,2.83,2.19,5.14,4.96,5.35.13,0,.27.02.4.02h4.58c2.96,0,5.37-2.4,5.37-5.37v-4.58c0-2.96-2.4-5.37-5.37-5.37Z"/>
-    <path class="cls-5" d="M1432.51,526.34c0-3.09,2.51-6.07,5.53-6.31h-.12c-1.44-.17-2.56-1.39-2.56-2.87v-.63h0c0,3.33-3.25,6.04-6.58,6.04"/>
-    <path class="cls-9" d="M1435.36,514.7v2.45c0,1.48,1.12,2.7,2.56,2.86.1.01.21.02.32.02h2.45c1.59,0,2.88-1.29,2.88-2.88v-2.45c0-1.59-1.29-2.88-2.88-2.88h-2.45c-1.59,0-2.88,1.29-2.88,2.88Z"/>
+    <path class="cls-5" d="M1408.49,518.72h-.78c-2.77-.21-4.96-2.52-4.96-5.35v-.8h0c-.19,5.31-5,9.61-10.36,9.61l.45.06c3.29.53,5.89,3.13,6.42,6.42l.07.56c0-4.95,4.43-9.75,9.17-10.5Z"></path>
+    <path class="cls-9" d="M1399.25,528.66c-.53-3.29-3.13-5.89-6.42-6.42-.4-.06-.81-.1-1.23-.1h-6.61c-4.28,0-7.75,3.47-7.75,7.75v6.61c0,4.28,3.47,7.75,7.75,7.75h6.61c4.28,0,7.75-3.47,7.75-7.75v-6.61c0-.42-.03-.83-.1-1.23Z"></path>
+    <path class="cls-5" d="M1412.96,518.73c4.16,0,8.17,3.37,8.5,7.45v-.17c.23-1.94,1.87-3.45,3.87-3.45h.85c-4.49,0-8.14-4.37-8.14-8.86"></path>
+    <path class="cls-9" d="M1428.64,522.57h-3.3c-2,0-3.64,1.51-3.85,3.45-.02.14-.02.28-.02.43v3.3c0,2.14,1.73,3.88,3.88,3.88h3.3c2.14,0,3.88-1.73,3.88-3.88v-3.3c0-2.14-1.73-3.88-3.88-3.88Z"></path>
+    <path class="cls-9" d="M1412.69,503.43h-4.58c-2.96,0-5.37,2.4-5.37,5.37v4.58c0,2.83,2.19,5.14,4.96,5.35.13,0,.27.02.4.02h4.58c2.96,0,5.37-2.4,5.37-5.37v-4.58c0-2.96-2.4-5.37-5.37-5.37Z"></path>
+    <path class="cls-5" d="M1432.51,526.34c0-3.09,2.51-6.07,5.53-6.31h-.12c-1.44-.17-2.56-1.39-2.56-2.87v-.63h0c0,3.33-3.25,6.04-6.58,6.04"></path>
+    <path class="cls-9" d="M1435.36,514.7v2.45c0,1.48,1.12,2.7,2.56,2.86.1.01.21.02.32.02h2.45c1.59,0,2.88-1.29,2.88-2.88v-2.45c0-1.59-1.29-2.88-2.88-2.88h-2.45c-1.59,0-2.88,1.29-2.88,2.88Z"></path>
   </g>
 </svg>

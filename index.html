@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Início — Optimatech Design System v5</title>
+<title>Início — Optimatech Design System v6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="assets/icon-original.svg">
@@ -16,6 +16,9 @@
   --r-sm:6px; --r-md:10px; --r-lg:16px; --r-xl:24px;
   --sh-sm:0 1px 3px rgba(28,25,23,0.06),0 1px 2px rgba(28,25,23,0.04);
   --sh-md:0 4px 16px rgba(28,25,23,0.08),0 2px 6px rgba(28,25,23,0.04);
+  /* v6 — M3-inspired surface tonal layers */
+  --surf-1:#FFFFFF; --surf-2:#FAF9F6; --surf-3:#F2F0EB; --surf-4:#EBE8E0; --surf-5:#E2DED4;
+  --surf-dim:#F0EEE8;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -23,7 +26,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--black);display:fle
 
 /* NAV RAIL */
 .rail{width:var(--nav-w);min-height:100vh;background:var(--black);position:fixed;top:0;left:0;display:flex;flex-direction:column;align-items:center;padding:20px 0 24px;z-index:200}
-.rail-logo{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--black);margin-bottom:24px;letter-spacing:-.01em;flex-shrink:0}
+.rail-logo{width:36px;height:36px;background:var(--black);border:1.5px solid rgba(196,146,68,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;flex-shrink:0;overflow:hidden;padding:4px}
 .ni{display:flex;flex-direction:column;align-items:center;gap:3px;width:56px;padding:8px 0;border-radius:12px;text-decoration:none;color:rgba(247,246,244,.40);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;transition:all .18s;margin:1px 0}
 .ni:hover{color:rgba(247,246,244,.75);background:rgba(247,246,244,.05)}
 .ni.active{color:var(--gold)}
@@ -135,6 +138,37 @@ body{font-family:var(--font);background:var(--bg);color:var(--black);display:fle
 
 /* NAV SVG STROKE OVERRIDE */
 .ni.active svg path, .ni.active svg circle, .ni.active svg line, .ni.active svg polyline{stroke:var(--gold)}
+
+/* ───────── v6 · WHAT'S NEW ───────── */
+.v6-strip{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;margin-bottom:64px;align-items:stretch}
+.v6-card-main{background:var(--black);border-radius:var(--r-xl);padding:36px 36px 32px;color:#F5F4F2;box-shadow:var(--sh-md);position:relative;overflow:hidden}
+.v6-card-main::after{content:'v6';position:absolute;right:-16px;bottom:-32px;font-family:'Exo 2',sans-serif;font-size:200px;font-weight:800;letter-spacing:-.04em;color:rgba(196,146,68,.07);line-height:.85;pointer-events:none}
+.v6-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;background:rgba(196,146,68,.15);color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+.v6-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.v6-headline{font-family:'Exo 2',sans-serif;font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px;color:#F5F4F2;position:relative;z-index:1}
+.v6-headline span{color:var(--gold)}
+.v6-sub{font-size:14px;font-weight:300;color:rgba(245,244,242,.6);line-height:1.65;max-width:440px;position:relative;z-index:1}
+.v6-meta{display:flex;gap:24px;margin-top:24px;padding-top:20px;border-top:1px solid rgba(247,246,244,.1);position:relative;z-index:1}
+.v6-meta-item strong{display:block;font-family:'Exo 2',sans-serif;font-size:18px;font-weight:700;color:var(--gold);letter-spacing:-.01em}
+.v6-meta-item span{font-size:10px;font-weight:600;color:rgba(247,246,244,.4);letter-spacing:.08em;text-transform:uppercase;margin-top:2px;display:block}
+
+/* M3 surface stack preview */
+.v6-card-surfaces{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px;display:flex;flex-direction:column;gap:8px;justify-content:center;box-shadow:var(--sh-sm)}
+.v6-surf-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-4);margin-bottom:6px}
+.v6-surf-row{display:flex;align-items:center;gap:14px;padding:10px 14px;border-radius:var(--r-md);font-size:12px;font-weight:600;color:var(--black)}
+.v6-surf-row code{font-family:'Sora',monospace;font-size:10px;font-weight:600;color:var(--gray-4);margin-left:auto;letter-spacing:.04em}
+.v6-surf-1{background:var(--surf-1);border:1px solid var(--border)}
+.v6-surf-2{background:var(--surf-2)}
+.v6-surf-3{background:var(--surf-3)}
+.v6-surf-4{background:var(--surf-4)}
+.v6-surf-5{background:var(--surf-5)}
+
+/* Changelog list */
+.v6-changes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:80px}
+.v6-chg{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-sm)}
+.v6-chg-num{font-family:'Exo 2',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--gold);margin-bottom:8px;text-transform:uppercase}
+.v6-chg-title{font-size:14px;font-weight:700;color:var(--black);margin-bottom:6px;letter-spacing:-.01em}
+.v6-chg-body{font-size:12px;font-weight:300;color:var(--gray-6);line-height:1.55}
 </style>
 </head>
 <body>
@@ -209,7 +243,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--black);display:fle
 <div class="main">
   <div class="breadcrumb">
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="1" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="1" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/><rect x="8" y="8" width="5" height="5" rx="1" fill="var(--gray-4)"/></svg>
-    <span style="color:var(--black);font-weight:600">Design System v5</span>
+    <span style="color:var(--black);font-weight:600">Design System v6</span>
     <span class="breadcrumb-sep">·</span>
     <span>Visão Geral</span>
   </div>
@@ -218,9 +252,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--black);display:fle
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">Optimatech · Design System · v5.0</div>
+    <div class="hero-eyebrow">Optimatech · Design System · v6.0</div>
     <h1 class="hero-title">A linguagem visual da<br><span>indústria inteligente.</span></h1>
-    <p class="hero-body">Este é o repositório central das decisões de design da Optimatech. Cada token, componente e diretriz aqui documentado traduz o rigor científico da empresa em linguagem visual consistente — da plataforma ao material de vendas.</p>
+    <p class="hero-body">Sexta iteração do design system da Optimatech. Construído sobre o sistema v5, esta versão adota a abordagem do <strong style="font-weight:600;color:var(--black)">Material 3</strong> para tokens de superfície tonal, elevação e densidade — sem comprometer a identidade Gold + Black + Exo&nbsp;2 que define a marca.</p>
     <div class="hero-meta">
       <div class="hero-stat"><strong>16</strong><span>Clientes âncora</span></div>
       <div class="hero-stat"><strong>15+</strong><span>Módulos técnicos</span></div>
@@ -228,6 +262,62 @@ body{font-family:var(--font);background:var(--bg);color:var(--black);display:fle
       <div class="hero-stat"><strong>2×</strong><span>Prêmio Inventor Petrobras</span></div>
     </div>
   </section>
+
+  <!-- ───── v6 · O QUE MUDOU ───── -->
+  <div class="v6-strip">
+    <div class="v6-card-main">
+      <div class="v6-tag">Novidades v6</div>
+      <h2 class="v6-headline">M3 encontra a <span>indústria.</span></h2>
+      <p class="v6-sub">Adotamos os princípios do Material 3 — superfícies tonais, elevação separada, densidade configurável — sem alterar uma única regra da nossa identidade. Mais sistema, menos ruído.</p>
+      <div class="v6-meta">
+        <div class="v6-meta-item"><strong>5 layers</strong><span>Surface tonal</span></div>
+        <div class="v6-meta-item"><strong>3 dens.</strong><span>Compact · Default · Spacious</span></div>
+        <div class="v6-meta-item"><strong>State</strong><span>Layer overlays</span></div>
+      </div>
+    </div>
+    <div class="v6-card-surfaces">
+      <div class="v6-surf-label">Surface tonal · M3-inspired</div>
+      <div class="v6-surf-row v6-surf-1">Surface 1<code>#FFFFFF</code></div>
+      <div class="v6-surf-row v6-surf-2">Surface 2<code>#FAF9F6</code></div>
+      <div class="v6-surf-row v6-surf-3">Surface 3<code>#F2F0EB</code></div>
+      <div class="v6-surf-row v6-surf-4">Surface 4<code>#EBE8E0</code></div>
+      <div class="v6-surf-row v6-surf-5">Surface 5<code>#E2DED4</code></div>
+    </div>
+  </div>
+
+  <!-- v6 changelog -->
+  <div class="v6-changes">
+    <div class="v6-chg">
+      <div class="v6-chg-num">01 · Marca</div>
+      <div class="v6-chg-title">Pesos do wordmark consolidados</div>
+      <p class="v6-chg-body">OPTIMA — Exo 2 · Medium (500). TECH — Exo 2 · Bold (700). Ambos em maiúscula, sem espaço, com ponto opcional.</p>
+    </div>
+    <div class="v6-chg">
+      <div class="v6-chg-num">02 · Cor</div>
+      <div class="v6-chg-title">5 níveis de surface tonal</div>
+      <p class="v6-chg-body">Hierarquia de profundidade construída por cor — não por sombra. Reduz peso visual em interfaces de dado denso.</p>
+    </div>
+    <div class="v6-chg">
+      <div class="v6-chg-num">03 · Tipografia</div>
+      <div class="v6-chg-title">Type scale alinhada ao M3</div>
+      <p class="v6-chg-body">Display / Headline / Title / Body / Label — 15 níveis com função clara, mantendo Exo 2 + Sora.</p>
+    </div>
+    <div class="v6-chg">
+      <div class="v6-chg-num">04 · Componentes</div>
+      <div class="v6-chg-title">State layers</div>
+      <p class="v6-chg-body">Hover, focus, pressed e dragged usam camadas de opacidade calibradas — não cores opacas inventadas.</p>
+    </div>
+    <div class="v6-chg">
+      <div class="v6-chg-num">05 · Forma</div>
+      <div class="v6-chg-title">Shape scale</div>
+      <p class="v6-chg-body">7 níveis de raio (none → full) com tokens nomeados para mapear componentes a categorias de forma.</p>
+    </div>
+    <div class="v6-chg">
+      <div class="v6-chg-num">06 · Densidade</div>
+      <div class="v6-chg-title">Compact / Default / Spacious</div>
+      <p class="v6-chg-body">Three-tier density system para dashboards densos, marketing aberto e contextos de leitura. Tokens unificados.</p>
+    </div>
+  </div>
 
   <!-- PRINCÍPIOS -->
   <section class="section">
@@ -382,7 +472,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--black);display:fle
   <!-- FOOTER NAV -->
   <div class="fn">
     <span></span>
-    <div class="fn-copy">© 2025 Optimatech · Design System v5.0</div>
+    <div class="fn-copy">© 2025 Optimatech · Design System v6.0 · M3-inspired</div>
     <a href="marca.html">Marca & Logo →</a>
   </div>
 
